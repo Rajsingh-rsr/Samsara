@@ -21,14 +21,13 @@ router.route("/login").post(loginUser)
 
 // secured routers
 router.route("/logout").post(verifyJWT, logoutUser)
-
-
 router.route("/update-account").patch(verifyJWT, updateAccountDetails)
-
 router.route("/update-profile").patch(
     upload.single("avatar"),
     updateUserAvatar
 )
+router.route("/change-password").post(verifyJWT, changeCurrentPassword)
+router.route("/current-user").get(verifyJWT, getCurrentUser)
 
 
 export default router
