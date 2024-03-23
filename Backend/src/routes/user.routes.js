@@ -23,6 +23,7 @@ router.route("/login").post(loginUser)
 router.route("/logout").post(verifyJWT, logoutUser)
 router.route("/update-account").patch(verifyJWT, updateAccountDetails)
 router.route("/update-profile").patch(
+    verifyJWT,
     upload.single("avatar"),
     updateUserAvatar
 )
