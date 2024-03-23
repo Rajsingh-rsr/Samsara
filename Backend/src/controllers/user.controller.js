@@ -2,6 +2,7 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 import { ApiError } from "../utils/ApiError.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import { User } from "../models/user.models.js"
+import { uploadOnCloudinary } from "../utils/cloudinary.js"
 
 
 
@@ -172,7 +173,7 @@ const changeCurrentPassword = asyncHandler(async (req, res) => {
     const { oldPassword, newPassword } = req.body
 
     if (
-        [oldPassword, newPassword].some((field) => field?.trim() === "" || field?.trim() == undefined)
+        [oldPassword, newPassword].some((field) => field === "" || field?.trim() == undefined)
     ) {
         throw new ApiError(400, "Both Old Password and new password is required")
 
@@ -213,13 +214,6 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 
     const { fullName, address, phone } = req.body
 
-
-    // _id: this.id,
-    // email: this.email,
-    // address: this.address,
-    // fullName: this.fullName,
-    // phone: this.phone
-
     const user = await User.findByIdAndUpdate(
 
         req.user?._id,
@@ -252,6 +246,42 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 })
 
 
+const updateUserAvatar = asyncHandler(async (req, res) => {
+
+    const avatarLocalPath = req.file?.path
+
+    if (!avatarLocalPath) {
+        throw new ApiError(400, "Avatar file is missing")
+    }
+
+    const avatar = await uploadOnCloudinary(avatarLocalPath)
+
+    if (!avatar.url) {
+        throw new ApiError(500, "Failed to upload avatar")
+    }
+
+    const user = await User.findByIdAndUpdate(
+        req.user?._id,
+        {
+            $set: {
+                avatar: avatar.url
+            }
+        },
+        { new: true }
+    ).select("-password")
+
+    if (!user) {
+        throw new ApiError(500, "Something went wrong while updatating Avatar image")
+    }
+
+    return res
+        .status(200)
+        .json(
+            new ApiResponse(200, user, "Avatar image updated successfully")
+        )
+
+})
+
 
 
 export {
@@ -260,5 +290,6 @@ export {
     logoutUser,
     changeCurrentPassword,
     getCurrentUser,
-    updateAccountDetails
+    updateAccountDetails,
+    updateUserAvatar
 }

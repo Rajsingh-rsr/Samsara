@@ -1,11 +1,13 @@
 import { Router } from "express";
-
 import {
     registerUser,
     loginUser,
     logoutUser,
+    changeCurrentPassword,
+    getCurrentUser,
+    updateAccountDetails,
+    updateUserAvatar
 
-    updateAccountDetails
 } from "../controllers/user.controller.js"
 
 import { upload } from "../middlewares/multer.middleware.js"
@@ -22,6 +24,11 @@ router.route("/logout").post(verifyJWT, logoutUser)
 
 
 router.route("/update-account").patch(verifyJWT, updateAccountDetails)
+
+router.route("/update-profile").patch(
+    upload.single("avatar"),
+    updateUserAvatar
+)
 
 
 export default router
