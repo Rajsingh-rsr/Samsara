@@ -17,6 +17,13 @@ const addNewProduct = asyncHandler(async (req, res) => {
 
     const { name, description, brand, price, category } = req.body
 
+    const emailRegex = /^seller\.([a-zA-Z]+[a-zA-Z0-9]*)@samsara\.com$/;
+    const isValidEmail = emailRegex.test(req.user?.email);
+
+    if(!isValidEmail){
+        throw new ApiError(401, "Invalid user credentials Seller can only add product")
+    }
+
     if (
         [name, description, brand, price].some((field) => field?.trim() === "" || field?.trim() == undefined)
     ) {
@@ -82,7 +89,8 @@ const addNewProduct = asyncHandler(async (req, res) => {
             productImage: productImage.url,
             supportImage: supportImageAll,
             price,
-            category: createdCategory._id
+            category: createdCategory._id,
+            owner: req.user?._id
 
         }
     )
@@ -97,5 +105,11 @@ const addNewProduct = asyncHandler(async (req, res) => {
 
 })
 
+const updateProduct = asyncHandler(async (req, res) => {
 
-export { addNewProduct }
+    const { } = req.body
+
+})
+
+
+export { addNewProduct, updateProduct }
