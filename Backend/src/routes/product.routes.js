@@ -2,7 +2,8 @@ import { Router } from "express";
 
 import {
     addNewProduct,
-    updateProduct
+    updateProduct,
+    deleteProduct
 } from "../controllers/product.controller.js"
 
 import { upload } from "../middlewares/multer.middleware.js"
@@ -32,5 +33,6 @@ router.route("/")
 router.route("/:productId")
 
     .patch(updateProduct)
+    .delete(deleteProduct)
 
 export default router

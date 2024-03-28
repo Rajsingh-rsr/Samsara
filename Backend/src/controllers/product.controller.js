@@ -121,7 +121,7 @@ const updateProduct = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Invalid product Id")
     }
 
-    if (!product.owner.equals(req.user?._id)) {
+    if (!product?.owner.equals(req.user?._id)) {
         throw new ApiError(401, "unauthorized Product owner")
     }
 
@@ -149,5 +149,30 @@ const updateProduct = asyncHandler(async (req, res) => {
 
 })
 
+const deleteProduct = asyncHandler(async (req, res) => {
 
-export { addNewProduct, updateProduct }
+    const { productId } = req.params
+
+    if (!isValidObjectId(productId)) {
+        throw new ApiError(400, "Invali product id || object id")
+    }
+
+    const product = await Product.findById(productId)
+
+    if (!product?.owner.equals(req.user?._id)) {
+        throw new ApiError(401, "unauthorize product owner")
+    }
+
+    const deleteProduct = await Product.findByIdAndDelete(productId)
+
+    if (!deleteProduct) {
+        throw new ApiError(500, "something went wrong while deleting product")
+    }
+
+    return res
+        .status(204)
+        .json(new ApiResponse(204, {}, "Product deleted successfully"))
+
+})
+
+export { addNewProduct, updateProduct, deleteProduct }
