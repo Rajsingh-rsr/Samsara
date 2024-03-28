@@ -3,7 +3,8 @@ import { asyncHandler } from "../utils/asyncHandler.js"
 import { ApiError } from "../utils/ApiError.js"
 import { ApiResponse } from "../utils/ApiResponse.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
-import { Catetory } from "../models/category.models.js"
+import { Category } from "../models/category.models.js"
+import mongoose, { isValidObjectId } from "mongoose"
 
 const addNewProduct = asyncHandler(async (req, res) => {
 
@@ -20,7 +21,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
     const emailRegex = /^seller\.([a-zA-Z]+[a-zA-Z0-9]*)@samsara\.com$/;
     const isValidEmail = emailRegex.test(req.user?.email);
 
-    if(!isValidEmail){
+    if (!isValidEmail) {
         throw new ApiError(401, "Invalid user credentials Seller can only add product")
     }
 
@@ -38,7 +39,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All category filed are required")
     }
 
-    let dbCategory = await Catetory.findOne(
+    let dbCategory = await Category.findOne(
         {
             name: objCategory.name,
             color: objCategory.color,
@@ -47,7 +48,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
     )
 
     if (!dbCategory) {
-        dbCategory = await Catetory.create(
+        dbCategory = await Category.create(
             {
                 name: objCategory.name.trim(),
                 color: objCategory.color.trim(),
@@ -56,7 +57,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
         )
     }
 
-    const createdCategory = await Catetory.findById(dbCategory._id)
+    const createdCategory = await Category.findById(dbCategory._id)
 
     if (!createdCategory) {
         throw new ApiError(500, "something went wrong while creating category")
@@ -107,7 +108,44 @@ const addNewProduct = asyncHandler(async (req, res) => {
 
 const updateProduct = asyncHandler(async (req, res) => {
 
-    const { } = req.body
+    const { productId } = req.params
+    const { name, description } = req.body
+
+    if (!isValidObjectId(productId)) {
+        throw new ApiError(400, "productId is invalid || object id is invalid")
+    }
+
+    const product = await Product.findById(productId)
+
+    if (!product) {
+        throw new ApiError(400, "Invalid product Id")
+    }
+
+    if (!product.owner.equals(req.user?._id)) {
+        throw new ApiError(401, "unauthorized Product owner")
+    }
+
+    const updateProduct = await Product.findByIdAndUpdate(
+
+        productId,
+        {
+            name: name?.trim() || product.name,
+            description: description?.trim() || product.description,
+        },
+        {
+            new: true
+        }
+
+    )
+
+    if (!updateProduct) {
+        throw new ApiError(500, "Something went wrong while updating product")
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, updateProduct, "Product updated successfully"))
+
 
 })
 

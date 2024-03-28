@@ -40,7 +40,7 @@ const productSchema = new mongoose.Schema(
 
         category: {
             type: mongoose.Schema.Types.ObjectId,
-            ref: "Catetory"
+            ref: "Category"
         },
 
         owner: {
