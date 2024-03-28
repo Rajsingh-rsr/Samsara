@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', function() {
             console.log(formData);
 
             // Send data to API endpoint
-            fetch('https://newtest-production-f50e.up.railway.app/api/v1/users/register', {
+            fetch('http://localhost:4000/api/v1/users/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

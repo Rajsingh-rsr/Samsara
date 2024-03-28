@@ -1,4 +1,4 @@
-document.getElementById('loginForm').addEventListener('submit', function(event) {
+document.getElementById('loginForm').addEventListener('submit', function (event) {
     event.preventDefault(); // Prevent the default form submission
 
     // Validate email
@@ -18,7 +18,7 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
         passwordError.innerText = 'Password must be at least 8 characters';
         return;
     } else {
-      passwordError.innerText = '';
+        passwordError.innerText = '';
     }
 
     // Prepare data for POST request
@@ -28,28 +28,28 @@ document.getElementById('loginForm').addEventListener('submit', function(event) 
     };
     console.log(formData);
 
-    fetch('https://newtest-production-f50e.up.railway.app/api/v1/users/login', {
+    fetch('http://localhost:4000/api/v1/users/login', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
-     })
+    })
 
-    .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok');
-        }
-        return response.json();
-    })
-    .then(data => {
-        // Handle success response
-        console.log('Form submitted successfully', data);
-    })
-    .catch(error => {
-        // Handle error
-        console.error('There was a problem with the form submission:', error);
-    });
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            // Handle success response
+            console.log('Form submitted successfully', data);
+        })
+        .catch(error => {
+            // Handle error
+            console.error('There was a problem with the form submission:', error);
+        });
 })
 // Function to validate email format
 function validateEmail(email) {
