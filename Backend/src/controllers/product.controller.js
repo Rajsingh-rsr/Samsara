@@ -16,7 +16,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
     // send response
 
 
-    const { name, description, brand, price, category } = req.body
+    const { name, description, brand, price, category, stock } = req.body
 
     const emailRegex = /^seller\.([a-zA-Z]+[a-zA-Z0-9]*)@samsara\.com$/;
     const isValidEmail = emailRegex.test(req.user?.email);
@@ -26,7 +26,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
     }
 
     if (
-        [name, description, brand, price].some((field) => field?.trim() === "" || field?.trim() == undefined)
+        [name, description, brand, price, stock].some((field) => field?.trim() === "" || field?.trim() == undefined)
     ) {
         throw new ApiError(400, "All field are required")
     }
@@ -90,6 +90,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
             productImage: productImage.url,
             supportImage: supportImageAll,
             price,
+            stock,
             category: createdCategory._id,
             owner: req.user?._id
 
@@ -175,4 +176,85 @@ const deleteProduct = asyncHandler(async (req, res) => {
 
 })
 
-export { addNewProduct, updateProduct, deleteProduct }
+const updateStock = asyncHandler(async (req, res) => {
+
+    const { productId } = req.params
+    const { newStock } = req.body
+
+    if (!isValidObjectId(productId)) {
+        throw new ApiError(400, "invalid productId || invlaid object id")
+    }
+
+    const product = await Product.findById(productId)
+
+    if (!product?.owner.equals(req.user?._id)) {
+        throw new ApiError(401, "unauthorize product owner")
+    }
+
+    const updateProduct = await Product.findByIdAndUpdate(
+        productId,
+        {
+            $set: {
+                stock: newStock
+            }
+
+        },
+        { new: true }
+    )
+
+    if(!updateProduct){
+        throw new ApiError(500, "something went wrong while updating stock")
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, updateProduct, "Stock updated sucessfully"))
+
+})
+
+const updatePrice = asyncHandler(async (req, res) => {
+
+    const { price } = req.body
+    const { productId } = req.params
+
+
+    if (!isValidObjectId(productId)) {
+        throw new ApiError(400, "invalid productId || invlaid object id")
+    }
+
+    const product = await Product.findById(productId)
+
+    if (!product?.owner.equals(req.user?._id)) {
+        throw new ApiError(401, "unauthorize product owner")
+    }
+
+    const updateProduct = await Product.findByIdAndUpdate(
+        productId,
+        {
+            $set: {
+                price
+            }
+
+        },
+        { new: true }
+    )
+
+    if(!updateProduct){
+        throw new ApiError(500, "something went wrong while updating price")
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, updateProduct, "Price updated sucessfully"))
+
+
+})
+
+
+export {
+    addNewProduct,
+    updateProduct,
+    deleteProduct,
+    updateStock,
+    updatePrice
+}
