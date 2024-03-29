@@ -1,7 +1,8 @@
 import express from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
-
+import { ApiError } from "./utils/ApiError.js"
+import { ApiResponse } from "./utils/ApiResponse.js"
 
 
 
@@ -31,5 +32,22 @@ import productRouter from "./routes/product.routes.js"
 app.use("/api/v1/healthcheck", healthcheckRouter)
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/product", productRouter)
+
+
+app.use((err, req, res, next) => {
+    if (err instanceof ApiError) {
+      return res.status(err.statusCode).json({
+        statusCode:err.statusCode,
+        message: err.message,
+        success: false
+       
+      });
+    }
+  
+    return res.status(500).json({
+      success: false,
+      message: 'Something went wrong on the server',
+    });
+  });
 
 export default app 

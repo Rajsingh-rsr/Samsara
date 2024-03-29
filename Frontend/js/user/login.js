@@ -1,63 +1,69 @@
-document.getElementById('loginForm').addEventListener('submit', function (event) {
-    event.preventDefault(); // Prevent the default form submission
-
+document.getElementById('loginForm').addEventListener('submit', async function (event) {
+    event.preventDefault(); 
+  
     // Validate email
     var email = document.getElementById('email').value;
     var emailError = document.getElementById('emailError');
+  
     if (!validateEmail(email)) {
-        emailError.innerText = 'Invalid email format';
-        return;
+      emailError.innerText = 'Invalid email format';
+      return;
     } else {
-        emailError.innerText = '';
+      emailError.innerText = '';
     }
-
+  
     // Validate password (optional)
     var password = document.getElementById('password').value;
     var passwordError = document.getElementById('passwordError');
+  
     if (password.length < 8) {
-        passwordError.innerText = 'Password must be at least 8 characters';
-        return;
+      passwordError.innerText = 'Password must be at least 8 characters';
+      return;
     } else {
-        passwordError.innerText = '';
+      passwordError.innerText = '';
     }
-
+  
     // Prepare data for POST request
     var formData = {
-        email: email,
-        password: password,
+      email: email,
+      password: password,
     };
+  
     console.log(formData);
-
-    fetch('http://localhost:4000/api/v1/users/login', {
+  
+    try {
+      const response = await fetch('http://localhost:4000/api/v1/users/login', {
         method: 'POST',
         headers: {
-            'Content-Type': 'application/json'
+          'Content-Type': 'application/json'
         },
         body: JSON.stringify(formData)
-    })
-
-        .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(data => {
-            // Handle success response
-            console.log('Form submitted successfully', data);
-        })
-        .catch(error => {
-            // Handle error
-            console.error('There was a problem with the form submission:', error);
-        });
-})
-// Function to validate email format
-function validateEmail(email) {
+      });
+  
+      if (!response.ok) {
+       
+        const error = await response.json();
+        console.log(error)
+        throw new Error(error.message);
+      }
+  
+      const data = await response.json();
+      console.log('Form submitted successfully', data);
+    } catch (error) {
+    
+      if (error.message.includes('Unexpected token')) {
+        console.error('Server returned an invalid response:', error);
+      
+      } else {
+        console.error('There was a problem with the form submission:', error.message);
+      }
+    }
+  });
+  
+  // Function to validate email format
+  function validateEmail(email) {
     var re = /\S+@\S+\.\S+/;
     return re.test(email);
-}
-
-
-
+  }
 
 
