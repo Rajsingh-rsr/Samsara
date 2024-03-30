@@ -202,7 +202,7 @@ const updateStock = asyncHandler(async (req, res) => {
         { new: true }
     )
 
-    if(!updateProduct){
+    if (!updateProduct) {
         throw new ApiError(500, "something went wrong while updating stock")
     }
 
@@ -239,7 +239,7 @@ const updatePrice = asyncHandler(async (req, res) => {
         { new: true }
     )
 
-    if(!updateProduct){
+    if (!updateProduct) {
         throw new ApiError(500, "something went wrong while updating price")
     }
 
@@ -250,11 +250,31 @@ const updatePrice = asyncHandler(async (req, res) => {
 
 })
 
+const getProductById = asyncHandler(async (req, res) => {
+
+    const { productId } = req.params
+
+    if (!isValidObjectId(productId)) {
+        throw new ApiError(400, "invalid productId || invlaid object id")
+    }
+
+    const product = await Product.findById(productId)
+
+    if (!product) {
+        throw new ApiError(404, "No product found")
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, product, "Product fetched successfully"))
+
+})
 
 export {
     addNewProduct,
     updateProduct,
     deleteProduct,
     updateStock,
-    updatePrice
+    updatePrice,
+    getProductById
 }
