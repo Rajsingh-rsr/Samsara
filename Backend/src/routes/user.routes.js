@@ -6,7 +6,8 @@ import {
     changeCurrentPassword,
     getCurrentUser,
     updateAccountDetails,
-    updateUserAvatar
+    updateUserAvatar,
+    refreshAccessToken
 
 } from "../controllers/user.controller.js"
 
@@ -25,6 +26,8 @@ router.route("/update-account").patch(verifyJWT, updateAccountDetails)
 router.route("/update-profile").patch(verifyJWT, upload.single("avatar"), updateUserAvatar)
 router.route("/change-password").post(verifyJWT, changeCurrentPassword)
 router.route("/current-user").get(verifyJWT, getCurrentUser)
+router.route("/refresh-token").post(refreshAccessToken)
+
 
 
 export default router

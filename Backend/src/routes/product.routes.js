@@ -5,7 +5,8 @@ import {
     updateProduct,
     deleteProduct,
     updateStock,
-    updatePrice
+    updatePrice,
+    getProductById
 } from "../controllers/product.controller.js"
 
 import { upload } from "../middlewares/multer.middleware.js"
@@ -33,7 +34,7 @@ router.route("/")
     )
 
 router.route("/:productId")
-
+    .get(getProductById)
     .patch(updateProduct)
     .delete(deleteProduct)
 
