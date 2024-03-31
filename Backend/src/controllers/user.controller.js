@@ -6,6 +6,11 @@ import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import jwt from "jsonwebtoken"
 
 
+const options = {
+    httpOnly: true,
+    secure: true,
+    sameSite: 'none', 
+}
 
 const generateAccessAndRefereshTokens = async (userId) => {
     try {
@@ -114,11 +119,6 @@ const loginUser = asyncHandler(async (req, res) => {
 
     const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
 
-    const options = {
-        httpOnly: true,
-        secure: true
-    }
-
     return res
         .status(200)
         .cookie("accessToken", accessToken, options)
@@ -155,10 +155,6 @@ const logoutUser = asyncHandler(async (req, res) => {
         throw new ApiError(500, "Something went wrong while logouting user")
     }
 
-    const options = {
-        httpOnly: true,
-        secure: true
-    }
 
     return res
         .status(200)
@@ -290,8 +286,6 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
 
     const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken
 
-    console.log(incomingRefreshToken)
-
     if (!incomingRefreshToken) {
         throw new ApiError(401, "Unauthorized request")
     }
@@ -305,19 +299,11 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
             throw new ApiError(401, "Invalid refresh token")
         }
 
-        console.log("\n\n")
-        console.log("incoming:\n", incomingRefreshToken)
-        console.log("db:\n", user.refreshToken)
-        console.log("\n\n")
 
         if (incomingRefreshToken !== user?.refreshToken) {
             throw new ApiError(401, "Refresh token expired or used")
         }
 
-        const options = {
-            httpOnly: true,
-            secure: true
-        }
 
         const { accessToken, refreshToken: newRefreshToken } = await generateAccessAndRefereshTokens(user?._id)
 
