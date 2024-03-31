@@ -63,15 +63,24 @@ const addNewProduct = asyncHandler(async (req, res) => {
         throw new ApiError(500, "something went wrong while creating category")
     }
 
-    const productImageLocalPath = req.files?.productImage[0].path;
+    // const productImageLocalPath = req.files?.productImage[0].path;
+    let productImageLocalPath
+
+    if (req.files && Array.isArray(req.files.productImage) && req.files.productImage.length > 0) {
+        productImageLocalPath = req.files.productImage[0].path;
+    }
 
     if (!productImageLocalPath) {
-        throw new ApiError(400, "product image is requred")
+        throw new ApiError(400, "product image is reqiured")
+    }
+
+    const supportImage = req.files['supportImage']
+
+    if (!supportImage || supportImage.length !== 4) {
+        throw new ApiError(400, "All 4 Support image are required")
     }
 
     const productImage = await uploadOnCloudinary(productImageLocalPath);
-
-    const supportImage = req.files['supportImage']
 
     let supportImageAll = [];
 
@@ -270,11 +279,59 @@ const getProductById = asyncHandler(async (req, res) => {
 
 })
 
+const getAllProduct = asyncHandler(async (req, res) => {
+
+    const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.query
+
+    const options = {
+        page: parseInt(page) || 1,
+        limit: parseInt(limit) || 10
+    }
+
+    const aggregate = Product.aggregate()
+
+    if (query) {
+        aggregate.match(
+            {
+                $or: [
+                    { name: { $regex: query, $options: 'i' } },
+                    { brand: { $regex: query, $options: 'i' } }
+                ]
+            }
+        )
+    }
+
+    if (sortBy && sortType) {
+        const sortOrder = sortType === 'asc' ? 1 : -1;
+        aggregate.sort({ [sortBy]: sortOrder })
+    }
+
+    if (userId) {
+        aggregate.match(
+            {
+                owner: new mongoose.Types.ObjectId(userId)
+            }
+        )
+    }
+
+    const product = await Product.aggregatePaginate(aggregate, options)
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, product, "Product fetched sucessfully"))
+
+
+
+})
+
+
+
 export {
     addNewProduct,
     updateProduct,
     deleteProduct,
     updateStock,
     updatePrice,
-    getProductById
+    getProductById,
+    getAllProduct
 }

@@ -6,7 +6,8 @@ import {
     deleteProduct,
     updateStock,
     updatePrice,
-    getProductById
+    getProductById,
+    getAllProduct
 } from "../controllers/product.controller.js"
 
 import { upload } from "../middlewares/multer.middleware.js"
@@ -19,6 +20,7 @@ const router = Router()
 router.use(verifyJWT)
 
 router.route("/")
+    .get(getAllProduct)
     .post(
         upload.fields([
             {
