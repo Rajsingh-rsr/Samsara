@@ -59,10 +59,34 @@ function disableInputFields() {
 
 // Enable editing of input fields when edit button is clicked
 // Enable editing of input fields when edit button is clicked
-document.querySelectorAll('.edit-btn').forEach(btn => {
+
+//for fullname edit
+
+document.querySelectorAll('#fullname-edit').forEach(btn => {
     btn.addEventListener('click', (event) => {
         const parentSettingItem = event.target.closest('.setting-item');
-        const inputField = parentSettingItem.querySelector('input[type="text"]');
+        const inputField = parentSettingItem.querySelector('#fullname');
+        
+        inputField.disabled = false;
+    });
+});
+
+//for contact edit
+
+document.querySelectorAll('#contact-edit').forEach(btn => {
+    btn.addEventListener('click', (event) => {
+        const parentSettingItem = event.target.closest('.setting-item');
+        const inputField = parentSettingItem.querySelector('#contact');
+       
+        inputField.disabled = false;
+    });
+});
+// For address edit
+document.querySelectorAll('#address-edit').forEach(btn => {
+    btn.addEventListener('click', (event) => {
+        const parentSettingItem = event.target.closest('.setting-item');
+        const inputField = parentSettingItem.querySelector('#address');
+    
         inputField.disabled = false;
     });
 });
