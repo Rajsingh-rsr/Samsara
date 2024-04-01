@@ -1,19 +1,32 @@
 // Fetch current user information and populate input fields
 window.addEventListener('DOMContentLoaded', async () => {
     try {
-        const response = await fetch('http://localhost:4000/api/v1/users/getCurrentUser', {
-            method: 'GET', // Change method to GET
+        const response = await fetch('http://localhost:4000/api/v1/users/current-user', {
+            method: 'GET',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                // Add any authentication headers if needed
             }
         });
+
         if (response.ok) {
-            const userData = await response.json();
-            document.getElementById('fullname').value = userData.fullname;
+            const res = await response.json();
+            const userData = res.data
+
+            console.log(userData)
+
+            document.getElementById('fullname').value = userData.fullName;
             document.getElementById('email').value = userData.email;
-            document.getElementById('contact').value = userData.contact;
+            document.getElementById('contact').value = userData.phone;
             document.getElementById('address').value = userData.address;
+
+            console.log(userData.avatar);
+
+            // updating image
+            var avatarImg = document.getElementById("avatar");
+            var avatarLink = userData.avatar
+            avatarImg.src = avatarLink;
+
 
             // Remove the username heading and set the full name
             const usernameHeading = document.querySelector('.user-name h2');
@@ -66,7 +79,7 @@ document.querySelectorAll('#fullname-edit').forEach(btn => {
     btn.addEventListener('click', (event) => {
         const parentSettingItem = event.target.closest('.setting-item');
         const inputField = parentSettingItem.querySelector('#fullname');
-        
+
         inputField.disabled = false;
     });
 });
@@ -77,7 +90,7 @@ document.querySelectorAll('#contact-edit').forEach(btn => {
     btn.addEventListener('click', (event) => {
         const parentSettingItem = event.target.closest('.setting-item');
         const inputField = parentSettingItem.querySelector('#contact');
-       
+
         inputField.disabled = false;
     });
 });
@@ -86,7 +99,7 @@ document.querySelectorAll('#address-edit').forEach(btn => {
     btn.addEventListener('click', (event) => {
         const parentSettingItem = event.target.closest('.setting-item');
         const inputField = parentSettingItem.querySelector('#address');
-    
+
         inputField.disabled = false;
     });
 });
