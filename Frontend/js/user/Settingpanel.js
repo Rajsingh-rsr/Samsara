@@ -115,21 +115,25 @@ document.querySelectorAll('.setting-item input').forEach(input => {
 document.getElementById('save-changes-btn').addEventListener('click', async () => {
     try {
         const data = {
-            fullname: document.getElementById('fullname').value,
+            fullName: document.getElementById('fullname').value,
             email: document.getElementById('email').value,
-            contact: document.getElementById('contact').value,
+            phone: document.getElementById('contact').value,
             address: document.getElementById('address').value
         };
-        const response = await fetch('http://localhost:4000/api/v1/users/updateAccountDetails', {
+        const response = await fetch('http://localhost:4000/api/v1/users/update-account', {
             method: 'PATCH',
+            credentials: 'include',
             headers: {
                 'Content-Type': 'application/json',
-                // Add any authentication headers if needed
             },
             body: JSON.stringify(data)
         });
         if (response.ok) {
             console.log('User information updated successfully');
+            const res = await response.json();
+            console.log(res)
+           alert(res.message)
+
             // Disable input fields after saving changes
             disableInputFields();
         } else {

@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
             .catch(function(error) {
                 // Handle errors
                 console.error('There was a problem with the registration:', error);
-                alert('Signup failed. Please try again later.');
+                alert(error.message);
             });
         });
     } else {
