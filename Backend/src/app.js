@@ -9,8 +9,8 @@ import { ApiResponse } from "./utils/ApiResponse.js"
 const app = express()
 
 app.use(cors({
-    origin: process.env.CORS_ORIGIN,
-    credentials: true
+  origin: process.env.CORS_ORIGIN,
+  credentials: true
 }))
 
 
@@ -24,30 +24,32 @@ app.use(cookieParser())
 import healthcheckRouter from "./routes/healthcheck.routes.js"
 import userRouter from "./routes/user.routes.js"
 import productRouter from "./routes/product.routes.js"
-
-
+import orderRouter from "./routes/order.routes.js"
 
 
 //routes declaration
 app.use("/api/v1/healthcheck", healthcheckRouter)
 app.use("/api/v1/users", userRouter)
 app.use("/api/v1/product", productRouter)
+app.use("/api/v1/order", orderRouter)
 
 
 app.use((err, req, res, next) => {
-    if (err instanceof ApiError) {
-      return res.status(err.statusCode).json({
-        statusCode:err.statusCode,
-        message: err.message,
-        success: false
-       
-      });
-    }
-  
-    return res.status(500).json({
-      success: false,
-      message: 'Something went wrong on the server',
+  if (err instanceof ApiError) {
+
+    console.log(err)
+    return res.status(err.statusCode).json({
+      statusCode: err.statusCode,
+      message: err.message,
+      success: false
+
     });
+  }
+  console.log(err)
+  return res.status(500).json({
+    success: false,
+    message: 'Something went wrong on the server',
   });
+});
 
 export default app 

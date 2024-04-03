@@ -20,12 +20,22 @@ const orderItemSchema = new mongoose.Schema(
 
 const orderSchema = new mongoose.Schema(
     {
-        orderprice: {
+        custumerName: {
+            type: String,
+            required: true
+        },
+
+        custumerId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User"
+        },
+
+        orderPrice: {
             type: Number,
             required: true
         },
 
-        custumer: {
+        phone: {
             type: String,
             required: true
         },
