@@ -9,7 +9,7 @@ import jwt from "jsonwebtoken"
 const options = {
     httpOnly: true,
     secure: true,
-    sameSite: 'none', 
+    sameSite: 'none',
 }
 
 const generateAccessAndRefereshTokens = async (userId) => {
@@ -50,7 +50,7 @@ const registerUser = asyncHandler(async (req, res) => {
     }
 
     const existedUser = await User.findOne({
-        $or: [{ email, phone }]
+        $or: [{ email }, { phone }]
     })
 
     if (existedUser) {
