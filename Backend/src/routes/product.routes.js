@@ -7,7 +7,8 @@ import {
     updateStock,
     updatePrice,
     getProductById,
-    getAllProduct
+    getAllProduct,
+    getAllCategory
 } from "../controllers/product.controller.js"
 
 import { upload } from "../middlewares/multer.middleware.js"
@@ -42,6 +43,7 @@ router.route("/:productId")
 
 router.route("/update-stock/:productId").patch(updateStock)
 router.route("/update-price/:productId").patch(updatePrice)
+router.route("/category/unique").get(getAllCategory)
 
 
 

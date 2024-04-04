@@ -324,6 +324,20 @@ const getAllProduct = asyncHandler(async (req, res) => {
 
 })
 
+const getAllCategory = asyncHandler(async (req, res) => {
+
+    const category = await Category.distinct("name")
+
+    if (!category) {
+        throw new ApiError(404, "No category found")
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, category, "All category fetched successfull"))
+
+
+})
 
 
 export {
@@ -333,5 +347,6 @@ export {
     updateStock,
     updatePrice,
     getProductById,
-    getAllProduct
+    getAllProduct,
+    getAllCategory
 }
