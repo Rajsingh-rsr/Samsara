@@ -8,7 +8,8 @@ import {
     updatePrice,
     getProductById,
     getAllProduct,
-    getAllCategory
+    getAllCategory,
+    getProdutName
 } from "../controllers/product.controller.js"
 
 import { upload } from "../middlewares/multer.middleware.js"
@@ -18,6 +19,8 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 
 
 const router = Router()
+router.route("/search/name").get(getProdutName)
+
 router.use(verifyJWT)
 
 router.route("/")

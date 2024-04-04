@@ -339,6 +339,38 @@ const getAllCategory = asyncHandler(async (req, res) => {
 
 })
 
+const getProdutName = asyncHandler(async (req, res) => {
+
+    const { query } = req.query
+
+    const options = {
+        page: 1,
+        limit: 10
+    }
+
+    const aggregate = Product.aggregate()
+
+    if (query) {
+        aggregate.match(
+            {
+                $or: [
+                    { name: { $regex: query, $options: 'i' } },
+                    { brand: { $regex: query, $options: 'i' } }
+                ]
+            }
+        )
+    }
+
+    aggregate.project({ name: 1 })
+
+    const product = await Product.aggregatePaginate(aggregate, options)
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, product, "Product fetched sucessfully"))
+
+
+})
 
 export {
     addNewProduct,
@@ -348,5 +380,6 @@ export {
     updatePrice,
     getProductById,
     getAllProduct,
-    getAllCategory
+    getAllCategory,
+    getProdutName
 }
