@@ -1,0 +1,47 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .settings-menu {
+    background-color: #f2f2f2;
+    border-radius: 5px;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /* Optional: adjust these values to position the menu differently */
+    width: 153px; /* Adjust the width as needed */
+  }
+  
+  .settings-menu h2 {
+    text-align: center;
+    margin-bottom: 10px;
+  }
+  
+  .settings-menu ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .settings-menu li {
+    margin-bottom: 26px;
+    margin-left: 28px;
+  }
+  
+  .settings-menu a {
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .settings-menu a:hover {
+    color: #666;
+  }
+  .fas{
+    margin-right: 15px;
+  }
+  

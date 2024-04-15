@@ -1,0 +1,62 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.maincon{
+    display: flex;
+    
+}
+
+
+.productimg img{
+    width: 366px;
+    border: 1px solid #333;
+    padding: 20px;
+    height: 550px;
+}
+.user-info{
+    border: 1px solid #333;
+    margin-left: 10px;
+    margin-right: 10px;
+    
+
+}
+/* .user-info .info-box .form{
+    display: flex;
+    flex-direction: column;
+
+} */
+.user-info .info-box .form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.user-info .info-box .form input[type="text"],
+.user-info .info-box .form input[type="email"] {
+    display: block;
+    width: 100%;
+    margin-bottom: 10px;
+}
+ .payment-method .payment-box {
+    text-align: center;
+    margin-top: 338px;
+}
+.payment-method .payment-box span {
+    display: block; /* Display the "Cash on delivery" text below the image */
+    margin-top: 10px; /* Add spacing between the image and text */
+}
+.payment-box img{
+    width: 100px;
+    margin-top: 142px;
+
+}
+.order-summary{
+    
+    border: 1px solid #333;
+    margin-right: 30px;
+    width: 400px;
+    height: 550px;
+
+}

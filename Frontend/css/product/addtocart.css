@@ -1,0 +1,287 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Style the navbar */
+  .navbar {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+    
+}
+  
+  
+  /* Style the logo */
+  .logo {
+    width: 70px; /* Adjust according to your logo size */
+  }
+  
+  
+  
+  /* Style the navbar links */
+  .nav-link {
+   
+    color: black;
+    text-decoration: none;
+    margin-right: 20px;
+    padding: 10px;
+    font-size: 19px;
+    padding: 10px;
+    align-items: center;
+  }
+  .nav-link:hover {
+    text-decoration: underline 2px green;
+  }
+  
+  /* Style the icons */
+  .nav-link i {
+    font-size: 20px;
+    margin-right: 5px;
+    
+  }
+  .navbar-right{
+    display: flex;
+    flex-direction: row;
+  }
+  
+
+  .search-container {
+    display: none;
+  }
+  
+  /* Additional styling for the search input */
+  .search-input {
+    width: 150px;
+    padding: 5px;
+    
+  }
+  
+  #search-form{
+    position: fixed;
+    top: -110%; left: 0;
+    height: 100%; width: 100%;
+    z-index: 1004;
+    background: rgba(0,0,0,.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+
+}
+#search-form.active{
+    top: 0;
+}
+#search-form #search-box{
+    width: 50rem;
+    border-bottom:.1rem solid #fff ;
+    padding: 1rem 0;
+    color: #fff;
+    font-size: 3rem;
+    text-transform: none;
+    background: none;
+
+
+}
+#search-form #search-box::placeholder{
+    color: #eee;
+}
+
+#search-form #search-box::-webkit-search-cancel-button{
+    -webkit-appearance: none ;
+
+}
+#search-form label{
+    color: #fff;
+    cursor: pointer;
+    font-size: 4rem;
+    margin-left: 60px;
+
+}   
+
+#search-form #close{
+    position: absolute;
+    color: #fff;
+    cursor: pointer;
+    top: 2rem; right: 3rem;
+    font-size: 5rem;
+}
+#search-icon {
+  font-size: 20px; /* Adjust size as needed */
+  margin-right: 20px; /* Adjust spacing */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Style the close icon */
+#close {
+  font-size: 20px; /* Adjust size as needed */
+  margin-left: 10px; /* Adjust spacing */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+/* profile option section */
+/* Profile options section */
+.profile-container {
+  position: relative;
+}
+
+.profile-options {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: -50%;
+  transform: translateX(-50%);
+  width: 153px;
+  display: none;
+}
+
+.profile-options ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-options li {
+  margin-bottom: 26px;
+  margin-left: 28px;
+}
+
+.profile-options a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.profile-options a:hover {
+  color: #666;
+}
+
+/* Show profile options on hover */
+.profile-container:hover .profile-options {
+  display: block;
+}
+
+
+
+/* Show profile options on hover */
+
+
+  
+.shopping-cart {
+    margin: 20px auto;
+    padding: 20px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    max-width: 800px; /* Increase the max-width as needed */
+    width: 90%; /* Set a percentage width for responsiveness */
+    margin-top: 235px;
+}
+  
+  /* Style for the shopping cart table header */
+  .shopping-cart h2 {
+    text-align: center;
+    margin-bottom: 20px;
+  }
+  
+  /* Style for the shopping cart table */
+  .shopping-cart table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  
+  /* Style for the shopping cart table header */
+  .shopping-cart th {
+    padding: 10px;
+    background-color: #f2f2f2;
+    border-bottom: 2px solid #ddd;
+    text-align: left;
+  }
+  
+  /* Style for the shopping cart table rows */
+  .shopping-cart td {
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  /* Style for the item image */
+  .item-image {
+    width: 50px; /* Adjust the width as needed */
+    display: inline-block;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+  
+  
+  
+  
+  
+  .size-dropdown{
+    margin-left: 12px;
+  }
+  
+  /* .delete-btn {
+    background-color: transparent;
+    border: none;
+    color: #999;
+    cursor: pointer;
+    margin-left: 30px;
+  }
+  
+  .delete-btn:hover {
+    color: red;
+  } */
+  .delete-box {
+    display: inline-block; /* Ensure the box only takes up the space it needs */
+    padding: 5px; /* Adjust the padding as needed */
+    border: 1px solid #ccc; /* Add border styling */
+    border-radius: 5px; /* Add border radius for rounded corners */
+    margin-left: 20px;
+}
+
+/* Style for the delete button */
+.delete-btn {
+    background-color: transparent; /* Make the button transparent */
+    border: none; /* Remove button border */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    padding: 0; /* Remove default button padding */
+}
+.delete-btn:hover {
+    color: red;
+}
+.total-price{
+  display: flex;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-top: 2rem;
+}
+.total-price table{
+  border-top: 3px solid;
+  width: 100%;
+  max-width: 35rem;
+}
+td:last-child{
+  text-align: right;
+}
+.checkout-btn{
+  display: inline-block;
+  background-color:#088178;
+  color: white;
+  padding: 1rem;
+  margin-top: 1rem;
+  text-decoration:none ;
+}
