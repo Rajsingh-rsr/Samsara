@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>addtocart</title>
+    <title>Shopping Cart</title>
     <link rel="stylesheet" href="../../css/product/addtocart.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
@@ -13,7 +13,7 @@
           <a href=""><img src="../../images/samsaralogo.png" alt="Website Logo" class="logo"></a>
         </div>
         <div class="navbar-middle">
-          <a href="../user/homepage.html" class="nav-link">Home</a>
+          <a href="../../html/product/homepage.html" class="nav-link">Home</a>
           <a href="#" class="nav-link">Category</a>
           <a href="#" class="nav-link">Contact</a>
           <a href="#" class="nav-link">About</a>
@@ -21,9 +21,9 @@
         <div class="navbar-right">
           <div class="searchandcart">
             <i class="fas fa-search" id="search-icon"></i>
-          <a href="../user/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+            <a href="../user/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+            <span class="d-flex cart-count">0</span>
           </div>
-          
           
           <div class="profile-container">
             <a href="#" class="nav-link"><i class="fas fa-user"></i></a>
@@ -36,18 +36,15 @@
             </div>
           </div>
         </div>
-        
-        </div>
       </nav>
+      
       <form action="" id="search-form">
         <input type="search" placeholder="search here.." name="" id="search-box">
         <label for="search-box" class="fas fa-search"></label>
         <i class="fas fa-times" id="close"></i>
-    
-    
-       </form>
+      </form>
 
-       <div class="shopping-cart">
+      <div class="shopping-cart">
         <h2>My Shopping Cart</h2>
         <table>
           <thead>
@@ -59,75 +56,28 @@
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>
-                <div class="item-info">
-                  <img src="../../images/product-1.png" alt="Denim Jacket" class="item-image">
-                  Denim Jacket
-                </div>
-              </td>
-              <td>
-                <div class="size-dropdown">
-                  <select>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                  </select>
-                </div>
-              </td>
-              <td>
-                <div class="delete-box">
-                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </td>
-              <td>Rs. 5000</td>
-            </tr>
-            <tr>
-              <td>
-                <div class="item-info">
-                  <img src="../../images/product-2.png" alt="Denim Jacket" class="item-image">
-                  Denim Jacket
-                </div>
-              </td>
-              <td>
-                <div class="size-dropdown">
-                  <select>
-                    <option value="S">S</option>
-                    <option value="M">M</option>
-                    <option value="L">L</option>
-                    <option value="XL">XL</option>
-                  </select>
-                </div>
-              </td>
-              <td>
-                <div class="delete-box">
-                    <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
-                </div>
-            </td>
-              <td>Rs. 5000</td>
-            </tr>
+            <!-- Table rows will be dynamically inserted here -->
           </tbody>
         </table>
         <div class="total-price">
           <table>
             <tr>
-              <td>subtitle</td>
-              <td>Rs10000</td>
+              <td >Subtotal</td>
+              <td id="subtotal">Rs. 0</td>
             </tr>
             <tr>
-              <td>Tax</td>
-              <td>Rs 500</td>
+              <td >Tax</td>
+              <td id="tax" >Rs. 0</td>
             </tr>
             <tr>
-             <td>Total</td> 
-             <td>Rs10500</td> 
+              <td>Total</td> 
+              <td  id="total">Rs. 0</td> 
             </tr>
           </table>
-          <a href="#" class="checkout-btn">Proceed To Checkout</a>
-
+          <a href="../../html/product/placeorder.html" class="checkout-btn">Proceed To Checkout</a>
         </div>
       </div>
-       <script src="../../js/product/addtocat.js"></script>
+
+      <script src="../../js/product/addtocat.js"></script>
 </body>
 </html>

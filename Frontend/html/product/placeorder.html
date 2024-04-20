@@ -5,8 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>placeorder</title>
     <link rel="stylesheet" href="../../css/product/placeorder.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
+    <nav class="navbar">
+        <div class="navbar-left">
+          <a href=""><img src="../../images/samsaralogo.png" alt="Website Logo" class="logo"></a>
+        </div>
+        <div class="navbar-middle">
+          <a href="../product/homepage.html" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Category</a>
+          <a href="#" class="nav-link">Contact</a>
+          <a href="#" class="nav-link">About</a>
+        </div>
+        <div class="navbar-right">
+          <div class="searchandcart">
+            <i class="fas fa-search" id="search-icon"></i>
+          <a href="../product/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+          <span class="d-flex cart-count">0</span>
+          </div>
+          
+          
+          <div class="profile-container">
+            <a href="#" class="nav-link"><i class="fas fa-user"></i></a>
+            <div class="profile-options">
+              <ul>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="../user/profileoption.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="../user/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+      </nav>
+      <form action="" id="search-form">
+        <input type="search" placeholder="search here.." name="" id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i class="fas fa-times" id="close"></i>
+    
+    
+       </form>
     <div class="maincon">
         <div class="productimg">
             <img src="../../images/product-1.png" alt="product">
@@ -14,15 +54,18 @@
         <div class="user-info">
             <div class="info-box">
                 <h2 class="product-heading">Denim Jacket</h2>
-                <div class="form" id="raj">
-                    <label for="address">Home:</label>
-                    <input type="text" id="address" name="address" placeholder="Enter your address">
-        
-                    <label for="email">Email:</label>
-                    <input type="email" id="email" name="email" placeholder="Enter your Gmail" required>
-        
-                    <label for="phone">Contact:</label>
-                    <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required>
+                <div class="form" >
+                  <label for="address">Home:</label>
+                  <input type="text" id="address" name="address" placeholder="Enter your address" disabled>
+                  <button class="change-btn" data-target="address">Change</button>
+                  
+                  <label for="email">Email:</label>
+                  <input type="email" id="email" name="email" placeholder="Enter your Gmail" required disabled>
+                  <button class="change-btn" data-target="email">Change</button>
+                  
+                  <label for="phone">Contact:</label>
+                  <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required disabled>
+                  <button class="change-btn" data-target="phone">Change</button>
                 </div>
             </div>
             <div class="payment-method">
@@ -36,24 +79,103 @@
         
         </div>
         <div class="order-summary">
-            <div class="totalitems">
-                <span>Items Total </span>
-                <span>Rs 5000</span>
-            </div>
-            <div class="deliveryfee">
-                <span>Delivery Fee</span>
-                <span>Rs 100</span>
-            </div>
-            <div class="Totalpaymen">
-                <span>Total payment</span>
-                <span>Rs 5100</span>
+            <h2>Order summary</h2>
+            <div class="details">
+                <div class="left-details">
+                    <div class="totalitems">
+                        <span>Items Total</span>
+                    </div>
+                    <div class="deliveryfee">
+                        <span>Delivery Fee</span>
+                    </div>
+                    <div class="Totalpaymen">
+                        <span>Total payment</span>
+                    </div>
+                </div>
+                <div class="right-details">
+                    <div class="totalitems">
+                        <span>Rs 0</span>
+                    </div>
+                    <div class="deliveryfee">
+                        <span>Rs 100</span>
+                    </div>
+                    <div class="Totalpayment">
+                        <span>Rs 0</span>
+                    </div>
+                </div>
             </div>
             <div class="btn">
-                <button>Place Order</button>
+              <button id="place-order-btn">Place Order</button>
+
             </div>
-           
         </div>
     </div>
+    <footer>
+        <div class="footer-container">
+          <div class="footer-section-1">
+            <div class="aboutcompanysection">
+              <h3>About Company</h3>
+              <p> we can design your own Design with <br>The better Quality.
+              
+    
+            </div>
+            <div class="contactsection">
+              <h3>Contact</h3>
+              <a href="#" >customercare@gmail.com</a>
+              <a href="#">9811321046</a>
+    
+            
+    
+            </div>
+            <div class="Addresssection">
+              <h3>Address</h3>
+              <p>Kathmandu , Nepal</p>
+          <!-- Add address information here -->
+            </div>
+            
+            
+          </div>
+    
+          <div class="footer-image-section">
+          <div class="image">
+            <img src="../../../Frontend/images/samsaralogo.png" alt="Logo">
+          </div>
+          <div class="social-icons">
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-youtube"></i></a>
+          </div>
+          </div>
+          
+          <div class="footer-section-2">
+            <div class="usefullinkssection">
+              <h3>Useful Links</h3>
+              <a href="#">Home</a>
+              <a href="#">Category</a>
+              <a href="#">New Arrivals</a>
+    
+            </div>
+            <div class="myaccountsection">
+              <h3>My Account</h3>
+              <a href="#">Sign in</a>
+              <a href="#">My wishlist</a>
+              <a href="#">View cart</a>
+            
+    
+            </div>
+            
+          </div>
+          
+            
+          
+        </div>
+        <div class="copyright">
+          <p>&copy; 2024 Samsara. All Rights Reserved.</p>
+        </div>
+       
+      </footer>
+      <script src="../../js/product/placeorder.js"></script>
     
 </body>
 </html>

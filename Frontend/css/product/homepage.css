@@ -60,18 +60,20 @@
   }
   .navbar-right .searchandcart span {
     position: absolute;
-    top: 22px;
-    right: 97px;
-    background-color: gray;
-    color: black;
-    border-radius: 50%;
-    font-size: 1.2rem;
-    height: 1.3rem;
-    width: 1.3rem;
-    padding: 1px;
-      padding-left: 1px;
-    padding-left: 5.2px;
-  }
+  top: 22px;
+  right: 97px;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 1.3px;
+    padding-left: 1.3px;
+  padding-left: 1px;
+  padding-left: 5.9px;
+}
+  
   .hover-icons{
     display: none;
   }
@@ -345,6 +347,7 @@
   text-align: center;
 }
 #jeans h2{
+  text-align: center;
   text-decoration: underline;
   margin-top: 46px;
 }
@@ -469,16 +472,18 @@
   color: #088178;
 }
 
-#cart{
+.add-to-cart{
   position: absolute;
   bottom: 20px;
   right: 10px;
   color: black;
   padding: 10px 10px;
   border-radius: 50%;
+  border: none;
   background-color: rgb(207, 205, 205);
+  cursor: pointer;
 }
-#new-arrivals .pro #cart:hover{
+#new-arrivals .pro .add-to-cart:hover{
   background-color: #0db59e;
   transition: all 0.4s ease;
   transform: scale(1.06);
@@ -488,6 +493,16 @@
 
 
 }
+#jeans .pro .add-to-cart:hover{
+  background-color: #0db59e;
+  transition: all 0.4s ease;
+  transform: scale(1.06);
+}
+#jackets .pro .add-to-cart:hover{
+  background-color: #0db59e;
+  transition: all 0.4s ease;
+  transform: scale(1.06);}
+  
 /* View all button */
 .view-all-btn {
   text-align: center;

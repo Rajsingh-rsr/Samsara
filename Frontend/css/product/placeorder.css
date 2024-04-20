@@ -1,62 +1,475 @@
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+  }
+  body {
+    font-family: 'Poppins', sans-serif;
+  }
+  
+  /* Style the navbar */
+  .navbar {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+    
+}
+  
+  
+  /* Style the logo */
+  .logo {
+    width: 70px; /* Adjust according to your logo size */
+  }
+  
+  
+  
+  /* Style the navbar links */
+  .nav-link {
+   
+    color: black;
+    text-decoration: none;
+    margin-right: 20px;
+    padding: 10px;
+    font-size: 19px;
+    padding: 10px;
+    align-items: center;
+  }
+  .nav-link:hover {
+    text-decoration: underline 2px green;
+  }
+  
+  /* Style the icons */
+  .nav-link i {
+    font-size: 20px;
+    margin-right: 5px;
+    
+  }
+  .navbar-right{
+    display: flex;
+  }
+  .navbar-right .searchandcart span {
+    position: absolute;
+  top: 22px;
+  right: 97px;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 1.3px;
+    padding-left: 1.3px;
+  padding-left: 1px;
+  padding-left: 5.9px;
+}
+  
+  .hover-icons{
+    display: none;
+  }
+  
+
+  .search-container {
+    display: none;
+  }
+  
+  /* Additional styling for the search input */
+  .search-input {
+    width: 150px;
+    padding: 5px;
+    
+  }
+  
+  #search-form{
+    position: fixed;
+    top: -110%; left: 0;
+    height: 100%; width: 100%;
+    z-index: 1004;
+    background: rgba(0,0,0,.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+
+}
+#search-form.active{
+    top: 0;
+}
+#search-form #search-box{
+    width: 50rem;
+    border-bottom:.1rem solid #fff ;
+    padding: 1rem 0;
+    color: #fff;
+    font-size: 3rem;
+    text-transform: none;
+    background: none;
+
+
+}
+#search-form #search-box::placeholder{
+    color: #eee;
 }
 
-.maincon{
+#search-form #search-box::-webkit-search-cancel-button{
+    -webkit-appearance: none ;
+
+}
+#search-form label{
+    color: #fff;
+    cursor: pointer;
+    font-size: 4rem;
+    margin-left: 60px;
+
+}   
+
+#search-form #close{
+    position: absolute;
+    color: #fff;
+    cursor: pointer;
+    top: 2rem; right: 3rem;
+    font-size: 5rem;
+}
+#search-icon {
+  font-size: 20px; /* Adjust size as needed */
+  margin-right: 20px; /* Adjust spacing */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Style the close icon */
+#close {
+  font-size: 20px; /* Adjust size as needed */
+  margin-left: 10px; /* Adjust spacing */
+  cursor: pointer; /* Change cursor to pointer on hover */
+}
+/* profile option section */
+/* Profile options section */
+.profile-container {
+  position: relative;
+}
+
+.profile-options {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: -50%;
+  transform: translateX(-50%);
+  width: 153px;
+  display: none;
+}
+
+.profile-options ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.profile-options li {
+  margin-bottom: 26px;
+  margin-left: 28px;
+}
+
+.profile-options a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+}
+
+.profile-options a:hover {
+  color: #666;
+}
+
+/* Show profile options on hover */
+.profile-container:hover .profile-options {
+  display: block;
+}
+
+
+
+
+
+.maincon {
     display: flex;
+    margin-top: 128px;
+  }
+
+.productimg,
+.user-info,
+.order-summary {
+    flex: 1; /* Equal width for all boxes */
+    border: 1px solid #333;
+    margin: 10px; /* Adjust as needed */
+}
+
+.productimg img {
+    width: 100%;
+    display: block; /* Ensure the image fills the container */
+}
+.user-info {
+    flex: 1; /* Equal width for all boxes */
+    border: 1px solid #333;
+    margin: 10px; /* Adjust as needed */
+    display: flex; /* Use flexbox to align items vertically */
+    flex-direction: column; /* Stack items vertically */
     
 }
 
 
-.productimg img{
-    width: 366px;
-    border: 1px solid #333;
+.user-info .info-box {
     padding: 20px;
-    height: 550px;
+    text-align: center; /* Center text within the box */
 }
-.user-info{
-    border: 1px solid #333;
-    margin-left: 10px;
-    margin-right: 10px;
-    
 
+.user-info .info-box h2.product-heading {
+    margin-bottom: 20px; /* Add some space below the heading */
 }
-/* .user-info .info-box .form{
-    display: flex;
-    flex-direction: column;
 
-} */
+.user-info .info-box .form {
+    text-align: left; /* Align form elements to the left */
+}
+
 .user-info .info-box .form label {
     display: block;
-    margin-bottom: 5px;
+  margin-bottom: 18px;
+  margin-top: 18px;
 }
 
 .user-info .info-box .form input[type="text"],
 .user-info .info-box .form input[type="email"] {
     display: block;
-    width: 100%;
+    width: calc(100% - 20px); /* Adjust for padding */
     margin-bottom: 10px;
+    border: none; /* Remove default input border */
+    border-bottom: 1px solid #333; /* Add bottom border */
+    padding-bottom: 5px; /* Optional: Add some padding below the input */
 }
- .payment-method .payment-box {
+
+.payment-method .payment-box {
     text-align: center;
-    margin-top: 338px;
 }
+
 .payment-method .payment-box span {
-    display: block; /* Display the "Cash on delivery" text below the image */
-    margin-top: 10px; /* Add spacing between the image and text */
+    display: block;
+    margin-top: 10px;
 }
-.payment-box img{
+
+
+.payment-box img {
     width: 100px;
-    margin-top: 142px;
+  margin-top: 41px;
+}
+
+.order-summary {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+.order-summary h2 {
+    margin-left: 157px;
+    margin-top: 20px;
+  }
+
+
+.order-summary .details {
+    display: flex;
+    justify-content: space-between; /* Space elements evenly */
+}
+
+.order-summary .left-details,
+.order-summary .right-details {
+    flex: 1;
+}
+.order-summary .left-details{
+    margin-top: 45px;
+    margin-left: 40px;
+    padding: 10px;
+}
+.order-summary .right-details{
+    margin-top: 45px;
+    margin-left: 40px;
 
 }
-.order-summary{
+.order-summary .right-details .totalitems span{
+  margin: 14px;
+    margin-left: 14px;
+  
+  margin-left: 71px;
+}
+.order-summary .right-details .deliveryfee span{
+  margin: 14px;
+    margin-left: 14px;
+  
+  margin-left: 71px;
+  margin-top: -2px;
+}
+.order-summary .right-details .Totalpayment span{
+  margin: 14px;
+    margin-left: 14px;
+  
+  margin-left: 83px;
+}
+
+
+.order-summary .totalitems,
+.order-summary .deliveryfee,
+.order-summary .Totalpayment {
+    margin-bottom: 10px; /* Adjust as needed */
+}
+
+.order-summary .totalitems span,
+.order-summary .deliveryfee span,
+.order-summary .Totalpaymen span {
+    display: block;
+    padding: 10px;}
+
+    .order-summary .btn button {
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: center;
+        justify-content: center;
+        margin-left: 165px;
+        margin-top: 125px;
+      }
     
-    border: 1px solid #333;
-    margin-right: 30px;
-    width: 400px;
-    height: 550px;
+    .order-summary .btn button:hover {
+        background-color: #45a049; /* Darken button color on hover */
+    }
 
-}
+    
+
+
+    /* Footer section starts */
+/* Basic footer styles */
+/* Basic footer styles */
+footer {
+    background-color: #bcafa5; /* Adjust background color as needed */
+    padding: 20px 0;
+    margin-top: 45px;
+  }
+  
+  .footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start; /* Align items vertically at the start */
+  }
+  /* Footer section 1 */
+  .footer-section-1 {
+    flex: 1; /* Take up available space */
+    margin-right: 20px; /* Adjust margin as needed */
+  }
+  
+  .footer-section-1 h3 {
+    margin-bottom: 15px; /* Adjust spacing between title and content */
+  }
+  
+  .aboutcompanysection,
+  .contactsection,
+  .Addresssection {
+    margin-bottom: 40px; /* Adjust spacing between sections */
+  }
+  .contactsection a{
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  
+  /* Footer section 2 */
+  .footer-section-2 {
+    flex: -1; /* Take up available space */
+  }
+  
+  .footer-section-2 h3 {
+    margin-bottom: 15px; /* Adjust spacing between title and content */
+  }
+  
+  .usefullinkssection,
+  .myaccountsection {
+    margin-bottom: 85px; /* Adjust spacing between sections */
+  }
+  .usefullinkssection a{
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .myaccountsection a {
+    display: block; /* Make links block-level for better spacing */
+    margin-bottom: 5px; /* Adjust spacing between links */
+  }
+  /* Remove underline and color from anchor links */
+  .footer-section-1 a,
+  .footer-section-2 a {
+    text-decoration: none; /* Remove underline */
+    color: inherit; /* Use the default text color */
+  }
+  
+  /* Remove purple color highlight when clicking anchor links */
+  .footer-section-1 a:active,
+  .footer-section-2 a:active {
+    color:#088178 ; /* Use the default text color */
+  }
+  .footer-section-1 a:hover,
+  .footer-section-2 a:hover{
+    color:#088178 ;
+  
+  }
+  .footer-image-section {
+    
+    align-items: center;
+    margin-right: 429px;
+    margin-top: 120px;
+  }
+  
+  .footer-image-section img {
+    width: 140px; /* Adjust image width as needed */
+    margin: 0 auto; /* Center the image horizontally */
+  }
+  
+  .social-icons {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+    
+  }
+  
+  .social-icons a {
+    margin: 0 9px; /* Adjust spacing between icons */
+  }
+  
+  .social-icons a i {
+    font-size: 15px; /* Adjust icon size */
+    color: #000; /* Adjust icon color */
+  }
+  
+  .copyright {
+    text-align: center;
+    background-color: #bcafa5; /* Adjust background color as needed */
+    padding: 10px 0;
+  }
+  
+  .copyright p {
+    margin: 0;
+    font-size: 14px; /* Adjust font size as needed */
+    color: #333; /* Adjust text color as needed */
+  }
+  
+  
+
+
+

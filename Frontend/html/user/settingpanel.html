@@ -8,15 +8,45 @@
 </head>
 <body>
     <div class="container">
-        <nav class="navigation">
-            <a class="logo" href="#"><img src="../../images/samsaralogo.png" alt="logo"></a>
-            <ul>
-                <li><a href="#dashboard"><i class="fas fa-tachometer-alt"></i> Dashboard</a></li>
-                <li><a href="#orders"><i class="fas fa-shopping-cart"></i> Orders</a></li>
-                <li><a href="#settings"><i class="fas fa-cog"></i> Settings</a></li>
-                <li><a href="#profile"><i class="fas fa-user"></i></a></li>
-            </ul>
-        </nav>
+      <nav class="navbar">
+        <div class="navbar-left">
+          <a href=""><img src="../../images/samsaralogo.png" alt="Website Logo" class="logo"></a>
+        </div>
+        <div class="navbar-middle">
+          <a href="../product/homepage.html" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Category</a>
+          <a href="#" class="nav-link">Contact</a>
+          <a href="#" class="nav-link">About</a>
+        </div>
+        <div class="navbar-right">
+          <div class="searchandcart">
+            <i class="fas fa-search" id="search-icon"></i>
+          <a href="../product/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+          <span class="d-flex">0</span>
+          </div>
+          
+          
+          <div class="profile-container">
+            <a href="#" class="nav-link"><i class="fas fa-user"></i></a>
+            <div class="profile-options">
+              <ul>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="../user/profileoption.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="../user/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+      </nav>
+      <form action="" id="search-form">
+        <input type="search" placeholder="search here.." name="" id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i class="fas fa-times" id="close"></i>
+    
+    
+       </form>
         <div class="content" id="dashboard">
             
         </div>

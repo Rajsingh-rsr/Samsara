@@ -4,11 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
-  <link rel="stylesheet" href="../../css/product/productbuy.css">
-  <title>Productbuy</title>
+  <link rel="stylesheet" href="../../css/product/jeanssection.css">
+  <title>Samsara</title>
 </head>
 <body>
-  <!-- nav section -->
   <nav class="navbar">
     <div class="navbar-left">
       <a href=""><img src="../../images/samsaralogo.png" alt="Website Logo" class="logo"></a>
@@ -23,15 +22,16 @@
       <div class="searchandcart">
         <i class="fas fa-search" id="search-icon"></i>
       <a href="../product/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+      <span class="d-flex cart-count">0</span>
       </div>
       
       
       <div class="profile-container">
         <a href="#" class="nav-link"><i class="fas fa-user"></i></a>
         <div class="profile-options">
-          <ul class="hover-icons">
+          <ul>
             <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="../user/settingpanel.html"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="../user/profileoption.html"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="../user/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
           </ul>
         </div>
@@ -40,8 +40,6 @@
     
     </div>
   </nav>
-  <!-- nav section ends  -->
-  <!-- for search form -->
   <form action="" id="search-form">
     <input type="search" placeholder="search here.." name="" id="search-box">
     <label for="search-box" class="fas fa-search"></label>
@@ -49,52 +47,23 @@
 
 
    </form>
-   <!-- product descriprion starts -->
-   
-  <div class="main-container">
-    <div class="product-image-des">
-      <img id="img1" src="../../images/product-1.png" alt="product">
-      <img id="img2" src="../../images/product-2.png" alt="product">
-      <img id="img3" src="../../images/product-3.png" alt="product">
-      <img id="img4" src="../../images/product-1.png" alt="product">
-    </div>
-    <div class="product">
-      <img id="main-img" src="../../images/product-1.png" alt="product">
-    </div>
-    <div class="product-info">
-      <h2>Denim Jacket</h2>
-      <div class="star">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
+  
 
-      </div>
-      <h4>$65</h4>
-      <div class="description">
-        <h3>Description</h3>
-        <span>style       :casual</span>
-        <span>Color       :slate grey</span>
-        <span>Details     :Check Boarder,Zipper</span>
-        <span>Neckline    :Collar</span>
-        <span>Pocket Type :casual</span>
-        
-      </div>
-      <div class="product-size">
-        <h3>Size</h3>
-        <span class="size-btn" id="size-m">M</span>
-        <span class="size-btn" id="size-l">L</span>
-        <span class="size-btn" id="size-xl">XL</span>
-      </div>
-      <div class="button-card">
-        <a href="../../html/product/placeorder.html"><button>Buy Now</button></a>
-        <button>Add To Cart</button>
-      </div>
-    </div>
+<!-- Product section -->
 
+
+<!-- Jeans section -->
+<section id="jeans" class="section-p1">
+  <h2>Jeans</h2>
+  <div class="pro-container">
+    <!-- Products will be dynamically added here -->
   </div>
-  <!-- Footer section starts -->
+ 
+</section>
+
+
+
+<!-- Footer section starts -->
 
   <footer>
     <div class="footer-container">
@@ -161,9 +130,8 @@
     </div>
    
   </footer>
-   
-   
   
-  <script src="../../js/product/productbuy.js"></script>
+
+  <script src="../../js/product/jeanssection.js"></script>
 </body>
 </html>

@@ -58,7 +58,21 @@
     display: flex;
     flex-direction: row;
   }
-  
+  .navbar-right .searchandcart span {
+    position: absolute;
+  top: 22px;
+  right: 97px;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 1.3px;
+    padding-left: 1.3px;
+  padding-left: 1px;
+  padding-left: 5.9px;
+}
 
   .search-container {
     display: none;

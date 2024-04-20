@@ -1,0 +1,417 @@
+/* Reset default margin and padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Poppins', sans-serif;
+}
+
+/* Style the navbar */
+.navbar {
+
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  padding: 10px 20px;
+  background-color: white;
+  box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+  
+}
+
+
+/* Style the logo */
+.logo {
+  width: 70px; /* Adjust according to your logo size */
+}
+
+
+
+/* Style the navbar links */
+.nav-link {
+ 
+  color: black;
+  text-decoration: none;
+  margin-right: 20px;
+  padding: 10px;
+  font-size: 19px;
+  padding: 10px;
+  align-items: center;
+}
+.nav-link:hover {
+  text-decoration: underline 2px green;
+}
+
+/* Style the icons */
+.nav-link i {
+  font-size: 20px;
+  margin-right: 5px;
+  
+}
+.navbar-right{
+  display: flex;
+}
+.navbar-right .searchandcart span {
+  position: absolute;
+top: 22px;
+right: 97px;
+background-color: green;
+color: white;
+border-radius: 50%;
+font-size: 1.2rem;
+height: 1.5rem;
+width: 1.5rem;
+padding: 1.3px;
+  padding-left: 1.3px;
+padding-left: 1px;
+padding-left: 5.9px;
+}
+
+.hover-icons{
+  display: none;
+}
+
+
+.search-container {
+  display: none;
+}
+
+/* Additional styling for the search input */
+.search-input {
+  width: 150px;
+  padding: 5px;
+  
+}
+
+#search-form{
+  position: fixed;
+  top: -110%; left: 0;
+  height: 100%; width: 100%;
+  z-index: 1004;
+  background: rgba(0,0,0,.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 1rem;
+
+}
+#search-form.active{
+  top: 0;
+}
+#search-form #search-box{
+  width: 50rem;
+  border-bottom:.1rem solid #fff ;
+  padding: 1rem 0;
+  color: #fff;
+  font-size: 3rem;
+  text-transform: none;
+  background: none;
+
+
+}
+#search-form #search-box::placeholder{
+  color: #eee;
+}
+
+#search-form #search-box::-webkit-search-cancel-button{
+  -webkit-appearance: none ;
+
+}
+#search-form label{
+  color: #fff;
+  cursor: pointer;
+  font-size: 4rem;
+  margin-left: 60px;
+
+}   
+
+#search-form #close{
+  position: absolute;
+  color: #fff;
+  cursor: pointer;
+  top: 2rem; right: 3rem;
+  font-size: 5rem;
+}
+#search-icon {
+font-size: 20px; /* Adjust size as needed */
+margin-right: 20px; /* Adjust spacing */
+cursor: pointer; /* Change cursor to pointer on hover */
+}
+
+/* Style the close icon */
+#close {
+font-size: 20px; /* Adjust size as needed */
+margin-left: 10px; /* Adjust spacing */
+cursor: pointer; /* Change cursor to pointer on hover */
+}
+/* profile option section */
+/* Profile options section */
+.profile-container {
+position: relative;
+}
+
+.profile-options {
+background-color: #f2f2f2;
+border-radius: 5px;
+padding: 20px;
+position: absolute;
+top: calc(100% + 5px);
+left: -50%;
+transform: translateX(-50%);
+width: 153px;
+display: none;
+}
+
+.profile-options ul {
+list-style: none;
+padding: 0;
+margin: 0;
+}
+
+.profile-options li {
+margin-bottom: 26px;
+margin-left: 28px;
+}
+
+.profile-options a {
+text-decoration: none;
+color: #333;
+font-weight: bold;
+}
+
+.profile-options a:hover {
+color: #666;
+}
+
+/* Show profile options on hover */
+.profile-container:hover .profile-options {
+display: block;
+}
+
+
+
+
+/* Show profile options on hover */
+/* .navbar-right:hover .profile-options {
+display: block;
+} */
+
+
+
+
+/*  for product 3 */
+#jackets{
+text-align: center;
+margin-top: 130px;
+}
+#jackets h2{
+text-decoration: underline;
+margin-top: 46px;
+}
+#jackets .pro-container{
+display: flex;
+justify-content: space-between;
+padding-top: 20px;
+flex-wrap: wrap;
+}
+#jackets .pro{
+width: 18%;
+min-width: 250px;
+padding: 10px 12px;
+border: 1px solid #cce7d0;
+border-radius: 25px;
+cursor: pointer;
+box-shadow: 30px 20px 30px rgba(0,0,0,0.02) ;
+margin:26px 0px;
+margin-left: 46px;
+margin-right: 46px;
+transition: 0.2s ease;
+position: relative;
+
+
+}
+#jackets .pro:hover{
+box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.06) ;
+transform: scale(1.1);
+transition: all 0.3s ease-out;
+}
+#jackets .pro img{
+width: 100%;
+border-radius: 20px;
+}
+#jackets .pro .des{
+text-align: start;
+padding: 10px 0px;
+
+}
+#jackets .pro .des span{
+color: #606063;
+font-size: 12px;
+}
+#jackets .pro .des h5{
+padding-top: 7px;
+color: #1a1a1a;
+font-size: 14px;
+}
+#jackets .pro .des i{
+font-size: 12px;
+color:rgb(228, 214, 24);
+
+}
+#jackets .pro .des h4{
+padding-top: 7px;
+font-size: 15px;
+font-weight: 700;
+color: #088178;
+}
+
+.add-to-cart{
+position: absolute;
+bottom: 20px;
+right: 10px;
+color: black;
+padding: 10px 10px;
+border-radius: 50%;
+border: none;
+background-color: rgb(207, 205, 205);
+cursor: pointer;
+}
+
+#jackets .pro .add-to-cart:hover{
+background-color: #0db59e;
+transition: all 0.4s ease;
+transform: scale(1.06);}
+
+/* View all button */
+.view-all-btn {
+text-align: center;
+margin-top: 20px; /* Adjust margin as needed */
+}
+
+
+
+/* Footer section starts */
+/* Basic footer styles */
+/* Basic footer styles */
+footer {
+background-color: #bcafa5; /* Adjust background color as needed */
+padding: 20px 0;
+margin-top: 45px;
+}
+
+.footer-container {
+max-width: 1200px;
+margin: 0 auto;
+display: flex;
+justify-content: space-between;
+align-items: flex-start; /* Align items vertically at the start */
+}
+/* Footer section 1 */
+.footer-section-1 {
+flex: 1; /* Take up available space */
+margin-right: 20px; /* Adjust margin as needed */
+}
+
+.footer-section-1 h3 {
+margin-bottom: 15px; /* Adjust spacing between title and content */
+}
+
+.aboutcompanysection,
+.contactsection,
+.Addresssection {
+margin-bottom: 40px; /* Adjust spacing between sections */
+}
+.contactsection a{
+display: block;
+margin-bottom: 5px;
+}
+
+
+/* Footer section 2 */
+.footer-section-2 {
+flex: -1; /* Take up available space */
+}
+
+.footer-section-2 h3 {
+margin-bottom: 15px; /* Adjust spacing between title and content */
+}
+
+.usefullinkssection,
+.myaccountsection {
+margin-bottom: 85px; /* Adjust spacing between sections */
+}
+.usefullinkssection a{
+display: block;
+margin-bottom: 5px;
+}
+
+.myaccountsection a {
+display: block; /* Make links block-level for better spacing */
+margin-bottom: 5px; /* Adjust spacing between links */
+}
+/* Remove underline and color from anchor links */
+.footer-section-1 a,
+.footer-section-2 a {
+text-decoration: none; /* Remove underline */
+color: inherit; /* Use the default text color */
+}
+
+/* Remove purple color highlight when clicking anchor links */
+.footer-section-1 a:active,
+.footer-section-2 a:active {
+color:#088178 ; /* Use the default text color */
+}
+.footer-section-1 a:hover,
+.footer-section-2 a:hover{
+color:#088178 ;
+
+}
+.footer-image-section {
+
+align-items: center;
+margin-right: 429px;
+margin-top: 120px;
+}
+
+.footer-image-section img {
+width: 140px; /* Adjust image width as needed */
+margin: 0 auto; /* Center the image horizontally */
+}
+
+.social-icons {
+display: flex;
+justify-content: center;
+margin-top: 10px;
+
+}
+
+.social-icons a {
+margin: 0 9px; /* Adjust spacing between icons */
+}
+
+.social-icons a i {
+font-size: 15px; /* Adjust icon size */
+color: #000; /* Adjust icon color */
+}
+
+.copyright {
+text-align: center;
+background-color: #bcafa5; /* Adjust background color as needed */
+padding: 10px 0;
+}
+
+.copyright p {
+margin: 0;
+font-size: 14px; /* Adjust font size as needed */
+color: #333; /* Adjust text color as needed */
+}
+
+
+
