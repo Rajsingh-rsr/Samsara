@@ -201,7 +201,10 @@
 .maincon {
     display: flex;
     margin-top: 128px;
+    align-items: center;
+    justify-content: center;
   }
+
 
 .productimg,
 .user-info,
@@ -210,10 +213,18 @@
     border: 1px solid #333;
     margin: 10px; /* Adjust as needed */
 }
+.productimg,
+.order-summary{
+  width: 30%;
+  height: 500px;
+  margin-top: 10px;
+  
+}
 
 .productimg img {
     width: 100%;
     display: block; /* Ensure the image fills the container */
+    height: 500px;
 }
 .user-info {
     flex: 1; /* Equal width for all boxes */

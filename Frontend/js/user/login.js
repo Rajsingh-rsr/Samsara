@@ -50,6 +50,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
     const data = await response.json();
     console.log('Form submitted successfully', data);
+    window.location.href = '../../html/product/homepage.html';
   } catch (error) {
 
     if (error.message.includes('Unexpected token')) {
