@@ -85,9 +85,9 @@ const registerUser = asyncHandler(async (req, res) => {
 const loginUser = asyncHandler(async (req, res) => {
     // req body -> data
     // validate username or email
-    //find the user
-    //password check
-    //access and referesh token
+    // find the user
+    // password check
+    // access and referesh token
     //send cookie
 
     const { email, password } = req.body;
