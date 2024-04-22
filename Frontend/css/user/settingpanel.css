@@ -192,7 +192,9 @@ color: #666;
 display: block;
 }
 
-
+.content{
+  margin-top: 122px;
+}
 
 .avatar-section {
   text-align: center;

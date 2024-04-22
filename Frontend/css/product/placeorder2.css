@@ -344,18 +344,18 @@
     padding: 10px;}
 
     .order-summary .btn button {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      cursor: pointer;
-      transition: background-color 0.3s;
-      text-align: center;
-      justify-content: center;
-      margin-left: 276px;
-      margin-top: 125px;
-    }
+        padding: 10px 20px;
+        font-size: 16px;
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        cursor: pointer;
+        transition: background-color 0.3s;
+        text-align: center;
+        justify-content: center;
+        margin-left: 165px;
+        margin-top: 125px;
+      }
     
     .order-summary .btn button:hover {
         background-color: #45a049; /* Darken button color on hover */
