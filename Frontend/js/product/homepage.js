@@ -90,32 +90,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Fetch products from the backend
   fetch("http://localhost:4000/api/v1/product/", {
-  method: 'GET',
-  credentials: 'include' // Include credentials in the request
-})
-  .then(response => response.json())
-  .then(data => {
-    // Check if request was successful
-    if (data.success) {
-      // Extract product data from the 'data' field
-      const products = data.data;
-
-      // Add products to respective sections
-      addProductsToSection("new-arrivals", products); // New Arrivals section
-
-      // Filter products for Jeans and Jacket sections
-      const jeansProducts = products.filter(product => product.category === "jeans");
-      const jacketProducts = products.filter(product => product.category === "jacket");
-
-      // Add products to Jeans section
-      addProductsToSection("jeans", jeansProducts);
-
-      // Add products to Jacket section
-      addProductsToSection("jackets", jacketProducts);
-    } else {
-      console.error("Failed to fetch products:", data.message);
-    }
+    method: 'GET',
+    credentials: 'include' // Include credentials in the request
   })
-  .catch(error => {
-    console.error("Error fetching products:", error.message);
-  })});
+    .then(response => response.json())
+    .then(data => {
+      // Check if request was successful
+      if (data.statusCode == 200) {
+        // Extract product data from the 'data' field
+        const products = data.data;
+
+        // Add products to respective sections
+        addProductsToSection("new-arrivals", products); // New Arrivals section
+
+        // // Filter products for Jeans and Jacket sections
+        // const jeansProducts = products.filter(product => product.category === "jeans");
+        // const jacketProducts = products.filter(product => product.category === "jacket");
+
+        // Add products to Jeans section
+        addProductsToSection("jeans", products);
+
+        // Add products to Jacket section
+        addProductsToSection("jackets", products);
+      } else {
+        console.error("Failed to fetch products:", data.message);
+      }
+    })
+    .catch(error => {
+      // console.error("Error fetching products:", error.message);
+      console.log("this is eror",error);
+    })
+});
