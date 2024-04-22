@@ -1,5 +1,3 @@
-
-
 document.addEventListener("DOMContentLoaded", () => {
   const searchIcon = document.querySelector('#search-icon');
   const searchForm = document.querySelector('#search-form');
@@ -54,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return element;
   }
 
-  // Function to add products to a section
+  // Function to add products to sections
   function addProductsToSection(sectionId, products) {
     const section = document.getElementById(sectionId);
     const container = section.querySelector(".pro-container");
@@ -79,47 +77,45 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   }
-  updateCartCount()
-  // Update cart count display
-  // Update cart count display
-function updateCartCount() {
-  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const cartCount = document.querySelector('.cart-count');
-  // Calculate the total number of products in the cart
-  const totalCount = cartItems.length;
-  // Update the cart counter text
-  cartCount.textContent = totalCount;
-}
 
+  // Function to update cart count display
+  function updateCartCount() {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartCount = document.querySelector('.cart-count');
+    // Calculate the total number of products in the cart
+    const totalCount = cartItems.length;
+    // Update the cart counter text
+    cartCount.textContent = totalCount;
+  }
 
-  // Sample data for products
-  const newArrivals = [
-    { id: 1, name: "New Arrival 1", image: "../../images/product-1.png", price: "1000" },
-    { id: 2, name: "New Arrival 2", image: "../../images/product-1.png", price: "1200" },
-    { id: 3, name: "New Arrival 3", image: "../../images/product-1.png", price: "1300" },
-    { id: 4, name: "New Arrival 4", image: "../../images/product-1.png", price: "1400" },
-    // Add more products for New Arrivals
-  ];
+  // Fetch products from the backend
+  fetch("http://localhost:4000/api/v1/product/", {
+  method: 'GET',
+  credentials: 'include' // Include credentials in the request
+})
+  .then(response => response.json())
+  .then(data => {
+    // Check if request was successful
+    if (data.success) {
+      // Extract product data from the 'data' field
+      const products = data.data;
 
-  const jeans = [
-    { id: 1, name: "Jeans 1", image: "../../images/product-2.png", price: "1000" },
-    { id: 2, name: "Jeans 2", image: "../../images/product-2.png", price: "1400" },
-    { id: 3, name: "Jeans 3", image: "../../images/product-2.png", price: "1500" },
-    { id: 4, name: "Jeans 3", image: "../../images/product-2.png", price: "1700" },
-    // Add more products for Jeans
-  ];
+      // Add products to respective sections
+      addProductsToSection("new-arrivals", products); // New Arrivals section
 
-  const jackets = [
-    { id: 1, name: "Jacket 1", image: "../../images/product-3.png", price: "1350" },
-    { id: 2, name: "Jacket 2", image: "../../images/product-3.png", price: "1200" },
-    { id: 3, name: "Jacket 2", image: "../../images/product-3.png", price: "1270" },
-    { id: 4, name: "Jacket 2", image: "../../images/product-3.png", price: "1290" },
-    // Add more products for Jackets
-  ];
+      // Filter products for Jeans and Jacket sections
+      const jeansProducts = products.filter(product => product.category === "jeans");
+      const jacketProducts = products.filter(product => product.category === "jacket");
 
-  // Add products to sections
-  addProductsToSection("new-arrivals", newArrivals); // New Arrivals section
-  addProductsToSection("jeans", jeans); // Jeans
-  addProductsToSection("jackets", jackets);
-});
+      // Add products to Jeans section
+      addProductsToSection("jeans", jeansProducts);
 
+      // Add products to Jacket section
+      addProductsToSection("jackets", jacketProducts);
+    } else {
+      console.error("Failed to fetch products:", data.message);
+    }
+  })
+  .catch(error => {
+    console.error("Error fetching products:", error.message);
+  })});
