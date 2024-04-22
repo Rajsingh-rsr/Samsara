@@ -15,7 +15,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
     // check for product creatton
     // send response
 
-
+    // get product details from frontEnd
     const { name, description, brand, price, category, stock } = req.body
 
     const emailRegex = /^seller\.([a-zA-Z]+[a-zA-Z0-9]*)@samsara\.com$/;
@@ -25,6 +25,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
         throw new ApiError(401, "Invalid user credentials Seller can only add product")
     }
 
+    // validate required field 
     if (
         [name, description, brand, price, stock].some((field) => field?.trim() === "" || field?.trim() == undefined)
     ) {
@@ -39,6 +40,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
         throw new ApiError(400, "All category filed are required")
     }
 
+    // check if product already exist in sellers shop: name
     let dbCategory = await Category.findOne(
         {
             name: objCategory.name,
@@ -47,6 +49,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
         }
     )
 
+    // create database entry
     if (!dbCategory) {
         dbCategory = await Category.create(
             {
@@ -91,6 +94,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
 
     }
 
+    // check for product creatton
     const product = await Product.create(
         {
             name,
@@ -112,6 +116,7 @@ const addNewProduct = asyncHandler(async (req, res) => {
         throw new ApiError(500, "something went wrong while adding product")
     }
 
+    // send response
     return res.status(200).json(new ApiResponse(200, createdProduct, "createed"))
 
 })
@@ -281,6 +286,7 @@ const getProductById = asyncHandler(async (req, res) => {
 
 const getAllProduct = asyncHandler(async (req, res) => {
 
+    // get all requred infromation form frontend
     const { page = 1, limit = 10, query, sortBy, sortType, userId } = req.query
 
     const options = {
@@ -290,6 +296,7 @@ const getAllProduct = asyncHandler(async (req, res) => {
 
     const aggregate = Product.aggregate()
 
+    // search if there user wants personalize product
     if (query) {
         aggregate.match(
             {
@@ -301,6 +308,7 @@ const getAllProduct = asyncHandler(async (req, res) => {
         )
     }
 
+    // sort the product according to user need
     if (sortBy && sortType) {
         const sortOrder = sortType === 'asc' ? 1 : -1;
         aggregate.sort({ [sortBy]: sortOrder })
@@ -314,6 +322,7 @@ const getAllProduct = asyncHandler(async (req, res) => {
         )
     }
 
+    // get all prefered data from database
     const product = await Product.aggregatePaginate(aggregate, options)
 
     return res

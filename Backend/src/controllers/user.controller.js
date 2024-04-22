@@ -212,8 +212,10 @@ const getCurrentUser = asyncHandler(async (req, res) => {
 
 const updateAccountDetails = asyncHandler(async (req, res) => {
 
+    // get users details from frontend
     const { fullName, address, phone } = req.body
 
+    // update user details
     const user = await User.findByIdAndUpdate(
 
         req.user?._id,
@@ -231,6 +233,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
         throw new ApiError(500, "something went wrong while updating details")
     }
 
+    // send updated user response
     return res
         .status(200)
         .json(new ApiResponse(
@@ -284,6 +287,7 @@ const updateUserAvatar = asyncHandler(async (req, res) => {
 
 const refreshAccessToken = asyncHandler(async (req, res) => {
 
+    // get raw cookies from frontend
     const incomingRefreshToken = req.cookies.refreshToken || req.body.refreshToken
 
     if (!incomingRefreshToken) {
@@ -291,22 +295,26 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
     }
 
     try {
+
+        // decrypt cookies with token secret key and validate it 
         const decodedToken = jwt.verify(incomingRefreshToken, process.env.REFRESH_TOKEN_SECRET)
 
+        // find if user exist 
         const user = await User.findById(decodedToken?._id)
 
         if (!user) {
             throw new ApiError(401, "Invalid refresh token")
         }
 
-
+        // if token not match don't give access    
         if (incomingRefreshToken !== user?.refreshToken) {
             throw new ApiError(401, "Refresh token expired or used")
         }
 
-
+        // generate new token 
         const { accessToken, refreshToken: newRefreshToken } = await generateAccessAndRefereshTokens(user?._id)
 
+        // send response
         return res
             .status(200)
             .cookie("accessToken", accessToken, options)
