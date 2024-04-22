@@ -7,6 +7,7 @@ import { isValidObjectId } from "mongoose"
 
 const orderItems = asyncHandler(async (req, res) => {
 
+    // get product details from frontEnd
     const { phone, shippingAddress, paymentMethod, orderItem } = req.body
 
 
@@ -14,6 +15,7 @@ const orderItems = asyncHandler(async (req, res) => {
         throw new ApiError(400, "Valid Payment Method is required")
     }
 
+    // validate required field 
     if (
         [shippingAddress, phone].some((field) => field?.trim() === "" || field?.trim() === undefined)
     ) {
@@ -43,7 +45,7 @@ const orderItems = asyncHandler(async (req, res) => {
     console.log(orderPrice)
 
 
-
+    // create database entry
     const order = await Ordre.create(
         {
             custumerName: req.user?.fullName,
@@ -62,6 +64,7 @@ const orderItems = asyncHandler(async (req, res) => {
         throw new ApiError(500, "Something went wrong while taking order")
     }
 
+    // send response 
     return res
         .status(201)
         .json(new ApiResponse(201, createdOrder, "Order created sucessfully"))
