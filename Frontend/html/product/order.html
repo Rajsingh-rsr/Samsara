@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="order.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <a href="/" class="navbar-logo">
+                <img src="samsara.png" alt="Samsara Logo">
+            </a>
+            <ul class="navbar-menu">
+                <li><a href="/dashboard">Dashboard</a></li>
+                <li><a href="/orders">Orders</a></li>
+                <li><a href="/products">Products</a></li>
+                <li><a href="/settings">Settings</a></li>
+                <li><a href="/profile"><i class="fas fa-user-circle"></i></a></li>
+            </ul>
+        </div>
+    </nav>
+    <hr class="navbar-line">
+    <h1>Order List</h1>
+    <div class = "orders">
+        <div class="box" id = "active">Active orders 100</div>
+        <div class="box" id = "complete">Completed 100</div>
+        <div class="box" id = "total">Total orders 100</div>
+    </div>
+    <hr class="order-line">
+    <div class="table-container">
+    <table class = "table table-bordered">
+        <thead class = "table-dark">
+            <tr>
+                <th scope="col">Order Id</th>
+                <th scope="col">Customer</th>
+                <th scope="col">Status</th>
+                <th scope="col">Price</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody id="table-body">
+            <tr>
+                <td>${value.orderId}</td>
+                <td>${value.customer}</td>
+                <td>${value.status}</td>
+                <td>${value.price}</td>
+                <td>${value.date}</td>
+                </tr>
+                <tr>
+                    <td>${value.orderId}</td>
+                    <td>${value.customer}</td>
+                    <td>${value.status}</td>
+                    <td>${value.price}</td>
+                    <td>${value.date}</td>
+                </tr>
+        </tbody>
+    </table>
+    </div>
+    <script src="order.js"></script>
+</body>
+</html>
