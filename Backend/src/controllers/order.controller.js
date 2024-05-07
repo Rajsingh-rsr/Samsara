@@ -129,7 +129,8 @@ const deliveredOrCancled = asyncHandler(async (req, res) => {
         );
 });
 
-const cancleOrder = asyncHandler(async (req, res) => {
+// CANCELLE order
+const cancellOrder = asyncHandler(async (req, res) => {
 
     //  get order id from the frontend
     // validate order id in database
@@ -180,5 +181,34 @@ const cancleOrder = asyncHandler(async (req, res) => {
 
 })
 
+// all order status -> all order log
+const OrderStatus = asyncHandler(async (req, res) => {
 
-export { orderItems, deliveredOrCancled, cancleOrder };
+    let allOrder = false;
+
+    const { status } = req.params
+
+    if (status === "ALL") {
+        allOrder = true
+    }
+
+    const order = await Ordre.aggregate([
+        {
+            $match: {
+                status: { $in: allOrder ? ["PENDING", "CANCELLED", "DELIVERED"] : [`${status}`] }
+            }
+        }
+    ])
+
+    if (!order) {
+        throw new ApiError(500, "Something went wrong ")
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, order, "order status fetched sucessfully"))
+
+
+})
+
+export { orderItems, deliveredOrCancled, cancellOrder, OrderStatus };
