@@ -1,7 +1,7 @@
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
-import { Ordre } from "../models/order.models.js";
+import { Order } from "../models/order.models.js";
 import { Product } from "../models/product.models.js";
 import { isValidObjectId } from "mongoose";
 
@@ -43,7 +43,7 @@ const orderItems = asyncHandler(async (req, res) => {
     console.log(orderPrice);
 
     // create database entry
-    const order = await Ordre.create({
+    const order = await Order.create({
         custumerName: req.user?.fullName,
         custumerId: req.user?._id,
         orderPrice,
@@ -53,7 +53,7 @@ const orderItems = asyncHandler(async (req, res) => {
         paymentMethod,
     });
 
-    const createdOrder = await Ordre.findById(order?._id);
+    const createdOrder = await Order.findById(order?._id);
 
     if (!createdOrder) {
         throw new ApiError(500, "Something went wrong while taking order");
@@ -88,7 +88,7 @@ const deliveredOrCancled = asyncHandler(async (req, res) => {
         );
     }
 
-    const order = await Ordre.findById(orderId);
+    const order = await Order.findById(orderId);
 
     if (!order) {
         throw new ApiError(404, "Order not found");
@@ -103,7 +103,7 @@ const deliveredOrCancled = asyncHandler(async (req, res) => {
         );
     }
 
-    const updateStaus = await Ordre.findByIdAndUpdate(
+    const updateStaus = await Order.findByIdAndUpdate(
         orderId,
         {
             $set: {
@@ -144,7 +144,7 @@ const cancellOrder = asyncHandler(async (req, res) => {
         throw new ApiError(400, "invalid productId || object id");
     }
 
-    const order = await Ordre.findById(orderId);
+    const order = await Order.findById(orderId);
 
     const currentStatus = order.status;
 
@@ -155,7 +155,7 @@ const cancellOrder = asyncHandler(async (req, res) => {
         );
     }
 
-    const updateStatus = await Ordre.findByIdAndUpdate(
+    const updateStatus = await Order.findByIdAndUpdate(
         orderId,
         {
             $set: {
@@ -181,7 +181,7 @@ const cancellOrder = asyncHandler(async (req, res) => {
 
 })
 
-// all order status -> all order log
+// all order status (all order log) -> for  Admin
 const OrderStatus = asyncHandler(async (req, res) => {
 
     let allOrder = false;
@@ -192,7 +192,7 @@ const OrderStatus = asyncHandler(async (req, res) => {
         allOrder = true
     }
 
-    const order = await Ordre.aggregate([
+    const order = await Order.aggregate([
         {
             $match: {
                 status: { $in: allOrder ? ["PENDING", "CANCELLED", "DELIVERED"] : [`${status}`] }
@@ -208,6 +208,12 @@ const OrderStatus = asyncHandler(async (req, res) => {
         .status(200)
         .json(new ApiResponse(200, order, "order status fetched sucessfully"))
 
+
+})
+
+const userOrderHistory = asyncHandler(async(req, res) => {
+
+    const order = await Order.aggregate([])
 
 })
 
