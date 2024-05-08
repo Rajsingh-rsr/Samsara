@@ -3,7 +3,7 @@ import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 import { Order } from "../models/order.models.js";
 import { Product } from "../models/product.models.js";
-import { isValidObjectId } from "mongoose";
+import mongoose, { isValidObjectId } from "mongoose";
 
 const orderItems = asyncHandler(async (req, res) => {
     // get product details from frontEnd
@@ -211,10 +211,32 @@ const OrderStatus = asyncHandler(async (req, res) => {
 
 })
 
-const userOrderHistory = asyncHandler(async(req, res) => {
+// user personal order History
+const userOrderHistory = asyncHandler(async (req, res) => {
 
-    const order = await Order.aggregate([])
+    const order = await Order.aggregate([
+        {
+            $match: {
+                custumerId: new mongoose.Types.ObjectId(req.user?._id)
+            }
+        }
+    ])
+
+    if (!order) {
+        throw new ApiError(500, "something went wrong while fetching data")
+    }
+
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, order, "Order fetched sucessfully"))
 
 })
 
-export { orderItems, deliveredOrCancled, cancellOrder, OrderStatus };
+export {
+    orderItems,
+    deliveredOrCancled,
+    cancellOrder,
+    OrderStatus,
+    userOrderHistory
+};
