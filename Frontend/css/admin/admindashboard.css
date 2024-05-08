@@ -1,0 +1,192 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+  }
+
+  /* Style the logo */
+  .logo {
+    width: 70px; /* Adjust according to your logo size */
+  }
+
+  /* Style the navbar links */
+  .navbar-left {
+    margin-right: auto; /* Pushes the navbar-left to the left */
+  }
+
+  .navbar-middle {
+    margin-left: auto; /* Adjusts the position slightly to the right */
+    margin-right: 100px; /* Adjust the value as needed */
+  }
+
+  .nav-link {
+    color: black;
+    text-decoration: none;
+    margin-right: 20px;
+    padding: 10px;
+    font-size: 19px;
+    padding: 10px;
+  }
+
+  .nav-link:hover {
+    text-decoration: underline 2px green;
+  }
+
+  /* Style the icons */
+  .nav-link i {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .navbar-right {
+    display: flex;
+  }
+
+  .dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    margin-top: 110px;
+  }
+
+  .stats-boxes {
+    display: flex;
+    gap: 20px;
+  }
+
+  .box {
+    flex: 1;
+    padding: 5px; /* Adjust the padding */
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    font-size: 14px; /* Adjust the font size */
+  }
+
+  /* Update the colors for specific boxes */
+  #top-selling {
+    background-color: #a3fa7b; /* Green */
+    color: #000; /* Black  text */
+  }
+
+  #user-visited {
+    background-color: #faed7a; /* Yellow */
+    color: #000; /* Black text */
+  }
+
+  #revenue {
+    background-color: #fa7a7a; /* Red */
+    color: #000; /* Black Text */
+  }
+
+  .top-sellers, .recent-customers {
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .top-sellers h2, .recent-customers h2 {
+    font-size: 1.2rem;
+    margin-bottom: 10px;
+  }
+
+  .top-sellers table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .top-sellers th, .top-sellers td {
+    padding: 10px;
+    text-align: left;
+  }
+
+  .top-sellers th {
+    background-color: #f9f9f9;
+  }
+
+  .top-sellers .avatar img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+  }
+
+  .recent-customers {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto; /* Add scrollbar for vertical overflow */
+    max-height: 300px; /* Set max height to enable scrolling */
+  }
+
+  .recent-customers h2 {
+    margin-bottom: 10px;
+  }
+
+  .recent-customer-item {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 15px;
+    background-color: #f9f9f9;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+
+  .recent-customer-item > div {
+    flex: 1;
+    margin-bottom: 5px;
+  }
+
+  .recent-customer-item + .recent-customer-item {
+    border-top: 1px solid #ddd;
+  }
+
+  /* Additional styling for responsiveness */
+  @media (max-width: 768px) {
+    .dashboard {
+      margin: 10px;
+      padding: 10px;
+    }
+    
+    .box, .top-sellers, .recent-customers {
+      padding: 15px;
+    }
+    
+    .top-sellers h2, .recent-customers h2 {
+      font-size: 1rem;
+    }
+    
+    .avatar, .product-image {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .recent-customers {
+      padding: 15px;
+    }
+    
+    .recent-customer-item {
+      padding: 10px;
+    }
+  }
