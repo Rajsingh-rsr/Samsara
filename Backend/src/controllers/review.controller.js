@@ -6,7 +6,7 @@ import { Order } from "../models/order.models.js"
 import mongoose, { isValidObjectId } from "mongoose"
 
 
-const productReview = asyncHandler(async (req, res) => {
+const addProductReview = asyncHandler(async (req, res) => {
 
     const { rating, feedback } = req.body;
     const { productId } = req.params;
@@ -78,5 +78,5 @@ const productReview = asyncHandler(async (req, res) => {
 
 
 export {
-    productReview
+    addProductReview
 }
