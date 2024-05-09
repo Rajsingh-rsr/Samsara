@@ -2,6 +2,7 @@ import { Router } from "express";
 
 import {
     addProductReview,
+    getProductReview
 
 } from "../controllers/review.controller.js"
 
@@ -11,5 +12,7 @@ const router = Router()
 
 
 router.route("/:productId").post(verifyJWT, addProductReview)
+router.route("/:productId").get(verifyJWT, getProductReview)
+
 
 export default router
