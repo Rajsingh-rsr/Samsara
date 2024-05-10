@@ -1,0 +1,161 @@
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+}
+
+.navbar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: black;
+  padding: 10px 20px;
+  background-color: white;
+  box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+}
+
+/* Style the logo */
+.logo {
+  width: 70px; /* Adjust according to your logo size */
+}
+
+/* Style the navbar links */
+.navbar-left {
+  margin-right: auto; /* Pushes the navbar-left to the left */
+}
+
+.navbar-middle {
+  margin-left: auto; /* Adjusts the position slightly to the right */
+  margin-right: 100px; /* Adjust the value as needed */
+}
+
+.nav-link {
+  color: black;
+  text-decoration: none;
+  margin-right: 20px;
+  padding: 10px;
+  font-size: 19px;
+  padding: 10px;
+}
+
+.nav-link:hover {
+  text-decoration: underline 2px green;
+}
+
+/* Style the icons */
+.nav-link i {
+  font-size: 20px;
+  margin-right: 5px;
+}
+
+.navbar-right {
+  display: flex;
+}
+
+.seller {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+  margin-top: 110px;
+}
+/* Style for the search bar */
+/* Style for the search bar */
+/* Style for the search bar */
+.search-bar {
+position: relative;
+display: flex;
+align-items: center;
+justify-content: flex-end; /* Align search bar to the right */
+margin-bottom: 20px; /* Adjust spacing as needed */
+}
+
+#searchInput {
+width: 200px; /* Adjust width as needed */
+padding: 8px 30px 8px 8px; /* Added padding for space for the search icon */
+border: 1px solid #ccc;
+border-radius: 20px;
+font-size: 14px;
+}
+
+#searchIcon {
+position: absolute;
+right: 10px;
+color: #aaa;
+cursor: pointer;
+}
+
+#searchIcon:hover {
+color: #333;
+}
+
+
+.stats-boxes {
+  display: flex;
+  gap: 20px;
+}
+
+.box {
+  flex: 1;
+  padding: 5px; /* Adjust the padding */
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  font-size: 14px; /* Adjust the font size */
+}
+
+/* Update the colors for specific boxes */
+
+
+.total-sellers {
+  border-radius: 5px;
+  background-color: #f9f9f9;
+  padding: 20px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.total-sellers h2{
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+.total-sellers th, .top-sellers td {
+  padding: 10px;
+  text-align: left;
+}
+.total-sellers tbody tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.total-sellers table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.total-sellers th, .top-sellers td {
+  padding: 10px;
+  text-align: left;
+}
+
+.total-sellers th {
+  background-color: #f9f9f9;
+}
+
+.total-sellers .avatar img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+}
+/* .delete-btn i {
+  margin-right: px; 
+
+ */
