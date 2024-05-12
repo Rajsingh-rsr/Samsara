@@ -233,10 +233,67 @@ const userOrderHistory = asyncHandler(async (req, res) => {
 
 })
 
+const sellerOrderHistory = asyncHandler(async (req, res) => {
+    const { status } = req.params;
+    const allowedStatuses = ['PENDING', 'CANCELLED', 'DELIVERED'];
+    const statusFilter = status === 'ALL' ? { $in: allowedStatuses } : status;
+  
+    const orders = await Order.aggregate([
+      {
+        $match: {
+          'orderItem.productId': { $exists: true },
+          status: statusFilter,
+        },
+      },
+      {
+        $unwind: '$orderItem',
+      },
+      {
+        $lookup: {
+          from: 'products',
+          localField: 'orderItem.productId',
+          foreignField: '_id',
+          as: 'productDetails',
+        },
+      },
+      {
+        $unwind: '$productDetails',
+      },
+      {
+        $match: {
+          'productDetails.owner': new mongoose.Types.ObjectId(req.user?._id),
+        },
+      },
+      {
+        $project: {
+          _id: 1,
+          custumerName: 1,
+          orderPrice: 1,
+          phone: 1,
+          shippingAddress: 1,
+          status: 1,
+          paymentMethod: 1,
+          'productDetails.name': 1,
+          'productDetails.price': 1,
+          'orderItem.quantity': 1,
+        },
+      },
+    ]);
+  
+    if (!orders || orders.length === 0) {
+      throw new ApiError(404, 'No orders found');
+    }
+  
+    return res.status(200).json(new ApiResponse(200, orders, 'Orders retrieved successfully'));
+  });
+
+
+  
 export {
     orderItems,
     deliveredOrCancled,
     cancellOrder,
     OrderStatus,
-    userOrderHistory
+    userOrderHistory,
+    sellerOrderHistory
 };
