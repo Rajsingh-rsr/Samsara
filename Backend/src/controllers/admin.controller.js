@@ -4,7 +4,7 @@ import { ApiResponse } from "../utils/ApiResponse.js"
 import { User } from "../models/user.models.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import mongoose, { isValidObjectId } from "mongoose"
-
+import fs from "fs"
 import jwt from "jsonwebtoken"
 
 
@@ -69,8 +69,42 @@ const AllSeller = asyncHandler(async (req, res) => {
 
 })
 
+const userVisited = asyncHandler(async (req, res) => {
+
+    fs.readFile("./src/log/totalVisits.txt", "utf-8", (err, data) => {
+        if (err) {
+            console.log("Error ", err);
+            throw new ApiError(500, "something went wrong while fetching data ")
+
+        }
+
+        return res
+            .status(200)
+            .json(new ApiResponse(200, { totalVisitd: data }, "user visited fetched sucessfully"))
+
+    })
+})
+
+const userVisitedLog = asyncHandler(async (req, res) => {
+
+    fs.readFile("./src/log/log.txt", "utf-8", (err, data) => {
+        if (err) {
+            console.log("Error ", err);
+            throw new ApiError(500, err)
+        }
+
+        const logArray = data.trim().split('\n');
+
+        return res
+            .status(200)
+            .json(new ApiResponse(200, logArray, "user visited fetched sucessfully"))
+
+    })
+})
 
 export {
     removeSeller,
-    AllSeller
+    AllSeller,
+    userVisited,
+    userVisitedLog
 }
