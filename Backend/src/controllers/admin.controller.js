@@ -30,7 +30,47 @@ const removeSeller = asyncHandler(async (req, res) => {
 
 })
 
+const AllSeller = asyncHandler(async (req, res) => {
+
+    const sellers = await User.aggregate([
+        {
+            $match: {
+                email: { $regex: "seller.", $options: 'i' }
+            }
+        },
+
+        {
+            $lookup: {
+                from: "products",
+                localField: "_id",
+                foreignField: "owner",
+                as: "products"
+            }
+        },
+
+        {
+            $project: {
+                password: 0,
+                refreshToken: 0
+            }
+        }
+    ])
+
+
+    if (!sellers) {
+        throw new ApiError(500, "Something wenth wrong while fetching seller")
+    }
+
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, sellers, "Seller fetched sucessfully"))
+
+
+})
+
 
 export {
-    removeSeller
+    removeSeller,
+    AllSeller
 }
