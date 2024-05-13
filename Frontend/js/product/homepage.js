@@ -13,6 +13,36 @@ document.addEventListener("DOMContentLoaded", () => {
     searchForm.classList.remove('active');
   });
 
+  // function for sliding images
+  let counter = 1;
+  let intervalId;
+
+  const startSlideShow = () => {
+    intervalId = setInterval(() => {
+      document.getElementById('radio' + counter).checked = true;
+      counter++;
+      if (counter > 4) {
+        counter = 1;
+      }
+    }, 5000);
+  };
+
+  startSlideShow(); // Start automatic sliding initially
+
+  const manualBtns = document.querySelectorAll('.manual-btn');
+
+  // Add event listener to each manual button
+  manualBtns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      counter = Number(btn.getAttribute('for').slice(-1)); // Extract slide number from the 'for' attribute
+      clearInterval(intervalId); // Clear interval when a manual button is clicked
+      setTimeout(startSlideShow, 5000); // Restart automatic sliding after a delay
+    });
+  });
+  
+  
+  
+
   // Function to add a product to the cart
   function addToCart(productId, productName, productPrice, productImage) {
     // Get existing cart items from local storage or initialize an empty array
