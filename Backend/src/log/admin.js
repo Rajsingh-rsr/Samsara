@@ -103,9 +103,36 @@ const userVisitedLog = asyncHandler(async (req, res) => {
 })
 
 
+const allCustomer = asyncHandler(async (req, res) => {
+
+    const customer = await User.aggregate([
+        {
+            $match: {
+                email: { $not: { $regex: "samsara.com", $options: 'i' } } // Exclude sellers
+            }
+        },
+
+        {
+            $project: {
+                password: 0,
+                refreshToken: 0
+            }
+        }
+    ]);
+
+    if (!customer) {
+        throw new ApiError(500, "Something went wrong while fetching non-sellers");
+    }
+
+    return res
+        .status(200)
+        .json(new ApiResponse(200, customer, "Non-sellers fetched successfully"));
+
+}); 
 
 
 export {
     removeSeller,
-
+    AllSeller,
+    AllSeller
 }
