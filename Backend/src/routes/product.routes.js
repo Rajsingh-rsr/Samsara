@@ -22,11 +22,11 @@ import { verifyJWT } from "../middlewares/auth.middleware.js";
 const router = Router()
 router.route("/search/name").get(getProdutName)
 
-router.use(verifyJWT)
 
 router.route("/")
     .get(getAllProduct)
     .post(
+        verifyJWT,
         upload.fields([
             {
                 name: "productImage",
@@ -42,8 +42,10 @@ router.route("/")
 
 router.route("/:productId")
     .get(getProductById)
-    .patch(updateProduct)
-    .delete(deleteProduct)
+    .patch(verifyJWT, updateProduct)
+    .delete(verifyJWT, deleteProduct)
+
+router.use(verifyJWT)
 
 router.route("/update-stock/:productId").patch(updateStock)
 router.route("/update-price/:productId").patch(updatePrice)
