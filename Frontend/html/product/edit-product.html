@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Product</title>
+    <link rel="stylesheet" href="../../css/product/edit-product.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <div class="container">
+        <h2>Product Information</h2>
+        <form enctype="multipart/form-data" method="post">
+            <label for="image">Upload Product Images </label>
+            <div id="imageallcontainer">
+                <div class="image-upload-container">
+                    <div class="image-container">
+                        <h1 class="upload-icon">
+                            <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                        </h1>
+                        <input id="image0" class="file-uploader" type="file" onchange="upload(0)" accept="image/*">
+                    </div>
+                </div>
+                <div class="image-upload-container">
+                    <div class="image-container">
+                        <h1 class="upload-icon">
+                            <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                        </h1>
+                        <input id="image1" class="file-uploader" type="file" onchange="upload(1)" accept="image/*">
+                    </div>
+                </div>
+                <div class="image-upload-container">
+    
+                    <div class="image-container">
+                        <h1 class="upload-icon">
+                            <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                        </h1>
+                        <input id="image2" class="file-uploader" type="file" onchange="upload(2)" accept="image/*">
+                    </div>
+                </div>
+                <div class="image-upload-container">
+    
+                    <div class="image-container">
+                        <h1 class="upload-icon">
+                            <i class="fa fa-plus fa-2x" aria-hidden="true"></i>
+                        </h1>
+                        <input id="image3" class="file-uploader" type="file" onchange="upload(3)" accept="image/*">
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="product-name">Product Name:</label>
+                    <i class="fas fa-edit" onclick="toggleProductNameEdit()"></i>
+                    <div class="input-with-edit">
+                        <input type="text" id="product-name" name="product-name" readonly required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="brand-name">Brand Name:</label>
+                    <input type="text" id="brand-name" name="brand-name" readonly required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="price">Price:</label>
+                    <input type="number" id="price" name="price" min="0" step="0.01" readonly required>
+                </div>
+                <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select id="category" name="category" required>
+                        <option value="">Select category</option>
+                        <option value="Tshirt">Tshirt</option>
+                        <option value="Pant">Pant</option>
+                        <option value="Shirt">Shirt</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group description">
+                    <label for="description">Description:</label>
+                    <i class="fas fa-edit" onclick="toggleDescriptionEdit()"></i>
+                    <div class="input-with-edit">
+                        <textarea id="description" name="description" rows="4" readonly required></textarea>
+                    </div>
+                </div>
+                <div class = "form-group" id ="size-stock-color">
+                    <div class="form-group" id ="size-stock">
+                        <label for="size">Size:</label>
+                        <div class="size-options">
+                            <input type="radio" id="size-s" name="size" value="S" readonly required>
+                            <label class="size-label" for="size-s">S</label>
+                            <input type="radio" id="size-m" name="size" value="M" readonly required>
+                            <label class="size-label" for="size-m">M</label>
+                            <input type="radio" id="size-l" name="size" value="L" readonly required>
+                            <label class="size-label" for="size-l">L</label>
+                        </div>
+                        
+                        <label for="stock">Stock:</label>
+                        <input type="number" id="stock" name="stock" min="0" readonly required>
+                    </div>
+                    <div class="form-group" id ="color-stock">
+                        <label for="color">Color:</label>
+                        <div class="color-options">
+                            <div class="color-option">
+                                <input type="radio" id="color-red" name="color" value="Red" readonly required>
+                                <label class="color-label" for="color-red">
+                                    <div class="color-box" style="background-color: red;">
+                                        <div class="color-circle"></div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="color-option">
+                                <input type="radio" id="color-black" name="color" value="Black" readonly required>
+                                <label class="color-label" for="color-black">
+                                    <div class="color-box" style="background-color: black;">
+                                        <div class="color-circle"></div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="color-option">
+                                <input type="radio" id="color-blue" name="color" value="Blue" readonly required>
+                                <label class="color-label" for="color-blue">
+                                    <div class="color-box" style="background-color: blue;">
+                                        <div class="color-circle"></div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <hr>
+            <button id="submit" type="submit">Publish <i class="fa-solid fa-arrow-right"></i></button>
+        </form>
+    </div>
+    <script src="../../js/product/edit-product.js"></script>
+</body>
+</html>
