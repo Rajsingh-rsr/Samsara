@@ -69,6 +69,21 @@ const AllSeller = asyncHandler(async (req, res) => {
 
 })
 
+const userVisited = asyncHandler(async (req, res) => {
+
+    fs.readFile("./src/log/totalVisits.txt", "utf-8", (err, data) => {
+        if (err) {
+            console.log("Error ", err);
+            throw new ApiError(500, "something went wrong while fetching data ")
+
+        }
+
+        return res
+            .status(200)
+            .json(new ApiResponse(200, { totalVisitd: data }, "user visited fetched sucessfully"))
+
+    })
+})
 
 
 
