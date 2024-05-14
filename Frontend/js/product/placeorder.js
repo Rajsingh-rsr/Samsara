@@ -153,42 +153,74 @@ populateProductDisplay();
 
 // Populate product display with cart items
 function populateProductDisplay() {
-  const productDisplay = document.getElementById('product-display');
+    const productDisplay = document.getElementById('product-display');
 
-  // Generate HTML for each product in cart
-  cartItems.forEach(product => {
-      const productHTML = generateProductHTML(product);
-      productDisplay.innerHTML += productHTML;
-  });
+    // Clear existing content
+    productDisplay.innerHTML = '';
 
-  // Add CSS class to product display container to enable scrolling
-  const productDisplayContainer = document.querySelector('.product-display');
-  productDisplayContainer.classList.add('scrollable');
+    // Generate HTML for each product in cart
+    cartItems.forEach(product => {
+        const productHTML = generateProductHTML(product);
+        productDisplay.innerHTML += productHTML;
+    });
 
-  // Add event listeners to remove buttons
-  const removeButtons = document.querySelectorAll('.remove');
-  removeButtons.forEach(button => {
-      button.addEventListener('click', () => {
-          const productId = button.parentElement.parentElement.id;
-          removeProduct(productId);
-      });
-  });
+    // Add CSS class to product display container to enable scrolling
+    const productDisplayContainer = document.querySelector('.product-display');
+    productDisplayContainer.classList.add('scrollable');
+
+    // Add event listeners to remove buttons
+    const removeButtons = document.querySelectorAll('.remove');
+    removeButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            const productId = button.parentElement.parentElement.id;
+            removeProduct(productId);
+            // Update total price after product removal
+            updateTotalPrice();
+        });
+    });
 }
+
+// Function to update total price
+function updateTotalPrice() {
+    const totalAmount = calculateTotalAmount();
+    const deliveryFee = 100; // Delivery fee is Rs 100
+    const totalPayment = totalAmount + deliveryFee;
+
+    // Update total amount display
+    document.querySelector('.right-details .totalitems span').textContent = `Rs. ${totalAmount}`;
+    // Update total payment display
+    document.querySelector('.right-details .Totalpayment span').textContent = `Rs. ${totalPayment}`;
+}
+
+// Function to calculate total amount
+function calculateTotalAmount() {
+    let totalAmount = 0;
+    cartItems.forEach(product => {
+        totalAmount += product.price;
+    });
+    return totalAmount;
+}
+
+
 // Function to remove a product from the product display and local storage
 function removeProduct(productId) {
-  // Remove product from product display
-  const productElement = document.getElementById(productId);
-  productElement.remove();
+    // Find the index of the product with the specified productId in the cartItems array
+    const index = cartItems.findIndex(item => item.id === productId);
+    
+    // If the product is found, remove it from the cartItems array
+    if (index !== -1) {
+        cartItems.splice(index, 1);
+        
+        // Update the cartItems in local storage
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
 
-  // Remove product from local storage
-  const updatedCartItems = cartItems.filter(item => item.id !== productId);
-  localStorage.setItem('cartItems', JSON.stringify(updatedCartItems));
+        // Update the cart count display
+        updateCartCount();
 
-  // Update cart count display
-  updateCartCount();
+        // Repopulate the product display section to reflect the changes
+        populateProductDisplay();
+    }
 }
-// for payment mwthod and placing order
-
 document.addEventListener("DOMContentLoaded", () => {
   const cashOnDeliveryIcon = document.getElementById("cash-on-delivery");
   const onlinePaymentIcon = document.getElementById("online-payment");
