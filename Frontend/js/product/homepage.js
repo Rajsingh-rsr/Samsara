@@ -39,9 +39,6 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(startSlideShow, 5000); // Restart automatic sliding after a delay
     });
   });
-  
-  
-  
 
   // Function to add a product to the cart
   function addToCart(productId, productName, productPrice, productImage) {
@@ -61,22 +58,22 @@ document.addEventListener("DOMContentLoaded", () => {
     element.classList.add("pro");
 
     element.innerHTML = `
-    <a href="../../html/product/productbuy.html">
-    <img src="${product.image}" alt="${product.name}">
-  </a>
-        <div class="des">
-            <span>adidas</span>
-            <h5>${product.name}</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>${product.price}</h4>
+      <a href="../../html/product/productbuy.html?product=${product._id}">
+        <img src="${product.productImage}" alt="${product.name}">
+      </a>
+      <div class="des">
+        <span>adidas</span>
+        <h5>${product.name}</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
         </div>
-        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+        <h4>${product.price}</h4>
+      </div>
+      <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
     `;
 
     return element;
@@ -94,14 +91,15 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add click event listener to each add-to-cart button
       productElement.querySelector('.add-to-cart').addEventListener('click', () => {
         // Get product information
-        const productId = product.id;
+        const productId = product._id;
         const productName = product.name;
         const productPrice = product.price;
-        const productImage = product.image;
+        const productImage = product.productImage;
 
         // Add product to the cart
         addToCart(productId, productName, productPrice, productImage);
 
+          
         // Update the cart count display
         updateCartCount();
       });
@@ -125,17 +123,14 @@ document.addEventListener("DOMContentLoaded", () => {
   })
     .then(response => response.json())
     .then(data => {
+      console.log("Fetched data:", data);
       // Check if request was successful
       if (data.statusCode == 200) {
         // Extract product data from the 'data' field
-        const products = data.data;
+        const products = data.data.docs;
 
         // Add products to respective sections
         addProductsToSection("new-arrivals", products); // New Arrivals section
-
-        // // Filter products for Jeans and Jacket sections
-        // const jeansProducts = products.filter(product => product.category === "jeans");
-        // const jacketProducts = products.filter(product => product.category === "jacket");
 
         // Add products to Jeans section
         addProductsToSection("jeans", products);
@@ -147,7 +142,6 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     })
     .catch(error => {
-      // console.error("Error fetching products:", error.message);
-      console.log("this is eror",error);
-    })
+      console.error("Error fetching products:", error.message);
+    });
 });
