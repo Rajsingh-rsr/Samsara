@@ -1,0 +1,254 @@
+body {
+    font-family: Arial, sans-serif;
+  }
+  .navbar {
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+    
+  }
+  
+  
+  /* Style the logo */
+  .logo {
+    width: 70px; /* Adjust according to your logo size */
+  }
+  
+  
+  
+  /* Style the navbar links */
+  .nav-link {
+   
+    color: black;
+    text-decoration: none;
+    margin-right: 20px;
+    padding: 10px;
+    font-size: 19px;
+    padding: 10px;
+    align-items: center;
+  }
+  .nav-link:hover {
+    text-decoration: underline 2px green;
+  }
+  
+  /* Style the icons */
+  .nav-link i {
+    font-size: 20px;
+    margin-right: 5px;
+    
+  }
+  .navbar-right{
+    display: flex;
+  }
+  .navbar-right .searchandcart span {
+    position: absolute;
+    top: 22px;
+    right: 97px;
+    background-color: gray;
+    color: black;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    height: 1.3rem;
+    width: 1.3rem;
+    padding: 1px;
+      padding-left: 1px;
+    padding-left: 5.2px;
+  }
+  .hover-icons{
+    display: none;
+  }
+  
+  
+  .search-container {
+    display: none;
+  }
+  
+  /* Additional styling for the search input */
+  .search-input {
+    width: 150px;
+    padding: 5px;
+    
+  }
+  
+  #search-form{
+    position: fixed;
+    top: -110%; left: 0;
+    height: 100%; width: 100%;
+    z-index: 1004;
+    background: rgba(0,0,0,.8);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 1rem;
+  
+  }
+  #search-form.active{
+    top: 0;
+  }
+  #search-form #search-box{
+    width: 50rem;
+    border-bottom:.1rem solid #fff ;
+    padding: 1rem 0;
+    color: #fff;
+    font-size: 3rem;
+    text-transform: none;
+    background: none;
+  
+  
+  }
+  #search-form #search-box::placeholder{
+    color: #eee;
+  }
+  
+  #search-form #search-box::-webkit-search-cancel-button{
+    -webkit-appearance: none ;
+  
+  }
+  #search-form label{
+    color: #fff;
+    cursor: pointer;
+    font-size: 4rem;
+    margin-left: 60px;
+  
+  }   
+  
+  #search-form #close{
+    position: absolute;
+    color: #fff;
+    cursor: pointer;
+    top: 2rem; right: 3rem;
+    font-size: 5rem;
+  }
+  #search-icon {
+  font-size: 20px; /* Adjust size as needed */
+  margin-right: 20px; /* Adjust spacing */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  }
+  
+  /* Style the close icon */
+  #close {
+  font-size: 20px; /* Adjust size as needed */
+  margin-left: 10px; /* Adjust spacing */
+  cursor: pointer; /* Change cursor to pointer on hover */
+  }
+  /* profile option section */
+  /* Profile options section */
+  .profile-container {
+  position: relative;
+  }
+  
+  .profile-options {
+  background-color: #f2f2f2;
+  border-radius: 5px;
+  padding: 20px;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: -50%;
+  transform: translateX(-50%);
+  width: 153px;
+  display: none;
+  }
+  
+  .profile-options ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  }
+  
+  .profile-options li {
+  margin-bottom: 26px;
+  margin-left: 28px;
+  }
+  
+  .profile-options a {
+  text-decoration: none;
+  color: #333;
+  font-weight: bold;
+  }
+  
+  .profile-options a:hover {
+  color: #666;
+  }
+  
+  /* Show profile options on hover */
+  .profile-container:hover .profile-options {
+  display: block;
+  }
+  /* side bar */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 250px;
+    background-color: #bcafa5;
+    padding-top: 20px;
+    margin-top: 90px;
+    color: black;
+  }
+  .sidebar h3{
+    padding: 25px;
+  }
+  
+  .sidebar ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 10px;
+  }
+  
+  .sidebar ul li a {
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 10px 20px;
+  }
+  
+  .sidebar ul li a:hover {
+    background-color: white;
+  }
+  .container {
+    margin: 50px auto;
+    width: calc(100% - 280px); /* Subtract the width of the sidebar from the total width */
+    margin-left: 280px; /* Same width as the sidebar */
+    margin-top: 130px;
+  }
+  h1 {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 8px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+  }
+  th {
+    background-color: #f2f2f2;
+  }
+  .cancel-btn {
+    background-color: #ff5555;
+    color: white;
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  .deliveredorder{
+    margin-top: 100px;
+    margin-bottom: 100px;
+  }

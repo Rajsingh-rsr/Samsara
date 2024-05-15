@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track My Order</title>
+    <link rel="stylesheet" href="../../css/user/trackorder.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+          <a href=""><img src="../../images/samsaralogo.png" alt="Website Logo" class="logo"></a>
+        </div>
+        <div class="navbar-middle">
+          <a href="../product/homepage.html" class="nav-link">Home</a>
+          <a href="#" class="nav-link">Category</a>
+          <a href="#" class="nav-link">Contact</a>
+          <a href="#" class="nav-link">About</a>
+        </div>
+        <div class="navbar-right">
+          <div class="searchandcart">
+            <i class="fas fa-search" id="search-icon"></i>
+          <a href="../product/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+          <span class="d-flex">0</span>
+          </div>
+          
+          
+          <div class="profile-container">
+            <a href="#" class="nav-link"><i class="fas fa-user"></i></a>
+            <div class="profile-options">
+              <ul>
+                <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
+                <li><a href="../user/profileoption.html"><i class="fas fa-user"></i> Profile</a></li>
+                <li><a href="../user/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        
+        </div>
+      </nav>
+      <form action="" id="search-form">
+        <input type="search" placeholder="search here.." name="" id="search-box">
+        <label for="search-box" class="fas fa-search"></label>
+        <i class="fas fa-times" id="close"></i>
+    
+    
+       </form>
+       <div class="sidebar">
+        <h3>Manage my Account</h3>
+        <ul>
+            <li><a href="../../html/user/settingpanel.html">My Profile</a></li>
+            <li><a href="../../html/user/trackmyorder.html">Track My Order</a></li>
+            
+            <li><a href="../../html/user/changepassword.html">Change Password</a></li>
+            <li><a href="#">Order History</a></li>
+        </ul>
+    </div>
+
+    <div class="container">
+      <h1 class="heading">Track My Order</h1>
+      <div class="underline"></div>
+      <table class="order-table">
+          <thead>
+              <tr>
+                  <th>Order ID</th>
+                  <th>Name</th>
+                  <th>Status</th>
+                  <th>Price</th>
+                  <th>Date</th>
+              </tr>
+          </thead>
+          <tbody id="order-table-body">
+              <!-- Table body will be populated dynamically by JavaScript -->
+          </tbody>
+      </table>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+  <script src="../../js/user/trackmyorder.js"></script> <!-- Include your JavaScript file -->
+</body>
+</html>
