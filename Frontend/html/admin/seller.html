@@ -4,7 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Admin Dashboard</title>
-<link rel="stylesheet" href="../../css/admin/admindashboard.css">
+<link rel="stylesheet" href="../../css/admin/seller.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
   <nav class="navbar">
@@ -26,24 +27,20 @@
     
     </div>
   </nav>
-<div class="dashboard">
-  <h2>Dashboard</h2>
-  <div class="stats-boxes">
-    <div class="box" id="top-selling">Top Selling: Placeholder</div>
-    <div class="box" id="user-visited">User Visited: Placeholder</div>
-    <div class="box" id="revenue">Revenue: Placeholder</div>
-  </div>
-  <div class="top-sellers">
-    
-  </div>
-  <div class="recent-customers">
-    <!-- will be populated from js-->
-    
-    <!-- Repeat for each customer -->
-    
-  </div>
+<div class="seller">
+  <!-- Search bar -->
+  <div class="search-bar">
+    <input type="text" id="searchInput" placeholder="Search seller...">
+    <i class="fas fa-search" id="searchIcon"></i>
 </div>
-<script src="../../js/admin/admindashboard.js"></script>
+  <h2>Total sellers</h2>
+  
+  <div class="total-sellers">
+    
+  </div>
+  
+</div>
+<script src="../../js/admin/seller.js"></script>
 
 </body>
 </html>

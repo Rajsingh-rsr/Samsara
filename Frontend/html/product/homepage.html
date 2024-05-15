@@ -31,8 +31,8 @@
         <div class="profile-options">
           <ul>
             <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="../../html/user/settingpanel.html"><i class="fas fa-user"></i> Profile</a></li>
-            <li><a href="../../html/user/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
+            <li><a href="../user/profileoption.html"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="../user/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
           </ul>
         </div>
       </div>
@@ -49,38 +49,49 @@
    </form>
   <!-- for sliding image -->
   <div class="slidingsection">
-  <div class="slider">
-    <div class="slides">
-      <input type="radio" name="radio-btn" id="radio1">
-      <input type="radio" name="radio-btn" id="radio2">
-      <input type="radio" name="radio-btn" id="radio3">
-
-      <div class="slide-first">
-        <img src="../../images/slidingimage-1.png" alt="image1">
+    <div class="slider">
+      <div class="slides">
+        <input type="radio" name="radio-btn" id="radio1">
+        <input type="radio" name="radio-btn" id="radio2">
+        <input type="radio" name="radio-btn" id="radio3">
+        <input type="radio" name="radio-btn" id="radio4">
+        <!-- radio btn ends -->
+        <!-- sliding image starts -->
+        <div class="slide first">
+          <img src="../../images/slidingimage-1.png" alt="image-1">
+        </div>
+        <div class="slide">
+          <img src="../../images/slidingimage-3.png" alt="image-1">
+        </div>
+        <div class="slide">
+          <img src="../../images/slidingimage-2.png" alt="image-1">
+        </div>
+        <div class="slide">
+          <img src="../../images/slidingimage-4.png" alt="image-1">
+        </div>
+        <!-- automatic navigation -->
+        <div class="navigation-auto">
+          <div class="auto-btn1"></div>
+          <div class="auto-btn2"></div>
+          <div class="auto-btn3"></div>
+          <div class="auto-btn4"></div>
+        </div>
+  
       </div>
-      <div class="slide">
-        <img src="../../images/slidingimage-2.png"alt="">
-      </div>
-      <div class="slide">
-        <img src="../../images/slidingimage-3.png"alt="">
-      </div>
-      <!-- for auto navigation -->
-      <div class="navigation-auto">
-        <div class="auto-btn1"></div>
-        <div class="auto-btn2"></div>
-        <div class="auto-btn3"></div>
-      </div>
-      <!-- for manual navigation -->
+      <!-- manual navigation -->
       <div class="navigation-manual">
         <label for="radio1" class="manual-btn"></label>
         <label for="radio2" class="manual-btn"></label>
         <label for="radio3" class="manual-btn"></label>
+        <label for="radio4" class="manual-btn"></label>
+  
       </div>
+  
     </div>
-  </div>
-</div>
 
-\
+  </div>
+  
+  
 
 <!-- Product section -->
 <section id="new-arrivals" class="section-p1">
@@ -90,7 +101,27 @@
   </div>
 </section>
 
+<!-- Jeans section -->
+<section id="jeans" class="section-p1">
+  <h2>Jeans</h2>
+  <div class="pro-container">
+    <!-- Products will be dynamically added here -->
+  </div>
+  <div class="view-all-btn">
+    <a href="../../html/product/jeanssection.html" id="view-all-jeans" class="view-all-link">View All</a>
+</div>
+</section>
 
+<!-- Jacket section -->
+<section id="jackets" class="section-p1">
+  <h2>Jacket</h2>
+  <div class="pro-container">
+    <!-- Products will be dynamically added here -->
+  </div>
+  <div class="view-all-btn">
+    <a href="../../html/product/jacketsection.html" id="view-all-jackets" class="view-all-link">View All</a>
+</div>
+</section>
 
 <!-- Footer section starts -->
 
@@ -135,16 +166,16 @@
       <div class="footer-section-2">
         <div class="usefullinkssection">
           <h3>Useful Links</h3>
-          <a href="../../html/product/homepage.html">Home</a>
+          <a href="#">Home</a>
           <a href="#">Category</a>
           <a href="#">New Arrivals</a>
 
         </div>
         <div class="myaccountsection">
           <h3>My Account</h3>
-          <a href="../user/login.html">Sign in</a>
+          <a href="#">Sign in</a>
           <a href="#">My wishlist</a>
-          <a href="../product/addtocart.html">View cart</a>
+          <a href="#">View cart</a>
         
 
         </div>
@@ -161,6 +192,6 @@
   </footer>
   
 
-  <script src="../../js/product/home.js"></script>
+  <script src="../../js/product/homepage.js"></script>
 </body>
 </html>
