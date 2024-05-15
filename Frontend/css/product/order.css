@@ -1,0 +1,142 @@
+* {
+    margin: 0;
+    padding: 0;
+    
+    
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgba(245, 245, 245, 1);
+    ;
+}
+
+.navbar {
+    background-color: #F5F5F5;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.navbar-logo img {
+    height: 75px;
+    margin: 0%;
+    padding: 0%;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    width: 530px;
+}
+
+.navbar-menu li {
+    padding: 0 15px;
+}
+
+.navbar-menu li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 23px;
+}
+
+.navbar-menu li a:hover {
+    color: #ccc;
+}
+
+.navbar-menu li a i {
+    font-size: 35px;  
+}
+
+hr {
+    height: 2px; 
+    background-color: #000000; 
+    border: none; 
+}
+
+h1{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    margin-left: 210px;
+}
+
+.orders {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+.box{
+    box-sizing: border-box;
+    border: 1px solid #000;
+    width: 300px;
+    height: 75px;
+    text-align: center;
+    align-content: center;
+  }
+  
+#active.box{
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+#complete.box{
+  background-color:rgba(82, 255, 0, 0.5);
+  ;
+}
+
+#total.box{
+  background-color: rgba(255, 168, 0, 0.5);
+  ;
+}
+  .order-line {
+    height: 2px; 
+    background-color: #000000; 
+    margin-top: 25px;
+    margin-left: 210px;
+    margin-right: 210px;
+}
+
+.table-container {
+    margin-top: 20px;
+    margin-left: 210px;
+    margin-right: 210px;
+  }
+
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+
+}
+
+td {
+    padding: 8px;
+    text-align: left;
+    border: 1px black solid;
+    height: 50px;
+    border-spacing: 20px;
+  }
+
+th{
+    padding: 8px;
+    text-align: left;
+    height: 50px;
+    border-spacing: 20px;
+  }
+
+.id{
+    border-right: hidden;
+}
+
+
+
+
