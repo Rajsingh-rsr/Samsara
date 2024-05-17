@@ -45,9 +45,9 @@ function createProductCard(product) {
 }
 
 // Function to render product cards
-function renderProductCards(userData) {
+function renderProductCards(productData) {
     const productContainer = document.getElementById("product-container");
-    userData.forEach(product => {
+    productData.forEach(product => {
       const productCard = createProductCard(product);
       productContainer.appendChild(productCard);
     });
@@ -79,7 +79,7 @@ async function fetchData() {
       } 
       const data2 = await response.json();
      
-      console.log(data2);
+      console.log("aryan",data2);
 
       renderProductCards(data2.data.docs)
      

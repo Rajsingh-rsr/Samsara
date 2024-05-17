@@ -1,4 +1,4 @@
-Add event listener to "Add to Cart" icons/buttons
+// Add event listener to "Add to Cart" icons/buttons
 //   let addToCartButtons = document.querySelectorAll('#cart a');
 //   addToCartButtons.forEach(addButtons => {
 //       addButtons.addEventListener('click', (e)=>addToCart(e));

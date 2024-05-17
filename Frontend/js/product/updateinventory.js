@@ -16,29 +16,31 @@ function deleteRow(button) {
   }
 
   
-// async function fetchData() {
-//   try {
-//       const response = await fetch('http://localhost:4000/api/v1/product/seller/allproduct', {
-//         method: 'GET',
-//         credentials: 'include' // Include credentials in the request
-//       });
+  
+async function fetchData() {
+  try {
+      const response = await fetch('http://localhost:4000/api/v1/product/seller/allproduct', {
+        method: 'GET',
+        credentials: 'include' // Include credentials in the request
+      });
 
-//       // console.log(response);
-//       if (!response.ok) {
-//           throw new Error('Network response was not ok');
-//       } 
-//       const data2 = await response.json();
+      // console.log(response);
+      if (!response.ok) {
+          throw new Error('Network response was not ok');
+      } 
+      const data2 = await response.json();
      
-//       console.log(data2);
+      console.log(data2);
 
-//       renderProductCards(data2.data.docs)
+      renderProductCards(data2.data.docs)
      
    
-//       // renderProductCards(data2.data.docs); 
-//   } catch (error) {
-//       console.error('Error fetching data:', error);
-//   }
-// }
+      // renderProductCards(data2.data.docs); 
+  } catch (error) {
+      console.error('Error fetching data:', error);
+  }
+}
 
-// // Call the fetchData function to fetch and render product cards
-// fetchData();
+// Call the fetchData function to fetch and render product cards
+fetchData();
+
