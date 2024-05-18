@@ -79,7 +79,7 @@ async function fetchData() {
       } 
       const data2 = await response.json();
      
-      console.log("aryan",data2);
+      console.log(data2);
 
       renderProductCards(data2.data.docs)
      
