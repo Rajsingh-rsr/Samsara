@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     searchForm.classList.remove('active');
   });
 
-  // function for sliding images
+  // Function for sliding images
   let counter = 1;
   let intervalId;
 
@@ -45,18 +45,29 @@ document.addEventListener("DOMContentLoaded", () => {
     // Get existing cart items from local storage or initialize an empty array
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-    // Add the new product to the cart items array
-    cartItems.push({ id: productId, name: productName, price: productPrice, image: productImage });
+    // Find if the product already exists in the cart
+    const existingProduct = cartItems.find(item => item.id === productId);
+
+    if (existingProduct) {
+      // If product exists, increase the quantity
+      existingProduct.quantity += 1;
+    } else {
+      // If product does not exist, add it to the cart with quantity 1
+      cartItems.push({ id: productId, name: productName, price: productPrice, image: productImage, quantity: 1 });
+    }
 
     // Save the updated cart items back to local storage
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+    // Update the cart count display
+    updateCartCount();
   }
 
   // Function to create a product element
   function createProductElement(product) {
     const element = document.createElement("div");
     element.classList.add("pro");
-
+    console.log(product);
     element.innerHTML = `
       <a href="../../html/product/productbuy.html?product=${product._id}">
         <img src="${product.productImage}" alt="${product.name}">
@@ -98,10 +109,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // Add product to the cart
         addToCart(productId, productName, productPrice, productImage);
-
-          
-        // Update the cart count display
-        updateCartCount();
       });
     });
   }
@@ -110,10 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateCartCount() {
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartCount = document.querySelector('.cart-count');
-    // Calculate the total number of products in the cart
-    const totalCount = cartItems.length;
+    // Calculate the number of unique products in the cart
+    const uniqueProductCount = cartItems.length;
     // Update the cart counter text
-    cartCount.textContent = totalCount;
+    cartCount.textContent = uniqueProductCount;
   }
 
   // Fetch products from the backend
@@ -132,11 +139,13 @@ document.addEventListener("DOMContentLoaded", () => {
         // Add products to respective sections
         addProductsToSection("new-arrivals", products); // New Arrivals section
 
+        console.log(products);
+
         // Add products to Jeans section
-        addProductsToSection("jeans", products);
+        addProductsToSection("jeans", products.filter(product => product.category === "jeans"));
 
         // Add products to Jacket section
-        addProductsToSection("jackets", products);
+        addProductsToSection("jackets", products.filter(product => product.category === "jacket"));
       } else {
         console.error("Failed to fetch products:", data.message);
       }
@@ -144,4 +153,6 @@ document.addEventListener("DOMContentLoaded", () => {
     .catch(error => {
       console.error("Error fetching products:", error.message);
     });
+
+  updateCartCount(); // Initial cart count update
 });
