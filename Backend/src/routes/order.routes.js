@@ -5,7 +5,8 @@ import {
     deliveredOrCancled,
     cancellOrder,
     OrderStatus,
-    userOrderHistory
+    userOrderHistory,
+    sellerOrderHistory
 
 } from "../controllers/order.controller.js"
 
@@ -18,7 +19,8 @@ router.route("/").post(verifyJWT, orderItems)
 router.route("/seller/:orderId").patch(verifyJWT, deliveredOrCancled)
 router.route("/user/:orderId").patch(verifyJWT, cancellOrder)
 router.route("/status/:status").get(verifyJWT, OrderStatus)
-router.route("/user/orderHistory").get(verifyJWT, userOrderHistory)
+router.route("/user/orderHistory/:status").get(verifyJWT, userOrderHistory)
+router.route("/seller/orderHistory/:status").get(verifyJWT, sellerOrderHistory)
 
 
 export default router

@@ -12,7 +12,7 @@ const router = Router()
 
 
 router.route("/:productId").post(verifyJWT, addProductReview)
-router.route("/:productId").get(verifyJWT, getProductReview)
+router.route("/:productId").get(getProductReview)
 
 
 export default router

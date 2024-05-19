@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -48,10 +49,17 @@
     
        </form>
     <div class="maincon">
+      <div id="product-display" class="product-display">
+        <h2 class="product-review-heading">Product Review</h2>
+        
+        
+      
+        <!-- Product display content will be dynamically generated -->
+    </div>
         
         <div class="user-info">
             <div class="info-box">
-                <h2 class="product-heading">Denim Jacket</h2>
+                <h2 class="product-heading">User information</h2>
                 <div class="form" >
                   <label for="address">Home:</label>
                   <input type="text" id="address" name="address" placeholder="Enter your address" disabled>
@@ -66,16 +74,11 @@
                   <button class="change-btn" data-target="phone">Change</button>
                 </div>
             </div>
-            <div class="payment-method">
-                <div class="payment-box">
-                    <h2 class="payment-heading">Choose Payment Method</h2>
-                    <img src="../../images/cashondelivery.png" alt="cashondeliverylogo">
-                    <span>Cash on delivery</span>
-            </div>
+           
         </div>
         
         
-        </div>
+        
         <div class="order-summary">
             <h2>Order summary</h2>
             <div class="details">
@@ -102,11 +105,49 @@
                     </div>
                 </div>
             </div>
-            <div class="btn">
-              <button id="place-order-btn">Place Order</button>
+            <div class="payment-method">
+              <div class="payment-box">
+                  <h3 class="payment-heading">Choose Payment Method</h3>
+                  <div class="payment-item">
+                      <div class="payment-icon">
+                          <img  src="../../images/cashondelivery.png" id="cash-on-delivery" alt="cashondeliverylogo">
+                      </div>
+                      <span>Cash on delivery</span>
+                  </div>
+                  <div class="payment-item">
+                      <div class="payment-icon">
+                          <img src="../../images/online.png"   id="online-payment" alt="onlinelogo">
+                      </div>
+                      <span>Online</span>
+                  </div>
+              </div>
+              <div class="btn">
+                  <button id="place-order-btn">Place Order</button>
+              </div>
+          </div>
+            
 
             </div>
         </div>
+        <!-- Card Fill-up Form Popup -->
+<div class="card-form-popup" id="card-form-popup">
+  <div class="card-form-container">
+      <span class="close-btn" id="close-card-form">&times;</span>
+      <h2> Card Details</h2>
+      <form id="card-form">
+        <label for="Name">Name:</label>
+          <input type="text" id="Name " name="Name" placeholder="Enter your name" required>
+          <label for="card-number">Card Number:</label>
+          <input type="text" id="card-number" name="card-number" placeholder="Enter card number" required>
+          <label for="expiry-date">Expiry Date:</label>
+          <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+          <label for="cvv">CVV:</label>
+          <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
+          <button type="submit">Submit</button>
+      </form>
+  </div>
+</div>
+
     </div>
     <footer>
       <div class="footer-container">
@@ -149,16 +190,16 @@
         <div class="footer-section-2">
           <div class="usefullinkssection">
             <h3>Useful Links</h3>
-            <a href="../../html/product/homepage.html">Home</a>
+            <a href="#">Home</a>
             <a href="#">Category</a>
             <a href="#">New Arrivals</a>
   
           </div>
           <div class="myaccountsection">
             <h3>My Account</h3>
-            <a href="../user/login.html">Sign in</a>
+            <a href="#">Sign in</a>
             <a href="#">My wishlist</a>
-            <a href="../product/addtocart.html">View cart</a>
+            <a href="#">View cart</a>
           
   
           </div>
@@ -173,6 +214,7 @@
       </div>
      
     </footer>
+    
       <script src="../../js/product/placeorder.js"></script>
     
 </body>

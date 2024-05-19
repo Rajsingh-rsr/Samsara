@@ -184,4 +184,17 @@ document.getElementById('save-changes-btn').addEventListener('click', async () =
     } catch (error) {
         console.error('Error updating user information:', error);
     }
+    updateCartCount();
+
 });
+
+  // Update cart count display
+  // Update cart count display
+  function updateCartCount() {
+    let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
+    const cartCount = document.querySelector('.cart-count');
+    // Calculate the total number of products in the cart
+    const totalCount = cartItems.length;
+    // Update the cart counter text
+    cartCount.textContent = totalCount;
+  }

@@ -4,7 +4,7 @@ import { ApiResponse } from "../utils/ApiResponse.js"
 import { User } from "../models/user.models.js"
 import { uploadOnCloudinary } from "../utils/cloudinary.js"
 import jwt from "jsonwebtoken"
-
+import { userLog } from "../log/userLog.js"
 
 const options = {
     httpOnly: true,
@@ -118,6 +118,10 @@ const loginUser = asyncHandler(async (req, res) => {
     const { accessToken, refreshToken } = await generateAccessAndRefereshTokens(user._id)
 
     const loggedInUser = await User.findById(user._id).select("-password -refreshToken")
+
+    // Storing user log
+    userLog(req, loggedInUser)
+    
 
     return res
         .status(200)
