@@ -42,11 +42,15 @@ function populateTable(data) {
     const topSellingCell = document.createElement('td');
     topSellingCell.classList.add('top-selling'); // Add class for styling
     if (seller.products && seller.products.length > 0) {
-      const topSellingProduct = seller.products[0]; // Assuming you want to display the first product as top selling
-      const productImage = document.createElement('img');
-      productImage.src = topSellingProduct.image; // Replace 'image' with the actual property name for the product image
-      productImage.alt = 'Top Selling Product';
-      topSellingCell.appendChild(productImage);
+      const topSellingProduct = seller.products[0];
+      if (topSellingProduct.productImage) { // Check if product image is available
+        const productImage = document.createElement('img');
+        productImage.src = topSellingProduct.productImage; // Correctly accessing the product image URL
+        productImage.alt = 'Top Selling Product';
+        topSellingCell.appendChild(productImage);
+      } else {
+        topSellingCell.textContent = 'No image available';
+      }
     } else {
       topSellingCell.textContent = 'No products available';
     }
@@ -59,17 +63,81 @@ function populateTable(data) {
     removeCell.appendChild(removeIcon);
     row.appendChild(removeCell);
 
-    // Add functionality for removing the seller (implementation details depend on your backend logic)
-    // This example demonstrates a basic click event listener (replace with your actual logic)
+    // Add click event listener for remove button
     removeCell.addEventListener('click', () => {
       console.log('Remove Seller clicked for seller:', seller);
-      // Replace this with your logic to handle seller removal (e.g., API call, confirmation dialog)
+
+      const sellerId = seller._id;
+
+      // Fetch API call with DELETE method to remove seller
+      fetch(`http://localhost:4000/api/v1/admin/remove/user/${sellerId}`, {
+        method: 'DELETE',
+        credentials: 'include' // Include credentials if necessary for authentication
+      })
+        .then(response => {
+          // Check if the response is successful
+          if (!response.ok) {
+            throw new Error('Failed to remove seller');
+          }
+          // Seller removed successfully, update the table
+          console.log('Seller removed successfully');
+
+          // Refetch all seller data after successful removal
+          return fetch('http://localhost:4000/api/v1/admin/allseller', {
+            credentials: 'include'
+          });
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Clear the table and populate it with the fetched data
+          clearTable();
+          populateTable(data.data);
+        })
+        .catch(error => {
+          console.error('Error fetching seller data:', error);
+          // Handle errors appropriately, e.g., display an error message to the user
+        });
     });
 
     // Append the row to the table
     sellerTable.appendChild(row);
   });
 }
+
+// Function to clear table content except for headings
+function clearTable() {
+  // Clear the table content except for the first row (headings)
+  while (sellerTable.rows.length > 1) {
+    sellerTable.deleteRow(1);
+  }
+}
+
+// Fetch data from the API endpoint with credentials included
+fetch('http://localhost:4000/api/v1/admin/allseller', {
+  credentials: 'include'
+})
+.then(response => {
+  // Check if the response is successful
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  // Parse the JSON response
+  return response.json();
+})
+.then(data => {
+  // Log the fetched data to the console
+  console.log(data);
+  // Populate the table with seller data
+  createTableHeadings();
+  populateTable(data.data);
+})
+.catch(error => {
+  // Log any errors to the console
+  console.error('There was a problem with the fetch operation:', error);
+});
+
+// Call the function to create table headings when the page loads
+document.addEventListener('DOMContentLoaded', createTableHeadings);
 
 // Fetch data from the API endpoint with credentials included
 fetch('http://localhost:4000/api/v1/admin/allseller', {
@@ -96,3 +164,20 @@ fetch('http://localhost:4000/api/v1/admin/allseller', {
 
 // Call the function to create table headings when the page loads
 document.addEventListener('DOMContentLoaded', createTableHeadings);
+
+
+// Remove Seller column (using Font Awesome icon)
+const removeCell = document.createElement('td');
+const removeIcon = document.createElement('i');
+removeIcon.classList.add('fas', 'fa-trash'); // Assuming you're using Font Awesome
+removeCell.appendChild(removeIcon);
+
+// Add click event listener for remove button
+removeCell.addEventListener('click', () => {
+  const sellerId = seller._id;
+
+  removeCell.addEventListener('click', () => {
+    const sellerId = seller._id;
+  
+    // Fetch API call with DELETE method to remove seller
+  })})
