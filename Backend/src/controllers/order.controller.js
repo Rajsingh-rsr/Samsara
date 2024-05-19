@@ -65,7 +65,7 @@ const orderItems = asyncHandler(async (req, res) => {
         .json(new ApiResponse(201, createdOrder, "Order created sucessfully"));
 });
 
-// Status can only be updated by sellers
+// Status can only be updated by admin
 const deliveredOrCancled = asyncHandler(async (req, res) => {
     const { orderId } = req.params;
     const { status } = req.body;
@@ -78,13 +78,13 @@ const deliveredOrCancled = asyncHandler(async (req, res) => {
         throw new ApiError(400, "invalid productId || object id");
     }
 
-    const emailRegex = /^seller\.([a-zA-Z]+[a-zA-Z0-9]*)@samsara\.com$/;
+    const emailRegex = /admin@samsara.com/;
     const isValidEmail = emailRegex.test(req.user?.email);
 
     if (!isValidEmail) {
         throw new ApiError(
             401,
-            "Invalid user credentials Seller can only use deliver Or Cancle feature"
+            "Invalid user credentials Admin can only use deliver Or Cancle feature"
         );
     }
 
