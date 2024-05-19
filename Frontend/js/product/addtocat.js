@@ -15,16 +15,19 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Retrieve cart items from local storage
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    console.log(cartItems)
-    
+
+    // Function to update cart count display
+    function updateCartCount() {
+        const cartCount = document.querySelector('.cart-count');
+        const totalCount = cartItems.length; // Count only unique items
+        cartCount.textContent = totalCount;
+    }
 
     // Function to update total price
     function updateTotalPrice() {
         let subtotal = 0;
-        cartItems.map((item) => {
-            subtotal += parseInt(item.price);
-            console.log(item.price)
-            console.log(subtotal)
+        cartItems.forEach((item) => {
+            subtotal += parseInt(item.price) * item.quantity;
         });
         const tax = subtotal * 0.1; // Assuming 10% tax
         const total = subtotal + tax;
@@ -33,13 +36,20 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelector('#subtotal').textContent = `Rs. ${subtotal}`;
         document.querySelector('#tax').textContent = `Rs. ${tax}`;
         document.querySelector('#total').textContent = `Rs. ${total}`;
-        // store the total in local storage
+        // Store the total in local storage
         localStorage.setItem('totalAmount', total);
+    }
+
+    // Function to update cart item in local storage
+    function updateCartItemInLocalStorage(index, newQuantity) {
+        cartItems[index].quantity = newQuantity;
+        localStorage.setItem('cartItems', JSON.stringify(cartItems));
+        updateTotalPrice();
     }
 
     // Display cart items in the table
     const tbody = document.querySelector('tbody');
-    cartItems.forEach(item => {
+    cartItems.forEach((item, index) => {
         const row = document.createElement('tr');
         row.innerHTML = `
             <td>
@@ -59,6 +69,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 </div>
             </td>
             <td>
+                <div class="quantity-control">
+                    <button class="decrease-btn"><i class="fas fa-minus"></i></button>
+                    <span class="quantity">${item.quantity}</span>
+                    <button class="increase-btn"><i class="fas fa-plus"></i></button>
+                </div>
+            </td>
+            <td>
                 <div class="delete-box">
                     <button class="delete-btn"><i class="fas fa-trash-alt"></i></button>
                 </div>
@@ -66,30 +83,43 @@ document.addEventListener("DOMContentLoaded", () => {
             <td>Rs. ${item.price}</td>
         `;
         tbody.appendChild(row);
-    });
 
-    // Delete button event listener
-    const deleteButtons = document.querySelectorAll('.delete-btn');
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', function () {
-            // Get the index of the item to be deleted
-            const rowIndex = this.closest('tr').rowIndex - 1;
-            // Remove the item from the cart items array
-            cartItems.splice(rowIndex, 1);
-            // Update the local storage with the modified cart items
+        // Event listener for decrease button
+        const decreaseButton = row.querySelector('.decrease-btn');
+        decreaseButton.addEventListener('click', () => {
+            let quantity = parseInt(row.querySelector('.quantity').textContent);
+            if (quantity > 1) {
+                quantity--;
+                row.querySelector('.quantity').textContent = quantity;
+                updateCartItemInLocalStorage(index, quantity);
+            }
+        });
+
+        // Event listener for increase button
+        const increaseButton = row.querySelector('.increase-btn');
+        increaseButton.addEventListener('click', () => {
+            let quantity = parseInt(row.querySelector('.quantity').textContent);
+            quantity++;
+            row.querySelector('.quantity').textContent = quantity;
+            updateCartItemInLocalStorage(index, quantity);
+        });
+
+        // Event listener for delete button
+        const deleteButton = row.querySelector('.delete-btn');
+        deleteButton.addEventListener('click', () => {
+            cartItems.splice(index, 1);
             localStorage.setItem('cartItems', JSON.stringify(cartItems));
-            // Remove the row from the table
-            const row = this.closest('tr');
             row.remove();
-            // Recalculate and update the total price
             updateTotalPrice();
+            updateCartCount();
         });
     });
 
-    // Initial update of total price
+    // Initial update of total price and cart count
     updateTotalPrice();
-});
-const checkoutButton = document.querySelector('.btn button');
+    updateCartCount();
+
+    const checkoutButton = document.querySelector('.btn button');
     checkoutButton.addEventListener('click', () => {
         const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
         if (cartItems.length === 0) {
@@ -100,14 +130,4 @@ const checkoutButton = document.querySelector('.btn button');
             window.location.href = '../../html/product/placeorder.html';
         }
     });
-updateCartCount()
-  // Update cart count display
-  // Update cart count display
-function updateCartCount() {
-  let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-  const cartCount = document.querySelector('.cart-count');
-  // Calculate the total number of products in the cart
-  const totalCount = cartItems.length;
-  // Update the cart counter text
-  cartCount.textContent = totalCount;
-}
+});
