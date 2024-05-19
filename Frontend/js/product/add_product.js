@@ -75,7 +75,7 @@ document.querySelector('form').addEventListener('submit', async function (event)
     const Psize = document.querySelector('.size-options input[name="size"]:checked').value;
     
     
-    const category = `{ "name": cateName, "color": "black", "size": Psize }`
+    const category = {"name": cateName, "color": "black", "size": Psize}
 
     const imageInputs = [
         document.getElementById('image0'),
@@ -89,10 +89,17 @@ document.querySelector('form').addEventListener('submit', async function (event)
 
     imageInputs.forEach((input, index) => {
         if (input.files.length > 0) {
-            imageArray.push(`image${index + 1}`, input.files[0]);
+            console.log("input.files[0]", typeof input.files[0]);
+            var filepath = "G:/image/" + input.files[0].name;
+            imageArray.push({'path': filepath});
         }
-    });
-
+    }); 
+    console.log("img",imageArray);
+    const files = {
+        'productImage': [imageArray[0]],
+        'supportImage': imageArray
+    }
+    console.log("files", JSON.stringify(files));
     // const token = localStorage.getItem('accessToken')
 
     // console.log("token", localStorage.getItem('accessToken'))
@@ -102,9 +109,8 @@ document.querySelector('form').addEventListener('submit', async function (event)
         description: document.getElementById('description').value,
         brand: document.getElementById('brand-name').value,
         price: document.getElementById('price').value,
-        category: category,
-        productImage: imageArray[0],
-        supportImage: imageArray,
+        category: JSON.stringify(category),
+        files: JSON.stringify(files),
         stock: document.getElementById('stock').value
     };
     console.log(formData);

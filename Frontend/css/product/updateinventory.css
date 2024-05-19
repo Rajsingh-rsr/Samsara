@@ -1,0 +1,158 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+
+    
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.navbar {
+    background-color: #F5F5F5;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.navbar-container {
+    width: 100%;
+    max-width: 1500px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+}
+
+.navbar-logo img {
+    height: 75px;
+    margin: 0%;
+    padding: 0%;
+}
+
+.navbar-menu {
+    list-style: none;
+    display: flex;
+    width: 530px;
+}
+
+.navbar-menu li {
+    padding: 0 15px;
+}
+
+.navbar-menu li a {
+    color: rgb(0, 0, 0);
+    text-decoration: none;
+    font-size: 23px;
+}
+
+.navbar-menu li a:hover {
+    color: #ccc;
+}
+
+.navbar-menu li a i {
+    font-size: 35px;  
+}
+
+hr {
+    height: 2px; 
+    background-color: #000000; 
+    border: none; 
+}
+
+.search-box, .filter {
+    padding: 5px;
+    border: 2px solid;
+    border-radius: 15px;
+    flex-grow: 1;
+} 
+
+button {
+    padding: 5px 10px;
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border-radius: 15px;
+    cursor: pointer;
+    border: 2px solid;
+    flex-grow: 1;
+}
+
+button:hover {
+    background-color: #000000;
+    color: #ffffff;
+} 
+
+.container {
+    display: flex;
+
+  }
+  
+  .left-box {
+    flex: 0 0 15%; 
+    display: flex;
+    margin-top: 20px;
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+.left-box a{
+  text-decoration: none;
+  color: #000000;
+}
+
+.left-box a:hover{
+    color: #868686;
+}
+
+  .search-filter-container {
+    flex: 1; 
+    margin-top: 20px;
+  }
+  
+  .vl {
+    border-left: 2px solid black;
+    height: 1000px; 
+    margin: 0 10px; 
+  }
+
+  #product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left; 
+    margin-top: 40px;
+    gap: 20px
+  }
+   /* Remove border from table */
+   table {
+    border-collapse: collapse;
+    width: 100%;
+ 
+
+  }
+  /* Remove border from table headers */
+  th {
+    border: none;
+    border-bottom: #000000 1px solid;
+    padding: 8px;
+    text-align: left;
+  }
+  /* Remove border from table cells */
+  td {
+    border: none;
+    border-bottom: #000000 1px solid;
+    padding: 8px;
+  }
+  /* Remove border from button */
+  button {
+    border: none;
+    background: none;
+  }
+  /* Remove border from icon */
+  .fa-icon {
+    border: none;
+  }
+
