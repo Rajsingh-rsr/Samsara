@@ -42,6 +42,31 @@ async function correctRow(productId) {
   alert("Stock corrected to: " + newStock);
 }
 
+// Function to update product price
+async function updatePrice(productId, element) {
+  try {
+    const newPrice = parseFloat(element.innerText.replace('$', '')); // Extract the new price value
+    const response = await fetch(`${API_ENDPOINT}/product/update-price/${productId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({ newPrice: newPrice }),
+      headers: {
+        'Content-Type': 'application/json', // Necessary to set content type
+        'Accept': 'application/json' // Ensures server knows what client expects
+      },
+      credentials: 'include' // Include credentials in the request
+    });
+    if (!response.ok) {
+      throw new Error('Failed to update product price');
+    }
+    const data = await response.json();
+    console.log('Product price updated successfully:', data);
+    alert("Price updated to: $" + newPrice);
+  } catch (error) {
+    console.error('Error updating price:', error);
+  }
+}
+
+
 function renderProductCards(products) { // pass in products
   tb =  document.querySelector("#product-container table tbody");
   products.forEach(product => { // iterate over products
@@ -49,7 +74,7 @@ function renderProductCards(products) { // pass in products
     row.id = product._id;
     row.innerHTML = ` 
       <td>${product.name}</td>
-      <td>$${product.price}</td>
+      <td contenteditable="true">$${product.price}</td>
       <td contenteditable="true">${product.stock}</td>
       <td><button onclick="deleteRow('${product._id}')"><i class="fas fa-trash-alt"></i></button></td>
       <td><button onclick="correctRow('${product._id}')"><i class="fas fa-check"></i></button></td>

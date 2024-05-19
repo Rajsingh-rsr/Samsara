@@ -105,38 +105,37 @@ h1{
     margin-left: 210px;
     margin-right: 210px;
 }
-
 .table-container {
-    margin-top: 20px;
-    margin-left: 210px;
-    margin-right: 210px;
-  }
+  margin-top: 20px;
+  margin-left: 210px;
+  margin-right: 210px;
+}
 
-  .table {
-    width: 100%;
-    border-collapse: collapse;
-
+.table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 td {
-    padding: 8px;
-    text-align: left;
-    border: 1px black solid;
-    height: 50px;
-    border-spacing: 20px;
-  }
-
-th{
-    padding: 8px;
-    text-align: left;
-    height: 50px;
-    border-spacing: 20px;
-  }
-
-.id{
-    border-right: hidden;
+  padding: 8px;
+  text-align: left;
+  border: 1px black solid;
+  height: 50px;
+  border-spacing: 20px;
 }
 
+th {
+  padding: 8px;
+  text-align: left;
+  height: 50px;
+  border-spacing: 20px;
+}
 
+.id {
+  border-right: hidden;
+}
 
-
+.id.unhide-right-border {
+  border-right-style: solid;
+  border-right: 1px solid black; /* Ensure the border is visible */
+}

@@ -18,6 +18,7 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
   if (password.length < 8) {
     passwordError.innerText = 'Password must be at least 8 characters';
+
     return;
   } else {
     passwordError.innerText = '';
@@ -45,7 +46,9 @@ document.getElementById('loginForm').addEventListener('submit', async function (
 
       const error = await response.json();
       console.log(error)
+      alert("Something went wrong")
       throw new Error(error.message);
+      
     }
 
     const data = await response.json();

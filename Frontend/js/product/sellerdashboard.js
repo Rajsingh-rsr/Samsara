@@ -46,6 +46,26 @@ const orders = [
     tableBody.appendChild(row);
   });
 
-
-
+  async function fetchData() {
+    try {
+      const response = await fetch('http://localhost:4000/api/v1/review/', {
+        method: 'GET',
+        credentials: 'include' // Include credentials in the request
+      });
+  
+      if (!response.ok) {
+        throw new Error('Network response was not ok');
+      } 
+  
+      const data = await response.json();
+      console.log(data);
+  
+      renderOrder(data.data); // Pass the fetched data to renderOrder function
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  }
+  
+  // Call the fetchData function to fetch and render orders
+  fetchData();
   

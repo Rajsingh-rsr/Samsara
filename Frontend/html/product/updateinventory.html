@@ -14,19 +14,19 @@
                 <img src="../../images/samsaralogo.png" alt="Samsara Logo">
             </a>
             <ul class="navbar-menu">
-                <li><a href="/dashboard">Dashboard</a></li>
-                <li><a href="/orders">Orders</a></li>
-                <li><a href="/products">Products</a></li>
-                <li><a href="/settings">Settings</a></li>
-                <li><a href="/profile"><i class="fas fa-user-circle"></i></a></li>
+                <li><a href="/Frontend/html/product/sellerdashboard.html">Dashboard</a></li>
+                <li><a href="/Frontend/html/product/order.html">Orders</a></li>
+                <li><a href="/Frontend/html/product/all-products.html">Products</a></li>
+                <li><a href="/Frontend/html/user/settingpanel.html">Settings</a></li>
+                <li><a href="/Frontend/html/user/profileoption.html"><i class="fas fa-user-circle"></i></a></li>
             </ul>
         </div>
     </nav>
     <hr class="navbar-line">
      <div class="container">
         <div class="left-box">
-          <a href="#">All product</a>
-          <a href="#">Inventory</a>
+          <a href="../product/all-products.html">All product</a>
+          <a href="../product/updateinventory.html">Inventory</a>
         </div>
         <div class="vl"></div>
         
@@ -51,14 +51,14 @@
                 <!-- This part is dynamically generated from fetched data -->
                 <tr>
                   <td>Product 1</td>
-                  <td>$10.00</td>
+                  <td contenteditable="true">$10.00</td>
                   <td contenteditable="true">100</td> <!-- Editable stock -->
                   <td><button onclick="deleteRow(this)"><i class="fas fa-trash-alt"></i></button></td> <!-- Delete button -->
                   <td><button onclick="correctRow(this)"><i class="fas fa-check"></i></button></td> <!-- Correct button -->
                 </tr>
                 <tr>
                   <td>Product 2</td>
-                  <td>$20.00</td>
+                  <td contenteditable="true">$20.00</td>
                   <td contenteditable="true">50</td> <!-- Editable stock -->
                   <td><button onclick="deleteRow(this)"><i class="fas fa-trash-alt" ></i></button></td> <!-- Delete button -->
                   <td><button onclick="correctRow(this)"><i class="fas fa-check"></i></button></td> <!-- Correct button -->

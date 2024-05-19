@@ -16,7 +16,7 @@ function renderOrder(orders) {
       <td class="id">${order.custumerName}</td>
       <td class="id">${order.status}</td>
       <td class="id">$${order.orderPrice}</td>
-      <td class="id">${order.createdAt}</td>
+      <td class="id unhide-right-border">${order.createdAt}</td>
     `;
 
     tableBody.appendChild(row);

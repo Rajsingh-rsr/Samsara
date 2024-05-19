@@ -160,3 +160,6 @@ th{
     border-left: hidden;
   }
 
+  a{
+    text-decoration: none;
+  }
