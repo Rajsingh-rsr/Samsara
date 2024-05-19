@@ -232,6 +232,14 @@ const userOrderHistory = asyncHandler(async (req, res) => {
             $match: {
                 status: { $in: allOrder ? ["PENDING", "CANCELLED", "DELIVERED"] : [`${status}`] }
             }
+        },
+        {
+            $lookup:{
+                from: "products",
+                localField: "orderItem.productId",
+                foreignField: "_id",
+                as: "product"
+            }
         }
     ])
 
