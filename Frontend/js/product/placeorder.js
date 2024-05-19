@@ -7,13 +7,13 @@ document.addEventListener("DOMContentLoaded", async () => {
                 'Content-Type': 'application/json',
             }
         });
-  
+
         if (response.ok) {
             const res = await response.json();
             const userData = res.data;
-  
+
             console.log(userData);
-  
+
             document.getElementById('address').value = userData.address;
             document.getElementById('email').value = userData.email;
             document.getElementById('phone').value = userData.phone;
@@ -164,6 +164,7 @@ function removeProduct(productId) {
         updateCartCount();
 
         // Repopulate the product display section to reflect the changes
+       
         populateProductDisplay();
     }
 }
@@ -188,3 +189,89 @@ function calculateTotalAmount() {
     });
     return totalAmount;
 }
+
+document.addEventListener("DOMContentLoaded", () => {
+    const cashOnDeliveryCheckbox = document.getElementById("cash-on-delivery-checkbox");
+    const onlinePaymentCheckbox = document.getElementById("online-payment-checkbox");
+
+    cashOnDeliveryCheckbox.addEventListener("change", () => {
+        if (cashOnDeliveryCheckbox.checked) {
+            onlinePaymentCheckbox.checked = false;
+        }
+    });
+
+    onlinePaymentCheckbox.addEventListener("change", () => {
+        if (onlinePaymentCheckbox.checked) {
+            cashOnDeliveryCheckbox.checked = false;
+        }
+    });
+});
+
+const onlinePaymentRadio = document.getElementById('online-payment');
+const cardFormPopup = document.querySelector('.card-form-popup');
+const closeBtn = document.querySelector('.close-btn');
+const cardForm = document.getElementById('card-form');
+
+onlinePaymentRadio.addEventListener('change', function() {
+  if (this.checked) {
+    cardFormPopup.style.display = 'block';
+  } else {
+    cardFormPopup.style.display = 'none';
+  }
+});
+
+closeBtn.addEventListener('click', function() {
+  cardFormPopup.style.display = 'none';
+});
+
+cardForm.addEventListener('submit', function(event) {
+  event.preventDefault(); // Prevent default form submission
+
+  // Close the card popup on submit (assuming it's still open)
+  cardFormPopup.style.display = 'none';
+
+  alert('Form submitted successfully!');
+});
+
+document.addEventListener("DOMContentLoaded", () => {
+    const placeOrderBtn = document.getElementById("place-order-btn");
+    placeOrderBtn.addEventListener("click", () => {
+        const phone = document.getElementById("phone").value;
+        const shippingAddress = document.getElementById("address").value;
+        const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+        const orderItems = cartItems.map(item => ({ productId: item.id, quantity: item.quantity }));
+        const orderData = {
+            phone,
+            shippingAddress,
+            paymentMethod,
+            orderItem: JSON.stringify(orderItems)
+        };
+        
+        fetch('http://localhost:4000/api/v1/order/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(orderData),
+            credentials: 'include',
+
+        })
+        .then(response => {
+            console.log('Status:', response.status);
+            if (response.status === 201) {
+                window.location.href = "../product/homepage.html"; // Redirect to home page
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log('Success:', data);
+            // Reset cart items and local storage after successful order placement
+            localStorage.removeItem('cartItems');
+            updateCartCount();
+            populateProductDisplay();
+        })
+        .catch((error) => {
+            console.error('Error:', error);
+        });
+    });
+});
