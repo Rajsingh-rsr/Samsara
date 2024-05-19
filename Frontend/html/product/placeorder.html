@@ -109,22 +109,25 @@
               <div class="payment-box">
                   <h3 class="payment-heading">Choose Payment Method</h3>
                   <div class="payment-item">
-                      <div class="payment-icon">
-                          <img  src="../../images/cashondelivery.png" id="cash-on-delivery" alt="cashondeliverylogo">
-                      </div>
-                      <span>Cash on delivery</span>
+                      <input type="radio" id="cash-on-delivery" name="payment-method" value="COD">
+                      <label for="cash-on-delivery">
+                          <img src="../../images/cashondelivery.png" alt="Cash on Delivery">
+                          <span>Cash on delivery</span>
+                      </label>
                   </div>
                   <div class="payment-item">
-                      <div class="payment-icon">
-                          <img src="../../images/online.png"   id="online-payment" alt="onlinelogo">
-                      </div>
-                      <span>Online</span>
+                      <input type="radio" id="online-payment" name="payment-method" value="ONLINE">
+                      <label for="online-payment">
+                          <img src="../../images/online.png" alt="Online Payment">
+                          <span>Online</span>
+                      </label>
                   </div>
               </div>
               <div class="btn">
                   <button id="place-order-btn">Place Order</button>
               </div>
-          </div>
+            </div>
+            
             
 
             </div>
