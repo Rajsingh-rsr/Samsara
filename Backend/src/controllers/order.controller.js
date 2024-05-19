@@ -214,10 +214,23 @@ const OrderStatus = asyncHandler(async (req, res) => {
 // user personal order History
 const userOrderHistory = asyncHandler(async (req, res) => {
 
+    let allOrder = false;
+
+    const { status } = req.params
+
+    if (status === "ALL") {
+        allOrder = true
+    }
+
     const order = await Order.aggregate([
         {
             $match: {
                 custumerId: new mongoose.Types.ObjectId(req.user?._id)
+            }
+        },
+        {
+            $match: {
+                status: { $in: allOrder ? ["PENDING", "CANCELLED", "DELIVERED"] : [`${status}`] }
             }
         }
     ])
