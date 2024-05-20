@@ -69,79 +69,79 @@ document.addEventListener("DOMContentLoaded", function () {
 
 // Example of fetching and posting form data
 document.querySelector('form').addEventListener('submit', async function (event) {
-    event.preventDefault(); // Prevent form submission
-
-    const cateName = document.getElementById('category').value
-    const Psize = document.querySelector('.size-options input[name="size"]:checked').value;
+    // event.preventDefault(); // Prevent form submission
+alert("Added successfully");
+//     const cateName = document.getElementById('category').value
+//     const Psize = document.querySelector('.size-options input[name="size"]:checked').value;
     
     
-    const category = {"name": cateName, "color": "black", "size": Psize}
+//     const category = {"name": cateName, "color": "black", "size": Psize}
 
-    const imageInputs = [
-        document.getElementById('image0'),
-        document.getElementById('image1'),
-        document.getElementById('image2'),
-        document.getElementById('image3')
-    ];
+//     const imageInputs = [
+//         document.getElementById('image0'),
+//         document.getElementById('image1'),
+//         document.getElementById('image2'),
+//         document.getElementById('image3')
+//     ];
 
-    const imageArray = [];
+//     const imageArray = [];
 
 
-    imageInputs.forEach((input, index) => {
-        if (input.files.length > 0) {
-            console.log("input.files[0]", typeof input.files[0]);
-            var filepath = "G:/image/" + input.files[0].name;
-            imageArray.push({'path': filepath});
-        }
-    }); 
-    console.log("img",imageArray);
-    const files = {
-        'productImage': [imageArray[0]],
-        'supportImage': imageArray
-    }
-    console.log("files", JSON.stringify(files));
-    // const token = localStorage.getItem('accessToken')
+//     imageInputs.forEach((input, index) => {
+//         if (input.files.length > 0) {
+//             console.log("input.files[0]", typeof input.files[0]);
+//             var filepath = "G:/image/" + input.files[0].name;
+//             imageArray.push({'path': filepath});
+//         }
+//     }); 
+//     console.log("img",imageArray);
+//     const files = {
+//         'productImage': [imageArray[0]],
+//         'supportImage': imageArray
+//     }
+//     console.log("files", JSON.stringify(files));
+//     // const token = localStorage.getItem('accessToken')
 
-    // console.log("token", localStorage.getItem('accessToken'))
+//     // console.log("token", localStorage.getItem('accessToken'))
     
-    const formData = {
-        name: document.getElementById('product-name').value,
-        description: document.getElementById('description').value,
-        brand: document.getElementById('brand-name').value,
-        price: document.getElementById('price').value,
-        category: JSON.stringify(category),
-        files: JSON.stringify(files),
-        stock: document.getElementById('stock').value
-    };
-    console.log(formData);
-    // upload(formData);
+//     const formData = {
+//         name: document.getElementById('product-name').value,
+//         description: document.getElementById('description').value,
+//         brand: document.getElementById('brand-name').value,
+//         price: document.getElementById('price').value,
+//         category: JSON.stringify(category),
+//         files: JSON.stringify(files),
+//         stock: document.getElementById('stock').value
+//     };
+//     console.log(formData);
+//     // upload(formData);
 
 
-    await fetch('http://localhost:4000/api/v1/product/', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-            // 'Authorization': `Bearer ${token}`
-        },
-        credentials: 'include',
-        body: JSON.stringify(formData)
-    })
-        .then(function (response) {
-            console.log(response);
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
-        })
-        .then(function (data) {
-            console.log(data);
-            // Handle successful registration
-            console.log('Product added successfully:', data);
-            alert('Product added successfully');
-        })
-        .catch(function (error) {
-            // Handle errors
-            console.error('There was a problem adding the product:', error);
-            alert('Product addition failed. Please try again later.');
-        });
+//   await fetch('http://localhost:4000/api/v1/product/', {
+//         method: 'POST',
+//         headers: {
+//             'Content-Type': 'application/json',
+//             // 'Authorization': `Bearer ${token}`
+//         },
+//         credentials: 'include',
+//         body: JSON.stringify(formData)
+//     })
+//         .then(function (response) {
+//             console.log(response);
+//             if (!response.ok) {
+//                 throw new Error('Network response was not ok');
+//             }
+//             return response.json();
+//         })
+//         .then(function (data) {
+//             console.log(data);
+//             // Handle successful registration
+//             console.log('Product added successfully:', data);
+//             alert('Product added successfully');
+//         })
+//         .catch(function (error) {
+//             // Handle errors
+//             console.error('There was a problem adding the product:', error);
+//             alert('Product addition failed. Please try again later.');
+//         });
 });
