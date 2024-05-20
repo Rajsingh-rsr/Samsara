@@ -39,7 +39,6 @@ body {
   margin-right: 20px;
   padding: 10px;
   font-size: 19px;
-  padding: 10px;
 }
 
 .nav-link:hover {
@@ -67,36 +66,34 @@ body {
   padding: 20px;
   margin-top: 110px;
 }
-/* Style for the search bar */
-/* Style for the search bar */
+
 /* Style for the search bar */
 .search-bar {
-position: relative;
-display: flex;
-align-items: center;
-justify-content: flex-end; /* Align search bar to the right */
-margin-bottom: 20px; /* Adjust spacing as needed */
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end; /* Align search bar to the right */
+  margin-bottom: 20px; /* Adjust spacing as needed */
 }
 
 #searchInput {
-width: 200px; /* Adjust width as needed */
-padding: 8px 30px 8px 8px; /* Added padding for space for the search icon */
-border: 1px solid #ccc;
-border-radius: 20px;
-font-size: 14px;
+  width: 200px; /* Adjust width as needed */
+  padding: 8px 30px 8px 8px; /* Added padding for space for the search icon */
+  border: 1px solid #ccc;
+  border-radius: 20px;
+  font-size: 14px;
 }
 
 #searchIcon {
-position: absolute;
-right: 10px;
-color: #aaa;
-cursor: pointer;
+  position: absolute;
+  right: 10px;
+  color: #aaa;
+  cursor: pointer;
 }
 
 #searchIcon:hover {
-color: #333;
+  color: #333;
 }
-
 
 .stats-boxes {
   display: flex;
@@ -115,7 +112,6 @@ color: #333;
 
 /* Update the colors for specific boxes */
 
-
 .total-sellers {
   border-radius: 5px;
   background-color: #f9f9f9;
@@ -123,17 +119,9 @@ color: #333;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-
 .total-sellers h2{
   font-size: 1.2rem;
   margin-bottom: 10px;
-}
-.total-sellers th, .top-sellers td {
-  padding: 10px;
-  text-align: left;
-}
-.total-sellers tbody tr {
-  border-bottom: 1px solid #ddd;
 }
 
 .total-sellers table {
@@ -141,7 +129,7 @@ color: #333;
   border-collapse: collapse;
 }
 
-.total-sellers th, .top-sellers td {
+.total-sellers th, .total-sellers td {
   padding: 10px;
   text-align: left;
 }
@@ -155,7 +143,54 @@ color: #333;
   height: 50px;
   border-radius: 50%;
 }
-/* .delete-btn i {
-  margin-right: px; 
 
- */
+/* Styles for the table */
+#sellerTable {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Styles for table headings */
+#sellerTable th {
+  background-color: #f2f2f2;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+}
+#sellerTable th .seller-name {
+  margin-left: 10px;
+}
+
+
+/* Styles for table rows */
+#sellerTable td {
+  padding: 10px;
+  text-align: center;
+}
+
+/* Styles for odd table rows */
+
+
+/* Styles for table cell containing avatar */
+.avatar {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.avatar img {
+  width: 100%;
+  height: auto;
+}
+
+/* Styles for seller name */
+.seller-name {
+  font-weight: bold;
+}
+
+/* Styles for top selling image */
+.top-selling img {
+  max-width: 100px;
+  height: auto;
+}

@@ -1,26 +1,70 @@
+document.getElementById('loginForm').addEventListener('submit', async function (event) {
+    event.preventDefault();
 
-    document.addEventListener("DOMContentLoaded", function() {
-        // Predefined admin credentials
-        const adminEmail = "adminsamsara@gmail.com";
-        const adminPassword = "admin123";
+    var email = document.getElementById('email').value;
+    var emailError = document.getElementById('emailError');
+    var password = document.getElementById('password').value;
+    var passwordError = document.getElementById('passwordError');
 
-        // Form submission event listener
-        const loginForm = document.getElementById("loginForm");
-        loginForm.addEventListener("submit", function(event) {
-            event.preventDefault(); // Prevent default form submission
+    // Validate password
+    if (password.length < 8) {
+        passwordError.innerText = 'Password must be at least 8 characters';
+        return;
+    } else {
+        passwordError.innerText = '';
+    }
 
-            // Get user input
-            const emailInput = document.getElementById("email").value;
-            const passwordInput = document.getElementById("password").value;
+    try {
+        const formData = { email, password };
 
-            // Check if email and password match admin credentials
-            if (emailInput === adminEmail && passwordInput === adminPassword) {
-                // Redirect to admin dashboard or perform other actions
-                window.location.href = "../../html/admin/admindashboard.html";
-            } else {
-                // Display error message for invalid credentials
-                document.getElementById("emailError").textContent = "";
-                document.getElementById("passwordError").textContent = "Invalid email or password";
+        if (formData.email === 'admin@samsara.com') {
+            const response = await fetch('http://localhost:4000/api/v1/users/login', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                credentials: 'include', // Ensure cookies are sent with the request
+                body: JSON.stringify(formData)
+            });
+
+            if (!response.ok) {
+                const error = await response.json();
+                console.log(error);
+                throw new Error(error.message);
             }
+
+            const data = await response.json();
+            console.log('Form submitted successfully', data);
+            window.location.href = '../../html/admin/admindashboard.html';
+        } else {
+            console.error('Invalid email');
+            emailError.innerText = 'Invalid email';
+        }
+    } catch (error) {
+        console.error('There was a problem with the form submission:', error.message);
+    }
+});
+
+async function refreshAccessToken() {
+    try {
+        const response = await fetch('http://localhost:4000/api/v1/users/refresh-token', {
+            method: 'POST',
+            credentials: 'include' // Ensure cookies are sent with the request
         });
-    });
+        const res = await response.json();
+
+        if (response.ok) {
+            const { accessToken, refreshToken } = res.data;
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('refreshToken', refreshToken);
+            console.log(res);
+        } else {
+            console.error('Error refreshing access token:', res.message);
+        }
+    } catch (error) {
+        console.error('Error refreshing access token:', error.message);
+    }
+}
+
+// Refresh the access token when the script loads
+refreshAccessToken();

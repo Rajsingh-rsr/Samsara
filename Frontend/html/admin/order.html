@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order List</title>
+    <link rel="stylesheet" href="../../css/admin/order.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-left">
+          <a href=""><img src="../../images/samsaralogo.png" alt="Website Logo" class="logo"></a>
+        </div>
+        <div class="navbar-middle">
+          <a href="../../html/admin/admindashboard.html" class="nav-link">Dashboard</a>
+          <a href="../../html/admin/seller.html" class="nav-link">Seller</a>
+          <a href="../../html/admin/order.html" class="nav-link">Orders</a>
+        </div>
+      </nav>
+    <div class="order-container">
+        <h1>Order List</h1>
+        <div class="orders">
+            <div class="box" id="active">Active orders 100</div>
+            <div class="box" id="complete">Completed 100</div>
+            <div class="box" id="total">Total orders 100</div>
+        </div>
+        <hr class="order-line">
+        <h1>Active Order</h1>
+        <div class="table-container">
+            <table id="orderTable" border="1">
+                <thead>
+                    <tr>
+                        <th>Customer ID</th>
+                        <th>Customer Name</th>
+                        <th>Status</th>
+                        <th>Price</th>
+                        <th>Date</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Rows will be populated here by JavaScript -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="../../js/admin/order.js"></script>
+</body>
+</html>

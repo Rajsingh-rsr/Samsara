@@ -15,8 +15,8 @@
     <div class="navbar-middle">
       <a href="../product/homepage.html" class="nav-link">Home</a>
       <a href="#" class="nav-link">Category</a>
-      <a href="#" class="nav-link">Contact</a>
-      <a href="#" class="nav-link">About</a>
+      <a href="#contact-section" class="nav-link">Contact</a>
+      
     </div>
     <div class="navbar-right">
       <div class="searchandcart">
@@ -31,7 +31,7 @@
         <div class="profile-options">
           <ul>
             <li><a href="#"><i class="fas fa-cog"></i> Settings</a></li>
-            <li><a href="../user/profileoption.html"><i class="fas fa-user"></i> Profile</a></li>
+            <li><a href="../../html/user/settingpanel.html"><i class="fas fa-user"></i> Profile</a></li>
             <li><a href="../user/login.html"><i class="fas fa-sign-out-alt"></i> Logout</a></li>
           </ul>
         </div>
@@ -42,8 +42,8 @@
   </nav>
   <form action="" id="search-form">
     <input type="search" placeholder="search here.." name="" id="search-box">
-    <label for="search-box" class="fas fa-search"></label>
-    <i class="fas fa-times" id="close"></i>
+    <label for="search-box" id="searchProduct" class="fas fa-search"></label>
+    <i class="fas fa-times" id="close"  ></i>
 
 
    </form>
@@ -91,7 +91,13 @@
 
   </div>
   
-  
+  <!-- Product section -->
+<section id="searchres" class="section-p1">
+  <!-- <h2>personalize search</h2> -->
+  <div class="pro-container">
+    <!-- Products will be dynamically added here -->
+  </div>
+</section>
 
 <!-- Product section -->
 <section id="new-arrivals" class="section-p1">
@@ -125,7 +131,7 @@
 
 <!-- Footer section starts -->
 
-  <footer>
+  <footer id="contact-section">
     <div class="footer-container">
       <div class="footer-section-1">
         <div class="aboutcompanysection">

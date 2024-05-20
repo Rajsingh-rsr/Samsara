@@ -6,6 +6,8 @@
 <title>Admin Dashboard</title>
 <link rel="stylesheet" href="../../css/admin/seller.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+
 </head>
 <body>
   <nav class="navbar">
@@ -15,7 +17,7 @@
     <div class="navbar-middle">
       <a href="../../html/admin/admindashboard.html" class="nav-link">Dashboard</a>
       <a href="../../html/admin/seller.html" class="nav-link">Seller</a>
-      <a href="#" class="nav-link">Orders</a>
+      <a href="../../html/admin/order.html" class="nav-link">Orders</a>
      
     </div>
     
@@ -27,19 +29,20 @@
     
     </div>
   </nav>
-<div class="seller">
-  <!-- Search bar -->
-  <div class="search-bar">
-    <input type="text" id="searchInput" placeholder="Search seller...">
-    <i class="fas fa-search" id="searchIcon"></i>
-</div>
-  <h2>Total sellers</h2>
-  
-  <div class="total-sellers">
+  <div class="seller">
+    <!-- Search bar -->
+    <div class="search-bar">
+      <input type="text" id="searchInput" placeholder="Search seller...">
+      <i class="fas fa-search" id="searchIcon"></i>
+    </div>
+    <h2>Total sellers</h2>
     
+    <!-- Table to display sellers -->
+    <table id="sellerTable">
+      <!-- Table headings will be added dynamically by JavaScript -->
+    </table>
   </div>
   
-</div>
 <script src="../../js/admin/seller.js"></script>
 
 </body>

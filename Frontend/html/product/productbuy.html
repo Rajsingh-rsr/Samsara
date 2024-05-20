@@ -16,14 +16,16 @@
     <div class="navbar-middle">
       <a href="../product/homepage.html" class="nav-link">Home</a>
       <a href="#" class="nav-link">Category</a>
-      <a href="#" class="nav-link">Contact</a>
-      <a href="#" class="nav-link">About</a>
+      <a href="#contact-section" class="nav-link">Contact</a>
+      
     </div>
     <div class="navbar-right">
       <div class="searchandcart">
         <i class="fas fa-search" id="search-icon"></i>
       <a href="../product/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+      <span class="d-flex cart-count">0</span>
       </div>
+      
       
       
       <div class="profile-container">
@@ -51,48 +53,38 @@
    </form>
    <!-- product descriprion starts -->
    
-  <div class="main-container">
+   <div class="main-container">
     <div class="product-image-des">
-      <img id="img1" src="../../images/product-1.png" alt="product">
-      <img id="img2" src="../../images/product-2.png" alt="product">
-      <img id="img3" src="../../images/product-3.png" alt="product">
-      <img id="img4" src="../../images/product-1.png" alt="product">
+      <!-- Images will be dynamically generated here -->
     </div>
     <div class="product">
-      <img id="main-img" src="../../images/product-1.png" alt="product">
+      <img id="main-img" src="" alt="product">
     </div>
     <div class="product-info">
-      <h2>Denim Jacket</h2>
+      <h2 id="product-name"></h2>
       <div class="star">
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-        <i class="fas fa-star"></i>
-
+        <!-- Star ratings can be dynamically generated here -->
       </div>
-      <h4>$65</h4>
-      <div class="description">
-        <h3>Description</h3>
-        <span>style       :casual</span>
-        <span>Color       :slate grey</span>
-        <span>Details     :Check Boarder,Zipper</span>
-        <span>Neckline    :Collar</span>
-        <span>Pocket Type :casual</span>
-        
+      <h4 id="product-price"></h4>
+      <div class="description" id="product-description">
+        <!-- Description will be dynamically generated here -->
       </div>
-      <div class="product-size">
-        <h3>Size</h3>
-        <span class="size-btn" id="size-m">M</span>
-        <span class="size-btn" id="size-l">L</span>
-        <span class="size-btn" id="size-xl">XL</span>
+      <div class="product-size" id="product-sizes">
+        <button class="size-btn" value="S">S</button>
+        <button class="size-btn" value="M">M</button>
+        <button class="size-btn" value="L">L</button>
+      </div>
+    
+      <div class="product-color" id="product-colors">
+        <button class="color-btn" style="background-color: red;" value="red"></button>
+        <button class="color-btn" style="background-color: yellow;" value="yellow"></button>
+        <button class="color-btn" style="background-color: blue;" value="blue"></button>
       </div>
       <div class="button-card">
-        <a href="../../html/product/placeorder2.html"><button>Buy Now</button></a>
-        <button>Add To Cart</button>
-      </div>
+        <button id="buy-now">Buy Now</button></a>
+        <button id="add-to-cart">Add To Cart</button>
     </div>
-
+    </div>
   </div>
   <!-- Review section starts -->
   <section class="review-section">
@@ -129,7 +121,7 @@
 
   <!-- Footer section starts -->
 
-  <footer>
+  <footer id="contact-section">
     <div class="footer-container">
       <div class="footer-section-1">
         <div class="aboutcompanysection">

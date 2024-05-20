@@ -60,18 +60,18 @@
   }
   .navbar-right .searchandcart span {
     position: absolute;
-  top: 22px;
-  right: 97px;
-  background-color: green;
-  color: white;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  height: 1.5rem;
-  width: 1.5rem;
-  padding: 1.3px;
+    top: 22px;
+    right: 97px;
+    background-color: green;
+    color: white;
+    border-radius: 50%;
+    font-size: 1.2rem;
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 1.3px;
     padding-left: 1.3px;
-  padding-left: 1px;
-  padding-left: 5.9px;
+    padding-left: 1px;
+    padding-left: 2.9px;
 }
 
   .search-container {
@@ -223,8 +223,8 @@
     padding: 10px;
     background-color: #f2f2f2;
     border-bottom: 2px solid #ddd;
-    text-align: left;
-  }
+    text-align: center;
+}
   
   /* Style for the shopping cart table rows */
   .shopping-cart td {
@@ -276,6 +276,22 @@
 }
 .delete-btn:hover {
     color: red;
+}
+.quantity-control{
+  margin-left: 37px;
+}
+
+.quantity-control button {
+  background-color: green;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 12px;
+  padding: 3px 6px;
+}
+
+.quantity-control button:hover {
+  background-color: darkgreen; /* Darken background color on hover */
 }
 .total-price{
   display: flex;

@@ -1,0 +1,174 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: black;
+    padding: 10px 20px;
+    background-color: white;
+    box-shadow: 0 .5rem 1.5rem rgba(0,0,0,.1);
+  }
+
+  /* Style the logo */
+  .logo {
+    width: 70px; /* Adjust according to your logo size */
+  }
+
+  /* Style the navbar links */
+  .navbar-left {
+    margin-right: auto; /* Pushes the navbar-left to the left */
+  }
+
+  .navbar-middle {
+    margin-left: auto; /* Adjusts the position slightly to the right */
+    margin-right: 100px; /* Adjust the value as needed */
+  }
+
+  .nav-link {
+    color: black;
+    text-decoration: none;
+    margin-right: 20px;
+    padding: 10px;
+    font-size: 19px;
+    padding: 10px;
+  }
+
+  .nav-link:hover {
+    text-decoration: underline 2px green;
+  }
+
+  /* Style the icons */
+  .nav-link i {
+    font-size: 20px;
+    margin-right: 5px;
+  }
+
+  .navbar-right {
+    display: flex;
+  }
+
+  .order-container{
+    margin-top: 180px;
+  }
+
+hr {
+    height: 2px; 
+    background-color: #000000; 
+    border: none; 
+}
+
+h1 {
+    margin-top: 32px;
+    margin-bottom: 15px;
+    margin-left: 19px;
+}
+
+.orders {
+    display: flex;
+    justify-content: space-evenly;
+  }
+
+.box{
+    box-sizing: border-box;
+    border: 1px solid #000;
+    width: 300px;
+    height: 75px;
+    text-align: center;
+    align-content: center;
+  }
+  
+#active.box{
+  background-color: rgba(255, 0, 0, 0.5);
+}
+
+#complete.box{
+  background-color:rgba(82, 255, 0, 0.5);
+  ;
+}
+
+#total.box{
+  background-color: rgba(255, 168, 0, 0.5);
+  ;
+}
+  .order-line {
+    height: 2px; 
+    background-color: #000000; 
+    margin-top: 25px;
+    margin-left: 210px;
+    margin-right: 210px;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+table, th, td {
+  border: 1px solid #ddd;
+}
+
+th, td {
+  padding: 12px;
+  text-align: left;
+}
+
+/* Header styles */
+thead {
+  background-color: #f2f2f2;
+}
+
+th {
+  background-color: #4CAF50;
+  color: white;
+}
+
+/* Row styles */
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+
+tr:hover {
+  background-color: #ddd;
+}
+
+/* Additional styles for the table container */
+.table-container {
+  max-height: 400px;  /* Set a fixed height for the table container */
+  overflow-y: auto;
+  overflow-x: auto;
+  margin-top: 20px;
+}
+
+.table-container h1 {
+  margin-bottom: 10px;
+}
+
+.order-container {
+  padding: 20px;
+}
+
+.orders {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.box {
+  padding: 10px;
+  background-color: #e7e7e7;
+  border-radius: 5px;
+  text-align: center;
+}
+
+.order-line {
+  margin: 20px 0;
+}
