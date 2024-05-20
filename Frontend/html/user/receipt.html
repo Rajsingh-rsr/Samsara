@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Receipt</title>
+    <link rel="stylesheet" href="../../css/user/receipt.css">
+</head>
+<body>
+    <div class="receipt">
+        <div class="header">
+            <img src="../../images/samsaralogo.png" alt="Logo">
+            
+            <p>Where shopping becomes an infinite journey</p>
+        </div>
+        <div class="body">
+            <h2>Order Details</h2>
+            <p>Transaction Code: <span id="transaction-code"></span></p>
+            <p>Payment Method: <span id="payment-method"></span></p>
+            <p>Shipping Address: <span id="shipping-address"></span></p>
+            <h3>Order Items</h3>
+            <table id="order-items">
+                <thead>
+                    <tr>
+                        <th>Item</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Total</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+            <p>Date: <span id="date"></span></p>
+            <p>Total Amount: <span id="total-amount"></span></p>
+        </div>
+        <div class="footer">
+            <p>Thank you for your business!</p>
+        </div>
+    </div>
+
+    <script src="../../js/user/receipt.js"></script>
+</body>
+</html>
