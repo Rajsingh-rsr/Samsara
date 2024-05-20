@@ -124,7 +124,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   // Fetch products from the backend
-  fetch("http://localhost:4000/api/v1/product/", {
+  fetch("http://localhost:4000/api/v1/product/?page=1&limit=8", {
     method: 'GET',
     credentials: 'include' // Include credentials in the request
   })
@@ -154,5 +154,58 @@ document.addEventListener("DOMContentLoaded", () => {
       console.error("Error fetching products:", error.message);
     });
 
+
+
+  const jeans = async () => {
+    const res = await fetch("http://localhost:4000/api/v1/product/?page=1&limit=8&query=jeans", {
+      method: 'GET',
+      credentials: 'include'
+    })
+
+    const data = await res.json();
+    console.log("jeans:", data);
+
+    if (data.statusCode == 200) {
+      // Extract product data from the 'data' field
+      const products = data.data.docs;
+
+      // Add products to respective sections
+      addProductsToSection("jeans", products); // New Arrivals section
+
+      console.log(products);
+
+    } else {
+      console.error("Failed to fetch products:", data.message);
+    }
+
+  }
+
+  const Jacket = async () => {
+    const res = await fetch("http://localhost:4000/api/v1/product/?page=1&limit=8&query=jacket", {
+      method: 'GET',
+      credentials: 'include'
+    })
+
+    const data = await res.json();
+    console.log("jeans:", data);
+
+    if (data.statusCode == 200) {
+      // Extract product data from the 'data' field
+      const products = data.data.docs;
+
+      // Add products to respective sections
+      addProductsToSection("jackets", products); // New Arrivals section
+
+      console.log(products);
+
+    } else {
+      console.error("Failed to fetch products:", data.message);
+    }
+
+  }
+
+
+  jeans()
+  Jacket()
   updateCartCount(); // Initial cart count update
 });
