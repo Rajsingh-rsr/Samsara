@@ -46,6 +46,26 @@ const orders = [
     tableBody.appendChild(row);
   });
 
+  // async function fetchAndUpdateOrders() {
+  //   try {
+  //     const response = await fetch('http://localhost:4000/api/v1/order/seller/orderHistory/ALL',{
+  //       method: 'GET',
+  //       credentials: 'include' // Include credentials in the request
+  //     });
+      
+  //     const data = await response.json();
+  //     document.getElementById('active').textContent = 'Total earning: ' + data.totalEarning;
+  //     document.getElementById('complete').textContent = 'Withdrawn: ' + data.withdrawn;
+  //     document.getElementById('total').textContent = 'Pending: ' + data.pending;
+  //     console.log(data)
+  //   } catch (error) {
+  //     console.error('Error fetching order data:', error);
+  //   }
+  // }
+
+  // Fetch and update orders data on page load
+  window.onload = fetchAndUpdateOrders;
+
   async function fetchData() {
     try {
       const response = await fetch('http://localhost:4000/api/v1/review/', {
