@@ -110,18 +110,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const headerRow = document.createElement('tr');
         ['Order ID', 'Product Name', 'Delivered', 'Price', 'Date', 'Receipt'].forEach(headerText => {
             const th = document.createElement('th');
-            if (headerText === 'Receipt') {
-                const downloadIcon = document.createElement('i');
-                downloadIcon.classList.add('fas', 'fa-download');
-                th.appendChild(downloadIcon);
-                // Add event listener to the download icon
-                downloadIcon.addEventListener('click', () => {
-                    // Navigate to the receipt HTML page
-                    window.location.href = '../../html/user/receipt.html'; // Replace 'path_to_receipt_html' with the actual path
-                });
-            } else {
-                th.textContent = headerText;
-            }
+            th.textContent = headerText;
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);
@@ -129,7 +118,7 @@ document.addEventListener("DOMContentLoaded", function () {
     
         const tbody = document.createElement('tbody');
         deliveredOrdersData.forEach(order => {
-            order.orderItem.forEach(item => {
+            order.product.forEach(item => {
                 const row = document.createElement('tr');
     
                 const orderIdCell = document.createElement('td');
@@ -137,7 +126,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 row.appendChild(orderIdCell);
     
                 const productNameCell = document.createElement('td');
-                productNameCell.textContent = item.productId;
+                productNameCell.textContent = item.name;
                 row.appendChild(productNameCell);
     
                 const statusCell = document.createElement('td');
@@ -162,6 +151,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 const receiptButton = document.createElement('button');
                 receiptButton.classList.add('download-receipt-button');
                 receiptButton.innerHTML = '<i class="fas fa-download"></i>';
+                receiptButton.addEventListener('click', () => {
+                    window.location.href = `../../html/user/receipt.html?order=${order._id}`; // Navigate to the receipt HTML page
+                });
                 receiptCell.appendChild(receiptButton);
                 row.appendChild(receiptCell);
     
@@ -310,4 +302,3 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchDeliveredOrders();
     fetchCancelledOrders();
 });
-

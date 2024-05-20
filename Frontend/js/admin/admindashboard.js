@@ -3,9 +3,9 @@ document.addEventListener('DOMContentLoaded', function() {
   function populateTopSelling() {
       // Simulated data for demonstration
       const topSellingData = [
-          { avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D", name: "Product 1", image: "/Frontend/images/product-1.png", seller: "Seller A", dateJoined: "2024-04-01" },
-          { avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D", name: "Product 2", image: "/Frontend/images/product-2.png", seller: "Seller B", dateJoined: "2024-04-15" },
-          { avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D", name: "Product 3", image: "/Frontend/images/product-3.png", seller: "Seller C", dateJoined: "2024-04-20" }
+          { avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D", name: "", image: "/Frontend/images/product-1.png", seller: "samir", dateJoined: "2024-04-01" },
+          { avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D", name: "Product 2", image: "/Frontend/images/product-2.png", seller: "raj", dateJoined: "2024-05-15" },
+          { avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D", name: "Product 3", image: "/Frontend/images/product-3.png", seller: "aryan", dateJoined: "2024-05-218" }
       ];
 
       const topSellingContainer = document.querySelector('.top-sellers');
@@ -54,12 +54,11 @@ document.addEventListener('DOMContentLoaded', function() {
   function populateRecentCustomers() {
       // Simulated data for demonstration
       const recentCustomersData = [
-          { name: "John Doe", email: "john@example.com", address: "123 Main St, City, Country", date: "2024-05-01" },
-          { name: "Jane Smith", email: "jane@example.com", address: "456 Elm St, Town, Country", date: "2024-04-28" },
-          { name: "Alice Johnson", email: "alice@example.com", address: "789 Oak St, Village, Country", date: "2024-04-25" },
-          { name: "John Doe", email: "john@example.com", address: "123 Main St, City, Country", date: "2024-05-01" },
-          { name: "Jane Smith", email: "jane@example.com", address: "456 Elm St, Town, Country", date: "2024-04-28" },
-          { name: "Alice Johnson", email: "alice@example.com", address: "789 Oak St, Village, Country", date: "2024-04-25" }
+          { name: "Raj singh", email: "Raj@gmail.com", address: "kathmandu, Country", date: "2024-05-20" },
+          { name: "Samir", email: "Samir@gmail.com", address: "jhapa", date: "2024-05-17" },
+          { name: "nishan", email: "nishan@gmail.com", address: "Nawal parasi", date: "2024-5-17" },
+          { name: "aryan", email: "aryan@gmail.com", address: "kathmandu", date: "2024-5-14" },
+         
       ];
 
       const recentCustomersContainer = document.querySelector('.recent-customers');
