@@ -10,14 +10,13 @@
     <div class="receipt">
         <div class="header">
             <img src="../../images/samsaralogo.png" alt="Logo">
-            
             <p>Where shopping becomes an infinite journey</p>
         </div>
         <div class="body">
             <h2>Order Details</h2>
-            <p>Transaction Code: <span id="transaction-code"></span></p>
-            <p>Payment Method: <span id="payment-method"></span></p>
-            <p>Shipping Address: <span id="shipping-address"></span></p>
+            <p>Transaction Code: <span id="transaction-code">123456789</span></p>
+            <p>Payment Method: <span id="payment-method">Credit Card</span></p>
+            <p>Shipping Address: <span id="shipping-address">123 Main St, Anytown, USA</span></p>
             <h3>Order Items</h3>
             <table id="order-items">
                 <thead>
@@ -28,16 +27,55 @@
                         <th>Total</th>
                     </tr>
                 </thead>
-                <tbody></tbody>
+                <tbody>
+                    <!-- Dummy Data Rows will be added here -->
+                </tbody>
             </table>
-            <p>Date: <span id="date"></span></p>
-            <p>Total Amount: <span id="total-amount"></span></p>
+            <p>Date: <span id="date">2023-05-20</span></p>
+            <p>Total Amount: <span id="total-amount">$99.99</span></p>
         </div>
         <div class="footer">
             <p>Thank you for your business!</p>
         </div>
     </div>
+    
+    <!-- Add a button for PDF download -->
+    <button onclick="downloadPDF()">Download as PDF</button>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="../../js/user/receipt.js"></script>
+    <script>
+        // Add dummy data to the order items table
+        const orderItems = [
+            { item: 'jacket', quantity: 2, price: 9.99, total: 19.98 },
+            { item: 'jeans', quantity: 1, price: 29.99, total: 29.99 },
+            { item: 'shirt', quantity: 3, price: 16.67, total: 50.01 }
+        ];
+
+        const tbody = document.querySelector("#order-items tbody");
+        orderItems.forEach(item => {
+            const row = document.createElement("tr");
+            row.innerHTML = `
+                <td>${item.item}</td>
+                <td>${item.quantity}</td>
+                <td>$${item.price.toFixed(2)}</td>
+                <td>$${item.total.toFixed(2)}</td>
+            `;
+            tbody.appendChild(row);
+        });
+
+        // Function to download the receipt as PDF
+        function downloadPDF() {
+            const { jsPDF } = window.jspdf;
+
+            html2canvas(document.querySelector(".receipt")).then(canvas => {
+                const imgData = canvas.toDataURL("image/png");
+                const pdf = new jsPDF();
+                pdf.addImage(imgData, "PNG", 0, 0);
+                pdf.save("receipt.pdf");
+            });
+        }
+    </script>
 </body>
 </html>
