@@ -1,6 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   font-family: 'Poppins', sans-serif;
 }
+
+/* Style the navbar */
 .navbar {
 
   position: fixed;
@@ -49,7 +56,25 @@ body {
 }
 .navbar-right{
   display: flex;
-  flex-direction: row;
+}
+.navbar-right .searchandcart span {
+  position: absolute;
+  top: 22px;
+  right: 97px;
+  background-color: green;
+  color: white;
+  border-radius: 50%;
+  font-size: 1.2rem;
+  height: 1.5rem;
+  width: 1.5rem;
+  padding: 1.3px;
+  padding-left: 1.3px;
+  padding-left: 1px;
+  padding-left: 2.9px;
+}
+
+.hover-icons{
+  display: none;
 }
 
 
@@ -125,47 +150,51 @@ font-size: 20px; /* Adjust size as needed */
 margin-left: 10px; /* Adjust spacing */
 cursor: pointer; /* Change cursor to pointer on hover */
 }
+/* profile option section */
+/* Profile options section */
 .profile-container {
-  position: relative;
+position: relative;
 }
 
 .profile-options {
-  background-color: #f2f2f2;
-  border-radius: 5px;
-  padding: 20px;
-  position: absolute;
-  top: calc(100% + 5px);
-  left: -50%;
-  transform: translateX(-50%);
-  width: 153px;
-  display: none;
+background-color: #f2f2f2;
+border-radius: 5px;
+padding: 20px;
+position: absolute;
+top: calc(100% + 5px);
+left: -50%;
+transform: translateX(-50%);
+width: 153px;
+display: none;
 }
 
 .profile-options ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
+list-style: none;
+padding: 0;
+margin: 0;
 }
 
 .profile-options li {
-  margin-bottom: 26px;
-  margin-left: 28px;
+margin-bottom: 26px;
+margin-left: 28px;
 }
 
 .profile-options a {
-  text-decoration: none;
-  color: #333;
-  font-weight: bold;
+text-decoration: none;
+color: #333;
+font-weight: bold;
 }
 
 .profile-options a:hover {
-  color: #666;
+color: #666;
 }
 
 /* Show profile options on hover */
 .profile-container:hover .profile-options {
-  display: block;
+display: block;
 }
+
+
 .main-container {
   display: flex;
   justify-content: space-between;
