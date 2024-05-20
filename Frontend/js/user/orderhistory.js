@@ -41,7 +41,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         const tbody = document.createElement('tbody');
         pendingOrdersData.forEach(order => {
-            order.orderItem.forEach(item => {
+            order.product.forEach(item => {
                 const row = document.createElement('tr');
 
                 const orderIdCell = document.createElement('td');
@@ -49,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 row.appendChild(orderIdCell);
 
                 const productNameCell = document.createElement('td');
-                productNameCell.textContent = item.productId;
+                productNameCell.textContent = item.name;
                 row.appendChild(productNameCell);
 
                 const statusCell = document.createElement('td');
@@ -65,7 +65,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 cancelButton.textContent = 'Cancel';
                 cancelButton.className = 'cancel-button';
                 cancelButton.addEventListener('click', () => {
-                    row.remove();
+                    cancelOrder(order._id, row); // Pass order ID and row to cancelOrder function
                 });
                 cancelCell.appendChild(cancelButton);
                 row.appendChild(cancelCell);
@@ -110,21 +110,18 @@ document.addEventListener("DOMContentLoaded", function () {
         const headerRow = document.createElement('tr');
         ['Order ID', 'Product Name', 'Delivered', 'Price', 'Date', 'Receipt'].forEach(headerText => {
             const th = document.createElement('th');
-            if (headerText === 'Receipt') {
-                const downloadIcon = document.createElement('i');
-                downloadIcon.classList.add('fas', 'fa-download');
-                th.appendChild(downloadIcon);
-            } else {
+            
                 th.textContent = headerText;
-            }
+            
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);
         table.appendChild(thead);
 
         const tbody = document.createElement('tbody');
+        console.log(deliveredOrdersData)
         deliveredOrdersData.forEach(order => {
-            order.orderItem.forEach(item => {
+            order.product.forEach(item => {
                 const row = document.createElement('tr');
 
                 const orderIdCell = document.createElement('td');
@@ -132,7 +129,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 row.appendChild(orderIdCell);
 
                 const productNameCell = document.createElement('td');
-                productNameCell.textContent = item.productId;
+                productNameCell.textContent = item.name;
                 row.appendChild(productNameCell);
 
                 const statusCell = document.createElement('td');
@@ -143,9 +140,16 @@ document.addEventListener("DOMContentLoaded", function () {
                 priceCell.textContent = order.orderPrice;
                 row.appendChild(priceCell);
 
+                
                 const dateCell = document.createElement('td');
-                dateCell.textContent = order.createdAt; // Assuming deliveryDate corresponds to the date
-                row.appendChild(dateCell);
+            const date = new Date(order.createdAt); // Convert to Date object
+            const formattedDate = date.toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: 'short',
+                day: 'numeric'
+            });
+            dateCell.textContent = formattedDate; // Format date
+            row.appendChild(dateCell);
 
                 const receiptCell = document.createElement('td');
                 const receiptButton = document.createElement('button');
@@ -160,6 +164,82 @@ document.addEventListener("DOMContentLoaded", function () {
         table.appendChild(tbody);
 
         deliveredOrdersDiv.appendChild(table);
+    }
+
+    // Function to fetch cancelled orders data from the API
+    function fetchCancelledOrders() {
+        fetch('http://localhost:4000/api/v1/order/user/orderHistory/CANCELLED', {
+            method: 'GET',
+            credentials: 'include'
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
+        })
+        .then(data => {
+            console.log(data);
+            createCancelledOrdersTable(data.data);
+        })
+        .catch(error => {
+            console.error('There was a problem with the fetch operation:', error);
+        });
+    }
+
+    // Function to create cancelled orders table
+    function createCancelledOrdersTable(cancelledOrdersData) {
+        const cancelledOrdersDiv = document.getElementById('cancelled-orders');
+
+        const table = document.createElement('table');
+
+        const thead = document.createElement('thead');
+        const headerRow = document.createElement('tr');
+        ['Order ID', 'Product Name', 'Status', 'Price', 'Date'].forEach(headerText => {
+            const th = document.createElement('th');
+            th.textContent = headerText;
+            headerRow.appendChild(th);
+        });
+        thead.appendChild(headerRow);
+        table.appendChild(thead);
+
+        const tbody = document.createElement('tbody');
+        cancelledOrdersData.forEach(order => {
+            order.product.forEach(item => {
+                const row = document.createElement('tr');
+
+                const orderIdCell = document.createElement('td');
+                orderIdCell.textContent = order._id;
+                row.appendChild(orderIdCell);
+
+                const productNameCell = document.createElement('td');
+                productNameCell.textContent = item.name;
+                row.appendChild(productNameCell);
+
+                const statusCell = document.createElement('td');
+                statusCell.textContent = order.status;
+                row.appendChild(statusCell);
+
+                const priceCell = document.createElement('td');
+                priceCell.textContent = order.orderPrice;
+                row.appendChild(priceCell);
+
+                const dateCell = document.createElement('td');
+                const date = new Date(order.createdAt); // Convert to Date object
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                dateCell.textContent = formattedDate; // Format date
+                row.appendChild(dateCell);
+
+                tbody.appendChild(row);
+            });
+        });
+        table.appendChild(tbody);
+
+        cancelledOrdersDiv.appendChild(table);
     }
 
     function cancelOrder(orderId, row) {
@@ -206,16 +286,16 @@ document.addEventListener("DOMContentLoaded", function () {
 
     // Function to create a row for the cancelled order and add it to the cancelled orders table
     function createCancelledOrderRow(cancelledOrderData) {
-        const cancelledOrdersTableBody = document.getElementById('cancelled-orders-table-body');
+        const tbody = document.getElementById('cancelled-orders-table-body'); // Get the tbody
         const row = document.createElement('tr');
 
         const orderIdCell = document.createElement('td');
         orderIdCell.textContent = cancelledOrderData._id;
         row.appendChild(orderIdCell);
 
-        // Add other cells as needed for the cancelled order data
+        // Add other cells here as needed
 
-        cancelledOrdersTableBody.appendChild(row);
+        tbody.appendChild(row);
     }
 
     // Fetch and display all orders when DOM is loaded
@@ -223,3 +303,4 @@ document.addEventListener("DOMContentLoaded", function () {
     fetchDeliveredOrders();
     fetchCancelledOrders();
 });
+
