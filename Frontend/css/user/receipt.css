@@ -1,0 +1,67 @@
+.receipt {
+    width: 650px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    font-family: sans-serif;
+    height: 666px;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.header h1 {
+    font-size: 2em;
+    margin-bottom: 5px;
+}
+
+.header p {
+    font-size: 0.8em;
+    color: #aaa;
+}
+img{
+    width: 105px;
+}
+.body {
+    padding: 10px;
+}
+
+.body h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+.body p {
+    margin-bottom: 5px;
+    
+}
+p{
+    color: black;
+}
+
+.body table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.body table thead th {
+    padding: 5px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.body table tbody tr {
+    padding: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+.body table tbody td:first-child {
+    width: 50%;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 20px;
+}

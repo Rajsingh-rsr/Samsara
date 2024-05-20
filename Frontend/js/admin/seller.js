@@ -180,4 +180,5 @@ removeCell.addEventListener('click', () => {
     const sellerId = seller._id;
   
     // Fetch API call with DELETE method to remove seller
-  })})
+  })});
+  

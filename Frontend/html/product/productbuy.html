@@ -23,7 +23,9 @@
       <div class="searchandcart">
         <i class="fas fa-search" id="search-icon"></i>
       <a href="../product/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+      <span class="d-flex cart-count">0</span>
       </div>
+      
       
       
       <div class="profile-container">
@@ -68,12 +70,20 @@
         <!-- Description will be dynamically generated here -->
       </div>
       <div class="product-size" id="product-sizes">
-        <!-- Sizes will be dynamically generated here -->
+        <button class="size-btn" value="S">S</button>
+        <button class="size-btn" value="M">M</button>
+        <button class="size-btn" value="L">L</button>
+      </div>
+    
+      <div class="product-color" id="product-colors">
+        <button class="color-btn" style="background-color: red;" value="red"></button>
+        <button class="color-btn" style="background-color: yellow;" value="yellow"></button>
+        <button class="color-btn" style="background-color: blue;" value="blue"></button>
       </div>
       <div class="button-card">
-        <a href="../../html/product/placeorder2.html"><button>Buy Now</button></a>
-        <button>Add To Cart</button>
-      </div>
+        <button id="buy-now">Buy Now</button></a>
+        <button id="add-to-cart">Add To Cart</button>
+    </div>
     </div>
   </div>
   <!-- Review section starts -->

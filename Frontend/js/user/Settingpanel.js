@@ -198,3 +198,29 @@ document.getElementById('save-changes-btn').addEventListener('click', async () =
     // Update the cart counter text
     cartCount.textContent = totalCount;
   }
+
+  document.getElementById('save-changes-btn').addEventListener('click', async () => {
+    try {
+        const data = {
+           
+            avatar: document.getElementById('avatar').value
+        };
+        const response = await fetch('http://localhost:4000/api/v1/users/updateAccountDetails', {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json',
+                // Add any authentication headers if needed
+            },
+            body: JSON.stringify(data)
+        });
+        if (response.ok) {
+            console.log('User information updated successfully');
+        } else {
+            console.error('Failed to update user information');
+        }
+    } catch (error) {
+        console.error('Error updating user information:', error);
+    }
+    
+
+});
