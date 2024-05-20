@@ -1,4 +1,52 @@
-window.addEventListener('DOMContentLoaded', async () => {
+// Function to populate product details in the product display section
+const populateProductDetails = (product) => {
+    const productDisplay = document.getElementById('product-display');
+    const itemTotalElement = document.getElementById('item-total');
+    const totalPaymentElement = document.getElementById('total-payment');
+    const deliveryFee = 100; // Assuming delivery fee is fixed at Rs 100
+
+    // Display product details
+    productDisplay.innerHTML = `
+        <h2 class="product-review-heading">Product Review</h2>
+        <div class="product" id="${product.id}">
+            <img src="${product.productImage}" alt="Product Image" >
+        </div>
+    `;
+
+    // Update order summary with product price
+    itemTotalElement.textContent = `Rs ${product.price}`;
+    const totalPayment = product.price + deliveryFee;
+    totalPaymentElement.textContent = `Rs ${totalPayment}`;
+};
+
+// Function to fetch product data from the API
+const getProduct = async () => {
+    const urlParams = new URLSearchParams(window.location.search);
+    const productId = urlParams.get('product');
+
+    console.log('Product ID:', productId); // Log product ID for debugging
+
+    try {
+        if (!productId) {
+            throw new Error('Invalid product ID');
+        }
+
+        const res = await fetch(`http://localhost:4000/api/v1/product/${productId}`);
+        const responseData = await res.json();
+
+        if (res.ok) {
+            console.log('Product Data:', responseData.data);
+            populateProductDetails(responseData.data);
+        } else {
+            console.error('Failed to fetch product:', responseData.message);
+        }
+    } catch (error) {
+        console.error('Error fetching product:', error.message);
+    }
+};
+
+// Function to fetch current user data and populate the form
+const getCurrentUser = async () => {
     try {
         const response = await fetch('http://localhost:4000/api/v1/users/current-user', {
             method: 'GET',
@@ -7,124 +55,174 @@ window.addEventListener('DOMContentLoaded', async () => {
                 'Content-Type': 'application/json',
             }
         });
-  
+
         if (response.ok) {
             const res = await response.json();
-            const userData = res.data
-  
-            console.log(userData)
-  
+            const userData = res.data;
+
             document.getElementById('address').value = userData.address;
             document.getElementById('email').value = userData.email;
             document.getElementById('phone').value = userData.phone;
-           
-  
-            
-  
-  
-            
         } else {
             console.error('Failed to fetch current user data');
         }
     } catch (error) {
         console.error('Error fetching current user data:', error);
     }
-  });
-  
-  
-  
-  document.addEventListener("DOMContentLoaded", () => {
-      const searchIcon = document.querySelector('#search-icon');
-      const searchForm = document.querySelector('#search-form');
-      const closeButton = document.querySelector('#close');
-    
-      // Show search form when search icon is clicked
-      searchIcon.addEventListener("click", () => {
+};
+
+// Event listener for DOMContentLoaded to fetch and display data
+window.addEventListener('DOMContentLoaded', () => {
+    getCurrentUser();
+    getProduct();
+});
+
+// Function to handle search form visibility
+document.addEventListener("DOMContentLoaded", () => {
+    const searchIcon = document.querySelector('#search-icon');
+    const searchForm = document.querySelector('#search-form');
+    const closeButton = document.querySelector('#close');
+
+    searchIcon.addEventListener("click", () => {
         searchForm.classList.add('active');
-      });
-    
-      // Hide search form when close button is clicked
-      closeButton.addEventListener("click", () => {
+    });
+
+    closeButton.addEventListener("click", () => {
         searchForm.classList.remove('active');
-      });
-      updateCartCount();
-  
-  });
-  
-  updateCartCount()
-    // Update cart count display
-    // Update cart count display
-  function updateCartCount() {
+    });
+
+    updateCartCount();
+});
+
+// Update cart count display
+function updateCartCount() {
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartCount = document.querySelector('.cart-count');
-    // Calculate the total number of products in the cart
     const totalCount = cartItems.length;
-    // Update the cart counter text
     cartCount.textContent = totalCount;
-  }
-  
-  
-  // to show the total price in the items total
-  document.addEventListener("DOMContentLoaded", () => {
-    // Retrieve total amount from local storage
-    const totalAmount = parseInt(localStorage.getItem('totalAmount'));
-  
-    // Check if there are any items in the cart
-    const cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
-    if (cartItems.length === 0) {
-        // If there are no items in the cart, display the message
-        const orderSummary = document.querySelector('.order-summary');
-        const message = document.createElement('p');
-        message.textContent = 'Sorry, there are no items to be placed';
-        message.style.color = 'red';
-        message.style.padding = '40px';
-        
-        message.style.textAlign = 'center';
-        orderSummary.appendChild(message);
-        return;
-    }
-  
-    // If there are items in the cart, proceed with updating the order summary
-    const deliveryFee = 100; // Delivery fee is Rs 100
-  
-    // Update the "Items Total" section in the order summary
-    document.querySelector('.right-details .totalitems span').textContent = `Rs. ${totalAmount}`;
-  
-    // Update the "Delivery Fee" section in the order summary
-    document.querySelector('.right-details .deliveryfee span').textContent = `Rs. ${deliveryFee}`;
-  
-    // Calculate total payment by adding items total and delivery fee
-    const totalPayment = totalAmount + deliveryFee;
-    // Update the "Total Payment" section in the order summary
-    document.querySelector('.right-details .Totalpayment span').textContent = `Rs. ${totalPayment}`;
-  });
-  
-  
-  // enable to edit input fields whenever change button is clicked
-  document.addEventListener("DOMContentLoaded", () => {
-    // Add event listeners to change buttons
-    const changeButtons = document.querySelectorAll('.change-btn');
-    changeButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const targetId = button.getAttribute('data-target');
-            const inputField = document.getElementById(targetId);
-            // Enable the input field for editing
-            inputField.disabled = false;
-            // Focus on the input field
-            inputField.focus();
+}
+
+// Function to handle submission of card form
+// Function to handle selection of payment method
+const handlePaymentMethodSelection = () => {
+    const onlinePaymentRadio = document.getElementById('online-payment');
+    const cardFormPopup = document.getElementById('card-form-popup');
+
+    onlinePaymentRadio.addEventListener('change', () => {
+        if (onlinePaymentRadio.checked) {
+            // If online payment is selected, show the card form popup
+            cardFormPopup.style.display = 'block';
+        } else {
+            // If another payment method is selected, hide the card form popup
+            cardFormPopup.style.display = 'none';
+        }
+    });
+};
+
+// Call the function to handle payment method selection
+handlePaymentMethodSelection();
+
+
+const handleCloseCardPopup = () => {
+    const closeButton = document.getElementById('close-card-form');
+    const cardFormPopup = document.getElementById('card-form-popup');
+
+    closeButton.addEventListener('click', () => {
+        // Hide the card form popup when the close button is clicked
+        cardFormPopup.style.display = 'none';
+    });
+};
+
+// Call the function to handle closing of card form popup
+handleCloseCardPopup()
+
+// Function to handle submission of card form
+document.addEventListener("DOMContentLoaded", () => {
+    // Function to handle submission of card form
+    const handleCardFormSubmission = () => {
+        const cardForm = document.getElementById('card-form');
+
+        cardForm.addEventListener('submit', (event) => {
+            event.preventDefault(); // Prevent default form submission behavior
+
+            console.log('Form submitted'); // Check if the event listener is triggered
+
+            // Check if all input fields are filled
+            const name = document.getElementById('Name').value.trim();
+            const cardNumber = document.getElementById('card-number').value.trim();
+            const expiryDate = document.getElementById('expiry-date').value.trim();
+            const cvv = document.getElementById('cvv').value.trim();
+
+            console.log(name, cardNumber, expiryDate, cvv); // Log input field values
+
+            if (name && cardNumber && expiryDate && cvv) {
+                // If all fields are filled, show the success alert
+                alert('Submitted successfully!');
+            } else {
+                // If any field is empty, show an error message
+                alert('Please fill in all fields.');
+            }
         });
-    });
-  });
-  
-  // to display order confiramtion
-  document.addEventListener("DOMContentLoaded", () => {
-    // Add event listener to the "Place Order" button
+    };
+
+    // Call the function to handle submission of card form
+    handleCardFormSubmission();
+});
+
+document.addEventListener("DOMContentLoaded", () => {
     const placeOrderBtn = document.getElementById("place-order-btn");
-    placeOrderBtn.addEventListener("click", () => {
-        // Display the pop-up message
-        alert("Your order has been confirmed. Thank you!");
+    placeOrderBtn.addEventListener("click", async () => {
+        try {
+            // Fetch the product data from the API
+            const productResponse = await fetch('http://localhost:4000/api/v1/product/', {
+                method: 'GET',
+                credentials: 'include',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+            });
+            const productData = await productResponse.json();
+
+            // Extract the order ID from the fetched product data
+            const orderId = productData._id;
+
+            // Gather necessary information for the order
+            const phone = document.getElementById("phone").value.trim();
+            const shippingAddress = document.getElementById("address").value.trim();
+            const paymentMethod = document.querySelector('input[name="payment-method"]:checked').value;
+
+            // Prepare order items with product ID, quantity, and other details
+            const orderItems = [{
+                productId: orderId, // Extracted orderId from the product data
+                quantity: 1 // For simplicity, assuming quantity as 1 for each product
+            }];
+
+            const orderData = {
+                phone,
+                shippingAddress,
+                paymentMethod,
+                orderItems: JSON.stringify(orderItems)
+            };
+            
+            // Send order data to the backend using POST method
+            const orderResponse = await fetch('http://localhost:4000/api/v1/order/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(orderData),
+                credentials: 'include',
+            });
+
+            // Log the status of the POST request
+            console.log('Order Status:', orderResponse.status);
+
+            if (orderResponse.status === 201) {
+                // Redirect to home page upon successful order placement
+                window.location.href = "../product/homepage.html";
+            }
+        } catch (error) {
+            console.error('Error placing order:', error);
+        }
     });
-  });
-  
-  
-  
+});

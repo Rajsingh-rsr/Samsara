@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>placeorder</title>
-    <link rel="stylesheet" href="../../css/product/placeorder.css">
+    <link rel="stylesheet" href="../../css/product/placeorder2.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
 </head>
 <body>
@@ -21,11 +21,9 @@
         <div class="navbar-right">
           <div class="searchandcart">
             <i class="fas fa-search" id="search-icon"></i>
-          <a href="../product/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
-          <span class="d-flex cart-count">0</span>
+            <a href="../product/addtocart.html" class="nav-link"><i class="fas fa-shopping-cart"></i></a>
+            <span class="d-flex cart-count">0</span>
           </div>
-          
-          
           <div class="profile-container">
             <a href="#" class="nav-link"><i class="fas fa-user"></i></a>
             <div class="profile-options">
@@ -37,145 +35,170 @@
             </div>
           </div>
         </div>
-        
-        </div>
-      </nav>
-      <form action="" id="search-form">
+    </nav>
+    <form action="" id="search-form">
         <input type="search" placeholder="search here.." name="" id="search-box">
         <label for="search-box" class="fas fa-search"></label>
         <i class="fas fa-times" id="close"></i>
-    
-    
-       </form>
+    </form>
     <div class="maincon">
-        <div class="productimg">
-            <img src="../../images/product-1.png" alt="product">
+      <div id="product-display" class="product-display">
+        <h2>product review</h2>
+        <!-- Product display content will be dynamically generated -->
+      </div>
+      <div class="user-info">
+        <div class="info-box">
+          <h2 class="product-heading">User information</h2>
+          <div class="form">
+            <label for="address">Home:</label>
+            <input type="text" id="address" name="address" placeholder="Enter your address" disabled>
+            <button class="change-btn" data-target="address">Change</button>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Gmail" required disabled>
+            <button class="change-btn" data-target="email">Change</button>
+            <label for="phone">Contact:</label>
+            <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required disabled>
+            <button class="change-btn" data-target="phone">Change</button>
+          </div>
         </div>
-        <div class="user-info">
-            <div class="info-box">
-                <h2 class="product-heading">Denim Jacket</h2>
-                <div class="form" >
-                  <label for="address">Home:</label>
-                  <input type="text" id="address" name="address" placeholder="Enter your address" disabled>
-                  <button class="change-btn" data-target="address">Change</button>
-                  
-                  <label for="email">Email:</label>
-                  <input type="email" id="email" name="email" placeholder="Enter your Gmail" required disabled>
-                  <button class="change-btn" data-target="email">Change</button>
-                  
-                  <label for="phone">Contact:</label>
-                  <input type="text" id="phone" name="phone" placeholder="Enter your phone number" required disabled>
-                  <button class="change-btn" data-target="phone">Change</button>
-                </div>
+      </div>
+      <div class="order-summary">
+        <h2>Order summary</h2>
+        <div class="details">
+          <div class="left-details">
+            <div class="totalitems">
+              <span>Items Total</span>
             </div>
-            <div class="payment-method">
-                <div class="payment-box">
-                    <h2 class="payment-heading">Choose Payment Method</h2>
-                    <img src="../../images/cashondelivery.png" alt="cashondeliverylogo">
-                    <span>Cash on delivery</span>
+            <div class="deliveryfee">
+              <span>Delivery Fee</span>
             </div>
+            <div class="Totalpayment">
+              <span>Total payment</span>
+            </div>
+          </div>
+          <div class="right-details">
+            <div class="totalitems">
+              <span id="item-total">Rs 0</span> <!-- This is where the product price will be populated -->
+            </div>
+            <div class="deliveryfee">
+              <span id="delivery-fee">Rs 100</span> <!-- Assuming delivery fee is fixed at Rs 100 -->
+            </div>
+            <div class="Totalpayment">
+              <span id="total-payment">Rs 0</span> <!-- This is where the total price will be populated -->
+            </div>
+          </div>
         </div>
-        
-        
-        </div>
-        <div class="order-summary">
-            <h2>Order summary</h2>
-            <div class="details">
-                <div class="left-details">
-                    <div class="totalitems">
-                        <span>Items Total</span>
-                    </div>
-                    <div class="deliveryfee">
-                        <span>Delivery Fee</span>
-                    </div>
-                    <div class="Totalpaymen">
-                        <span>Total payment</span>
-                    </div>
-                </div>
-                <div class="right-details">
-                    <div class="totalitems">
-                        <span>Rs 0</span>
-                    </div>
-                    <div class="deliveryfee">
-                        <span>Rs 100</span>
-                    </div>
-                    <div class="Totalpayment">
-                        <span>Rs 0</span>
-                    </div>
-                </div>
-            </div>
-            <div class="btn">
+        <div class="payment-method">
+          <div class="payment-box">
+              <h3 class="payment-heading">Choose Payment Method</h3>
+              <div class="payment-item">
+                  <input type="radio" id="cash-on-delivery" name="payment-method" value="COD">
+                  <label for="cash-on-delivery">
+                      <img src="../../images/cashondelivery.png" alt="Cash on Delivery">
+                      <span>Cash on delivery</span>
+                  </label>
+              </div>
+              <div class="payment-item">
+                  <input type="radio" id="online-payment" name="payment-method" value="ONLINE">
+                  <label for="online-payment">
+                      <img src="../../images/online.png" alt="Online Payment">
+                      <span>Online</span>
+                  </label>
+              </div>
+          </div>
+          <div class="btn">
               <button id="place-order-btn">Place Order</button>
-
-            </div>
+          </div>
         </div>
+        
+        </div>
+      </div>
+      <!-- Card Fill-up Form Popup -->
+      <div class="card-form-popup" id="card-form-popup">
+        <div class="card-form-container">
+          <span class="close-btn" id="close-card-form">&times;</span>
+          <h2> Card Details</h2>
+          <form id="card-form">
+            <label for="Name">Name:</label>
+            <input type="text" id="Name " name="Name" placeholder="Enter your name" required>
+            <label for="card-number">Card Number:</label>
+            <input type="text" id="card-number" name="card-number" placeholder="Enter card number" required>
+            <label for="expiry-date">Expiry Date:</label>
+            <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required>
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv" placeholder="CVV" required>
+            <button type="submit">Submit</button>
+          </form>
+        </div>
+      </div>
     </div>
     <footer>
-        <div class="footer-container">
-          <div class="footer-section-1">
-            <div class="aboutcompanysection">
-              <h3>About Company</h3>
-              <p> we can design your own Design with <br>The better Quality.
-              
-    
-            </div>
-            <div class="contactsection">
-              <h3>Contact</h3>
-              <a href="#" >customercare@gmail.com</a>
-              <a href="#">9811321046</a>
-    
+      <div class="footer-container">
+        <div class="footer-section-1">
+          <div class="aboutcompanysection">
+            <h3>About Company</h3>
+            <p> we can design your own Design with <br>The better Quality.
             
-    
-            </div>
-            <div class="Addresssection">
-              <h3>Address</h3>
-              <p>Kathmandu , Nepal</p>
-          <!-- Add address information here -->
-            </div>
-            
-            
+  
           </div>
-    
-          <div class="footer-image-section">
-          <div class="image">
-            <img src="../../../Frontend/images/samsaralogo.png" alt="Logo">
+          <div class="contactsection">
+            <h3>Contact</h3>
+            <a href="#" >customercare@gmail.com</a>
+            <a href="#">9811321046</a>
+  
+          
+  
           </div>
-          <div class="social-icons">
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="#"><i class="fab fa-youtube"></i></a>
-          </div>
+          <div class="Addresssection">
+            <h3>Address</h3>
+            <p>Kathmandu , Nepal</p>
+        <!-- Add address information here -->
           </div>
           
-          <div class="footer-section-2">
-            <div class="usefullinkssection">
-              <h3>Useful Links</h3>
-              <a href="../../html/product/homepage.html">Home</a>
-              <a href="#">Category</a>
-              <a href="#">New Arrivals</a>
-    
-            </div>
-            <div class="myaccountsection">
-              <h3>My Account</h3>
-              <a href="../user/login.html">Sign in</a>
-              <a href="#">My wishlist</a>
-              <a href="../product/addtocart.html">View cart</a>
-            
-    
-            </div>
-            
-          </div>
-          
-            
           
         </div>
-        <div class="copyright">
-          <p>&copy; 2024 Samsara. All Rights Reserved.</p>
+  
+        <div class="footer-image-section">
+        <div class="image">
+          <img src="../../../Frontend/images/samsaralogo.png" alt="Logo">
         </div>
-       
-      </footer>
-      <script src="../../js/product/placeorder.js"></script>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-tiktok"></i></a>
+          <a href="#"><i class="fab fa-youtube"></i></a>
+        </div>
+        </div>
+        
+        <div class="footer-section-2">
+          <div class="usefullinkssection">
+            <h3>Useful Links</h3>
+            <a href="#">Home</a>
+            <a href="#">Category</a>
+            <a href="#">New Arrivals</a>
+  
+          </div>
+          <div class="myaccountsection">
+            <h3>My Account</h3>
+            <a href="#">Sign in</a>
+            <a href="#">My wishlist</a>
+            <a href="#">View cart</a>
+          
+  
+          </div>
+          
+        </div>
+        
+          
+        
+      </div>
+      <div class="copyright">
+        <p>&copy; 2024 Samsara. All Rights Reserved.</p>
+      </div>
+     
+    </footer>
+    
+      <script src="../../js/product/placeorder2.js"></script>
     
 </body>
 </html>

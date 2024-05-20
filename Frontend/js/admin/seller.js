@@ -1,72 +1,183 @@
-document.addEventListener('DOMContentLoaded', function() {
-    // Function to fetch and populate top selling products
-    function populateTopSelling() {
-        // Simulated data for demonstration
-        const topSellingData = [
-            { id: 1, avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D", name: "Product 1", image: "../../images/product-1.png", seller: "Seller A", dateJoined: "2024-04-01" },
-            { id: 2, avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D", name: "Product 2", image: "../../images/product-1.png", seller: "Seller B", dateJoined: "2024-04-15" },
-            { id: 3, avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1000&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8dXNlciUyMHByb2ZpbGV8ZW58MHx8MHx8fDA%3D", name: "Product 3", image: "../../images/product-1.png", seller: "Seller C", dateJoined: "2024-04-20" }
-        ];
-  
-        const topSellingContainer = document.querySelector('.seller .total-sellers'); // Corrected the target selector
-  
-        const topSellersTable = document.createElement('table');
-        topSellingContainer.appendChild(topSellersTable);
-  
-        const topSellersTableHead = document.createElement('thead');
-        topSellersTable.appendChild(topSellersTableHead);
-  
-        const tableHeaderRow = document.createElement('tr');
-        topSellersTableHead.appendChild(tableHeaderRow);
-  
-        const tableHeaders = ['Avatar', 'Seller Name', 'Top Selling', 'Remove Seller'];
-        tableHeaders.forEach(headerText => {
-            const th = document.createElement('th');
-            th.textContent = headerText;
-            tableHeaderRow.appendChild(th);
-        });
-  
-        const topSellersTableBody = document.createElement('tbody');
-        topSellersTable.appendChild(topSellersTableBody);
-  
-        topSellingData.forEach(product => {
-            const row = document.createElement('tr');
-            const avatarCell = document.createElement('td');
-            const avatarBox = document.createElement('div');
-            avatarBox.classList.add('avatar-box');
-            // avatarBox.style.backgroundImage = `url(${product.image})`;
-            avatarBox.innerHTML = `<img style="width: 55px; height:55px; border-radius: 100%;" src="${product.avatar}"  alt="Image 3">`
-            avatarCell.appendChild(avatarBox);
-            row.appendChild(avatarCell);
-  
-            row.innerHTML += `
-                <td>${product.seller}</td>
-                <td><img style="width: 70px;" src="${product.image}"  alt="Image 3"></td>
-                <td><button class="delete-btn" data-id="${product.id}"><i class="fas fa-trash-alt"></i></button></td>
-            `;
-            topSellersTableBody.appendChild(row);
-        });
-  
-        // Add event listener to delete buttons
-        const deleteButtons = document.querySelectorAll('.delete-btn');
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                console.log("Delete button clicked");
-                const productId = parseInt(button.dataset.id);
-                console.log("Product ID:", productId);
-                const rowToRemove = button.parentElement.parentElement; // Adjusted to target the parent row
-                console.log("Row to remove:", rowToRemove);
-                if (rowToRemove) {
-                    rowToRemove.remove();
-                }
-            });
-        });
-  
-    }
-  
-    // Call functions to populate data
-    populateTopSelling();
-  
-    console.log('Dashboard populated with dynamic data.');
+// Select the table element
+const sellerTable = document.getElementById('sellerTable');
+
+// Function to create table headings
+function createTableHeadings() {
+  // Clear existing table content
+  sellerTable.innerHTML = '';
+
+  // Create table headings
+  const headings = ['Avatar', 'Seller Name', 'Top Selling', 'Remove Seller'];
+  const headingRow = document.createElement('tr');
+  headings.forEach(heading => {
+    const th = document.createElement('th');
+    th.textContent = heading;
+    headingRow.appendChild(th);
   });
+  sellerTable.appendChild(headingRow);
+}
+
+// Function to populate the table with seller data
+function populateTable(data) {
+  // Loop through the data and populate the table
+  data.forEach(seller => {
+    const row = document.createElement('tr');
+
+    // Avatar column (dummy image for now)
+    const avatarCell = document.createElement('td');
+    avatarCell.classList.add('avatar'); // Add class for styling (optional)
+    const dummyAvatar = document.createElement('img');
+    dummyAvatar.src = 'path/to/your/dummy/avatar.png'; // Replace with your actual image path
+    dummyAvatar.alt = 'Dummy Avatar';
+    avatarCell.appendChild(dummyAvatar);
+    row.appendChild(avatarCell);
+
+    // Seller Name column
+    const nameCell = document.createElement('td');
+    nameCell.classList.add('seller-name'); // Add class for styling
+    nameCell.textContent = seller.fullName;
+    row.appendChild(nameCell);
+
+    // Top Selling column (assuming the seller has at least one product)
+    const topSellingCell = document.createElement('td');
+    topSellingCell.classList.add('top-selling'); // Add class for styling
+    if (seller.products && seller.products.length > 0) {
+      const topSellingProduct = seller.products[0];
+      if (topSellingProduct.productImage) { // Check if product image is available
+        const productImage = document.createElement('img');
+        productImage.src = topSellingProduct.productImage; // Correctly accessing the product image URL
+        productImage.alt = 'Top Selling Product';
+        topSellingCell.appendChild(productImage);
+      } else {
+        topSellingCell.textContent = 'No image available';
+      }
+    } else {
+      topSellingCell.textContent = 'No products available';
+    }
+    row.appendChild(topSellingCell);
+
+    // Remove Seller column (using Font Awesome icon)
+    const removeCell = document.createElement('td');
+    const removeIcon = document.createElement('i');
+    removeIcon.classList.add('fas', 'fa-trash'); // Assuming you're using Font Awesome
+    removeCell.appendChild(removeIcon);
+    row.appendChild(removeCell);
+
+    // Add click event listener for remove button
+    removeCell.addEventListener('click', () => {
+      console.log('Remove Seller clicked for seller:', seller);
+
+      const sellerId = seller._id;
+
+      // Fetch API call with DELETE method to remove seller
+      fetch(`http://localhost:4000/api/v1/admin/remove/user/${sellerId}`, {
+        method: 'DELETE',
+        credentials: 'include' // Include credentials if necessary for authentication
+      })
+        .then(response => {
+          // Check if the response is successful
+          if (!response.ok) {
+            throw new Error('Failed to remove seller');
+          }
+          // Seller removed successfully, update the table
+          console.log('Seller removed successfully');
+
+          // Refetch all seller data after successful removal
+          return fetch('http://localhost:4000/api/v1/admin/allseller', {
+            credentials: 'include'
+          });
+        })
+        .then(response => response.json())
+        .then(data => {
+          // Clear the table and populate it with the fetched data
+          clearTable();
+          populateTable(data.data);
+        })
+        .catch(error => {
+          console.error('Error fetching seller data:', error);
+          // Handle errors appropriately, e.g., display an error message to the user
+        });
+    });
+
+    // Append the row to the table
+    sellerTable.appendChild(row);
+  });
+}
+
+// Function to clear table content except for headings
+function clearTable() {
+  // Clear the table content except for the first row (headings)
+  while (sellerTable.rows.length > 1) {
+    sellerTable.deleteRow(1);
+  }
+}
+
+// Fetch data from the API endpoint with credentials included
+fetch('http://localhost:4000/api/v1/admin/allseller', {
+  credentials: 'include'
+})
+.then(response => {
+  // Check if the response is successful
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  // Parse the JSON response
+  return response.json();
+})
+.then(data => {
+  // Log the fetched data to the console
+  console.log(data);
+  // Populate the table with seller data
+  createTableHeadings();
+  populateTable(data.data);
+})
+.catch(error => {
+  // Log any errors to the console
+  console.error('There was a problem with the fetch operation:', error);
+});
+
+// Call the function to create table headings when the page loads
+document.addEventListener('DOMContentLoaded', createTableHeadings);
+
+// Fetch data from the API endpoint with credentials included
+fetch('http://localhost:4000/api/v1/admin/allseller', {
+  credentials: 'include'
+})
+.then(response => {
+  // Check if the response is successful
+  if (!response.ok) {
+    throw new Error('Network response was not ok');
+  }
+  // Parse the JSON response
+  return response.json();
+})
+.then(data => {
+  // Log the fetched data to the console
+  console.log(data);
+  // Populate the table with seller data
+  populateTable(data.data);
+})
+.catch(error => {
+  // Log any errors to the console
+  console.error('There was a problem with the fetch operation:', error);
+});
+
+// Call the function to create table headings when the page loads
+document.addEventListener('DOMContentLoaded', createTableHeadings);
+
+
+// Remove Seller column (using Font Awesome icon)
+const removeCell = document.createElement('td');
+const removeIcon = document.createElement('i');
+removeIcon.classList.add('fas', 'fa-trash'); // Assuming you're using Font Awesome
+removeCell.appendChild(removeIcon);
+
+// Add click event listener for remove button
+removeCell.addEventListener('click', () => {
+  const sellerId = seller._id;
+
+  removeCell.addEventListener('click', () => {
+    const sellerId = seller._id;
   
+    // Fetch API call with DELETE method to remove seller
+  })})

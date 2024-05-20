@@ -441,6 +441,50 @@ margin-left: 83px;
       background-color: #45a049; /* Darken button color on hover */
   }
 
+  /* Style the radio buttons */
+.payment-item input[type="radio"] {
+  display: none; /* Hide the radio buttons */
+}
+
+/* Style the label for the radio buttons */
+.payment-item label {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Style the images */
+.payment-item label img {
+  width: 50px; /* Adjust image size */
+  margin-right: 10px; /* Adjust spacing between image and text */
+}
+
+/* Style the text */
+.payment-item label span {
+  font-size: 18px; /* Adjust font size */
+}
+
+/* Style the custom radio button */
+.payment-item input[type="radio"] + label:before {
+  content: '';
+  display: inline-block;
+  width: 20px; /* Adjust checkbox size */
+  height: 20px; /* Adjust checkbox size */
+  border: 2px solid #4CAF50; /* Green border */
+  border-radius: 50%; /* Make it a circle */
+  margin-right: 10px;
+}
+
+/* Style the custom checked radio button */
+.payment-item input[type="radio"]:checked + label:before {
+  content: '\2713'; /* Checkmark character */
+  font-size: 16px;
+  text-align: center;
+  line-height: 20px; /* Adjust line height */
+  background-color: #4CAF50; /* Green background */
+  color: #fff; /* Text color */
+}
+
   
 
   
@@ -507,6 +551,8 @@ cursor: pointer;
 #card-form button:hover {
 background-color: #4caf50;
 }
+
+
 
   /* Footer section starts */
 /* Basic footer styles */

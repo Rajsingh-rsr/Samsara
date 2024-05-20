@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
     searchForm.classList.remove('active');
   });
 
-  // function for sliding images
+  // Function for sliding images
   let counter = 1;
   let intervalId;
 
@@ -39,44 +39,52 @@ document.addEventListener("DOMContentLoaded", () => {
       setTimeout(startSlideShow, 5000); // Restart automatic sliding after a delay
     });
   });
-  
-  
-  
 
   // Function to add a product to the cart
   function addToCart(productId, productName, productPrice, productImage) {
     // Get existing cart items from local storage or initialize an empty array
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
 
-    // Add the new product to the cart items array
-    cartItems.push({ id: productId, name: productName, price: productPrice, image: productImage });
+    // Find if the product already exists in the cart
+    const existingProduct = cartItems.find(item => item.id === productId);
+
+    if (existingProduct) {
+      // If product exists, increase the quantity
+      existingProduct.quantity += 1;
+    } else {
+      // If product does not exist, add it to the cart with quantity 1
+      cartItems.push({ id: productId, name: productName, price: productPrice, image: productImage, quantity: 1 });
+    }
 
     // Save the updated cart items back to local storage
     localStorage.setItem('cartItems', JSON.stringify(cartItems));
+
+    // Update the cart count display
+    updateCartCount();
   }
 
   // Function to create a product element
   function createProductElement(product) {
     const element = document.createElement("div");
     element.classList.add("pro");
-
+    console.log(product);
     element.innerHTML = `
-    <a href="../../html/product/productbuy.html">
-    <img src="${product.image}" alt="${product.name}">
-  </a>
-        <div class="des">
-            <span>adidas</span>
-            <h5>${product.name}</h5>
-            <div class="star">
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-                <i class="fas fa-star"></i>
-            </div>
-            <h4>${product.price}</h4>
+      <a href="../../html/product/productbuy.html?product=${product._id}">
+        <img src="${product.productImage}" alt="${product.name}">
+      </a>
+      <div class="des">
+        <span>adidas</span>
+        <h5>${product.name}</h5>
+        <div class="star">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
         </div>
-        <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
+        <h4>${product.price}</h4>
+      </div>
+      <button class="add-to-cart"><i class="fas fa-shopping-cart"></i></button>
     `;
 
     return element;
@@ -94,16 +102,13 @@ document.addEventListener("DOMContentLoaded", () => {
       // Add click event listener to each add-to-cart button
       productElement.querySelector('.add-to-cart').addEventListener('click', () => {
         // Get product information
-        const productId = product.id;
+        const productId = product._id;
         const productName = product.name;
         const productPrice = product.price;
-        const productImage = product.image;
+        const productImage = product.productImage;
 
         // Add product to the cart
         addToCart(productId, productName, productPrice, productImage);
-
-        // Update the cart count display
-        updateCartCount();
       });
     });
   }
@@ -112,10 +117,10 @@ document.addEventListener("DOMContentLoaded", () => {
   function updateCartCount() {
     let cartItems = JSON.parse(localStorage.getItem('cartItems')) || [];
     const cartCount = document.querySelector('.cart-count');
-    // Calculate the total number of products in the cart
-    const totalCount = cartItems.length;
+    // Calculate the number of unique products in the cart
+    const uniqueProductCount = cartItems.length;
     // Update the cart counter text
-    cartCount.textContent = totalCount;
+    cartCount.textContent = uniqueProductCount;
   }
 
   // Fetch products from the backend
@@ -125,29 +130,29 @@ document.addEventListener("DOMContentLoaded", () => {
   })
     .then(response => response.json())
     .then(data => {
+      console.log("Fetched data:", data);
       // Check if request was successful
       if (data.statusCode == 200) {
         // Extract product data from the 'data' field
-        const products = data.data;
+        const products = data.data.docs;
 
         // Add products to respective sections
         addProductsToSection("new-arrivals", products); // New Arrivals section
 
-        // // Filter products for Jeans and Jacket sections
-        // const jeansProducts = products.filter(product => product.category === "jeans");
-        // const jacketProducts = products.filter(product => product.category === "jacket");
+        console.log(products);
 
         // Add products to Jeans section
-        addProductsToSection("jeans", products);
+        addProductsToSection("jeans", products.filter(product => product.category === "jeans"));
 
         // Add products to Jacket section
-        addProductsToSection("jackets", products);
+        addProductsToSection("jackets", products.filter(product => product.category === "jacket"));
       } else {
         console.error("Failed to fetch products:", data.message);
       }
     })
     .catch(error => {
-      // console.error("Error fetching products:", error.message);
-      console.log("this is eror",error);
-    })
+      console.error("Error fetching products:", error.message);
+    });
+
+  updateCartCount(); // Initial cart count update
 });
