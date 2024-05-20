@@ -103,66 +103,73 @@ document.addEventListener("DOMContentLoaded", function () {
     // Function to create delivered orders table
     function createDeliveredOrdersTable(deliveredOrdersData) {
         const deliveredOrdersDiv = document.getElementById('delivered-orders');
-
+    
         const table = document.createElement('table');
-
+    
         const thead = document.createElement('thead');
         const headerRow = document.createElement('tr');
         ['Order ID', 'Product Name', 'Delivered', 'Price', 'Date', 'Receipt'].forEach(headerText => {
             const th = document.createElement('th');
-            
+            if (headerText === 'Receipt') {
+                const downloadIcon = document.createElement('i');
+                downloadIcon.classList.add('fas', 'fa-download');
+                th.appendChild(downloadIcon);
+                // Add event listener to the download icon
+                downloadIcon.addEventListener('click', () => {
+                    // Navigate to the receipt HTML page
+                    window.location.href = '../../html/user/receipt.html'; // Replace 'path_to_receipt_html' with the actual path
+                });
+            } else {
                 th.textContent = headerText;
-            
+            }
             headerRow.appendChild(th);
         });
         thead.appendChild(headerRow);
         table.appendChild(thead);
-
+    
         const tbody = document.createElement('tbody');
-        console.log(deliveredOrdersData)
         deliveredOrdersData.forEach(order => {
-            order.product.forEach(item => {
+            order.orderItem.forEach(item => {
                 const row = document.createElement('tr');
-
+    
                 const orderIdCell = document.createElement('td');
                 orderIdCell.textContent = order._id;
                 row.appendChild(orderIdCell);
-
+    
                 const productNameCell = document.createElement('td');
-                productNameCell.textContent = item.name;
+                productNameCell.textContent = item.productId;
                 row.appendChild(productNameCell);
-
+    
                 const statusCell = document.createElement('td');
                 statusCell.textContent = 'Delivered';
                 row.appendChild(statusCell);
-
+    
                 const priceCell = document.createElement('td');
                 priceCell.textContent = order.orderPrice;
                 row.appendChild(priceCell);
-
-                
+    
                 const dateCell = document.createElement('td');
-            const date = new Date(order.createdAt); // Convert to Date object
-            const formattedDate = date.toLocaleDateString('en-US', {
-                year: 'numeric',
-                month: 'short',
-                day: 'numeric'
-            });
-            dateCell.textContent = formattedDate; // Format date
-            row.appendChild(dateCell);
-
+                const date = new Date(order.createdAt); // Convert to Date object
+                const formattedDate = date.toLocaleDateString('en-US', {
+                    year: 'numeric',
+                    month: 'short',
+                    day: 'numeric'
+                });
+                dateCell.textContent = formattedDate; // Format date
+                row.appendChild(dateCell);
+    
                 const receiptCell = document.createElement('td');
                 const receiptButton = document.createElement('button');
                 receiptButton.classList.add('download-receipt-button');
                 receiptButton.innerHTML = '<i class="fas fa-download"></i>';
                 receiptCell.appendChild(receiptButton);
                 row.appendChild(receiptCell);
-
+    
                 tbody.appendChild(row);
             });
         });
         table.appendChild(tbody);
-
+    
         deliveredOrdersDiv.appendChild(table);
     }
 

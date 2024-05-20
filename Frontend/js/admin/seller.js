@@ -140,30 +140,6 @@ fetch('http://localhost:4000/api/v1/admin/allseller', {
 document.addEventListener('DOMContentLoaded', createTableHeadings);
 
 // Fetch data from the API endpoint with credentials included
-fetch('http://localhost:4000/api/v1/admin/allseller', {
-  credentials: 'include'
-})
-.then(response => {
-  // Check if the response is successful
-  if (!response.ok) {
-    throw new Error('Network response was not ok');
-  }
-  // Parse the JSON response
-  return response.json();
-})
-.then(data => {
-  // Log the fetched data to the console
-  console.log(data);
-  // Populate the table with seller data
-  populateTable(data.data);
-})
-.catch(error => {
-  // Log any errors to the console
-  console.error('There was a problem with the fetch operation:', error);
-});
-
-// Call the function to create table headings when the page loads
-document.addEventListener('DOMContentLoaded', createTableHeadings);
 
 
 // Remove Seller column (using Font Awesome icon)
@@ -181,4 +157,3 @@ removeCell.addEventListener('click', () => {
   
     // Fetch API call with DELETE method to remove seller
   })});
-  
